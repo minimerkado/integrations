@@ -1,0 +1,42 @@
+{
+    "name": "minimerkado/integrations",
+    "description": "Minimerkado external integrations",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Leone Parise",
+            "email": "1442927+leoneparise@users.noreply.github.com"
+        }
+    ],    
+    "autoload": {
+        "psr-4": {
+            "PagSeguro\\": "src/PagSeguro"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Minimerkado\\Integrations\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "PagSeguro\\PagSeguroServiceProvider"
+            ],
+            "aliases": {
+                "PagSeguro": "PagSeguro\\Facades\\PagSeguro"
+            }
+        }
+    },
+    "require": {
+        "php": ">=7.4",
+        "ext-json": "*",
+        "ext-simplexml": "*",
+        "guzzlehttp/guzzle": "^6.5",
+        "nesbot/carbon": "^2.36"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^5.0"
+    }
+}

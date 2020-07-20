@@ -16,7 +16,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Minimerkado\\Integrations\\Tests\\": "tests"
+            "Tests\\": "tests"
         }
     },
     "extra": {

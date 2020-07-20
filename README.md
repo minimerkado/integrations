@@ -1,0 +1,2 @@
+# integrations
+Minimerkado external integrations

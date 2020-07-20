@@ -15,7 +15,7 @@ interface PagSeguroService
      * @throws PagSeguroException
      * @return CheckoutResponse
      */
-    function createCheckout(CheckoutRequest $request): CheckoutResponse;
+    function checkout(CheckoutRequest $request): CheckoutResponse;
 
     /**
      * Get checkout url
@@ -23,5 +23,5 @@ interface PagSeguroService
      * @param string $code
      * @return string
      */
-    function getCheckoutUrl(string $code): string;
+    function checkoutUrl(string $code): string;
 }

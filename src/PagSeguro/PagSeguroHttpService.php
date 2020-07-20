@@ -32,18 +32,27 @@ class PagSeguroHttpService implements PagSeguroService
         $this->config = $config;
     }
 
-    function createCheckout(CheckoutRequest $request): CheckoutResponse
+    function checkout(CheckoutRequest $request): CheckoutResponse
     {
         /** @var CheckoutResponse $response */
         $response = $this->request($request, fn($body) => new CheckoutResponse($body));
         return $response;
     }
 
-    function getCheckoutUrl(string $code): string
+    function checkoutUrl(string $code): string
     {
         return $this->getUri("/checkout/payment.html?code=$code");
     }
 
+    /**
+     * Make a request to the API
+     *
+     * @param Request $request
+     * @param callback $parser
+     * @return Response
+     * @throws PagSeguroException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     function request(Request $request, $parser): Response
     {
         $options = array_merge([

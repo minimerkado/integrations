@@ -22,8 +22,8 @@ class CheckoutRequest implements Request, XMLEncodable
     private string $currency = 'BRL';
     private Items $items;
     private Receiver $receiver;
+    private Shipping $shipping;
     private ?Sender $sender = null;
-    private ?Shipping $shipping = null;
     private ?float $extraAmount = null;
     private ?string $reference = null;
     private ?string $redirectUrl = null;
@@ -97,10 +97,10 @@ class CheckoutRequest implements Request, XMLEncodable
     }
 
     /**
-     * @param Shipping|null $shipping
+     * @param Shipping $shipping
      * @return CheckoutRequest
      */
-    public function setShipping(?Shipping $shipping): CheckoutRequest
+    public function setShipping(Shipping $shipping): CheckoutRequest
     {
         $this->shipping = $shipping;
         return $this;
@@ -205,9 +205,9 @@ class CheckoutRequest implements Request, XMLEncodable
         $root->addChild('currency', $this->currency);
         $this->items->encode($root);
         $this->receiver->encode($root);
+        $this->shipping->encode($root);
 
         self::when($this->sender, fn($value) => $value->encode($root));
-        self::when($this->shipping, fn($value) => $value->encode($root));
         self::when($this->extraAmount, fn($value) => $root->addChild('extraAmount', $value));
         self::when($this->reference, fn($value) => $root->addChild('reference', $value));
         self::when($this->redirectUrl, fn($value) => $root->addChild('redirectUrl', $value));

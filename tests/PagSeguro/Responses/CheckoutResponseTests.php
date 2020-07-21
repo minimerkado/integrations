@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Tests\Unit\PagSeguro\Responses;
+namespace Tests\PagSeguro\Responses;
 
 
 use Carbon\Carbon;

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Tests\Unit\PagSeguro\Requests\Checkout\Objects;
+namespace Tests\PagSeguro\Requests\Checkout\Objects;
 
 
 use Orchestra\Testbench\TestCase;

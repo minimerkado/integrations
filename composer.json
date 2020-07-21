@@ -11,12 +11,12 @@
     ],    
     "autoload": {
         "psr-4": {
-            "PagSeguro\\": "src/PagSeguro"
+            "PagSeguro\\": "src/PagSeguro/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests"
+            "Tests\\": "tests/"
         }
     },
     "extra": {

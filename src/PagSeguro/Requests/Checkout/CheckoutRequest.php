@@ -4,6 +4,7 @@
 namespace PagSeguro\Requests\Checkout;
 
 
+use PagSeguro\Requests\Checkout\Objects\Item;
 use PagSeguro\Utilities;
 use PagSeguro\Requests\Checkout\Objects\Items;
 use PagSeguro\Requests\Checkout\Objects\Receiver;
@@ -42,6 +43,7 @@ class CheckoutRequest implements Request, XMLEncodable
         $this->email = $email;
         $this->token = $token;
         $this->receiver = new Receiver($email);
+        $this->shipping = new Shipping();
     }
 
     /**
@@ -75,12 +77,17 @@ class CheckoutRequest implements Request, XMLEncodable
     }
 
     /**
-     * @param Items $items
+     * @param Items|callback $items
      * @return CheckoutRequest
      */
-    public function setItems(Items $items): CheckoutRequest
+    public function setItems($items): CheckoutRequest
     {
-        $this->items = $items;
+        if ($items instanceof Items) {
+            $this->items = $items;
+        } else {
+            $this->items = $items();
+        }
+
         return $this;
     }
 

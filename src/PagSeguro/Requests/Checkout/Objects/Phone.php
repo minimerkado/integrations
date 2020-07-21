@@ -13,6 +13,17 @@ class Phone implements XMLEncodable
     private string $number;
 
     /**
+     * Phone constructor.
+     * @param string $areaCode
+     * @param string $number
+     */
+    public function __construct(string $areaCode, string $number)
+    {
+        $this->areaCode = $areaCode;
+        $this->number = $number;
+    }
+
+    /**
      * @param string $areaCode
      * @return Phone
      */

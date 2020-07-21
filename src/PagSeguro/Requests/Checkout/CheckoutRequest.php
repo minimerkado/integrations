@@ -36,13 +36,11 @@ class CheckoutRequest implements Request, XMLEncodable
      * CheckoutRequest constructor.
      * @param string $email
      * @param string $token
-     * @param Items $items
      */
-    public function __construct(string $email, string $token, Items $items)
+    public function __construct(string $email, string $token)
     {
         $this->email = $email;
         $this->token = $token;
-        $this->items = $items;
         $this->receiver = new Receiver($email);
     }
 

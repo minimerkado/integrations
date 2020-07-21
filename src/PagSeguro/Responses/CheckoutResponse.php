@@ -19,7 +19,23 @@ class CheckoutResponse implements Response
     public function parse(string $body)
     {
         $xml = simplexml_load_string($body);
-        $this->code = $xml->checkout->code;
-        $this->date = Carbon::parse($xml->checkout->date);
+        $this->code = $xml->code;
+        $this->date = Carbon::parse($xml->date);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCode(): string
+    {
+        return $this->code;
+    }
+
+    /**
+     * @return Carbon
+     */
+    public function getDate(): Carbon
+    {
+        return $this->date;
     }
 }

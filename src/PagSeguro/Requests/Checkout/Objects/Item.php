@@ -5,10 +5,13 @@ namespace PagSeguro\Requests\Checkout\Objects;
 
 
 use PagSeguro\Requests\XMLEncodable;
+use PagSeguro\Utilities;
 use SimpleXMLElement;
 
 class Item implements XMLEncodable
 {
+    use Utilities;
+
     private string $id;
     private string $description;
     private float $amount;
@@ -84,6 +87,6 @@ class Item implements XMLEncodable
         $item->addChild('quantity', $this->quantity);
         $item->addChild('amount', $this->amount);
         $item->addChild('weight', $this->weight);
-        $item->addChild('shippingCost', $this->shippingCost);
+        self::when($this->shippingCost, fn($value) => $item->addChild('shippingCost', $value));
     }
 }

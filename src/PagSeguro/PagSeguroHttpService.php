@@ -19,14 +19,14 @@ use PagSeguro\Responses\Response;
 class PagSeguroHttpService implements PagSeguroService
 {
     private Client $http_client;
-    private PagSeguroConfiguration $config;
+    private Configuration $config;
 
     /**
      * PagSeguroHttpService constructor.
      * @param Client $http_client
-     * @param PagSeguroConfiguration $config
+     * @param Configuration $config
      */
-    public function __construct(PagSeguroConfiguration $config, ?Client $http_client = null)
+    public function __construct(Configuration $config, ?Client $http_client = null)
     {
         $this->http_client = $http_client ?? new Client();
         $this->config = $config;

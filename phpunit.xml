@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true">
+    <testsuites>
+        <testsuite name="Feature">
+            <directory suffix="Test.php">./tests/Feature</directory>
+        </testsuite>
+
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./tests/Unit</directory>
+        </testsuite>
+
+        <testsuite name="Loggi">
+            <directory suffix="Test.php">./tests/Loggi</directory>
+        </testsuite>
+
+        <testsuite name="Iugu">
+            <directory suffix="Test.php">./tests/Iugu</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./app</directory>
+        </whitelist>
+    </filter>
+    <php>
+        <env name="APP_ENV" value="testing" force="true"/>
+        <env name="CACHE_DRIVER" value="array" force="true"/>
+        <env name="SESSION_DRIVER" value="array" force="true"/>
+        <env name="QUEUE_DRIVER" value="sync" force="true"/>
+        <env name="DB_CONNECTION" value="mysql" force="true"/>
+        <env name="DB_DATABASE" value="minimerkado_test" force="true"/>
+        <env name="IUGU_FAKE" value="true" force="true"/>
+        <env name="LOGGI_FAKE" value="true" force="true"/>
+        <env name="LOGGI_API_EMAIL" value="leone@minimerkado.com" force="true"/>
+        <env name="LOGGI_API_KEY" value="ab7487c2757865e61608857a7a6300d34f0b0674" force="true"/>
+        <env name="LOGGI_COMPANY_ID" value="65168" force="true"/>
+        <env name="SCOUT_DRIVER" value="null" force="true"/>
+    </php>
+</phpunit>

@@ -16,6 +16,17 @@ class Document implements XMLEncodable
     private string $value;
 
     /**
+     * Document constructor.
+     * @param string $type
+     * @param string $value
+     */
+    public function __construct(string $type, string $value)
+    {
+        $this->type = $type;
+        $this->value = $value;
+    }
+
+    /**
      * @param string $type
      * @return Document
      */

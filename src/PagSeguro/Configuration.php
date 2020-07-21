@@ -4,7 +4,7 @@
 namespace PagSeguro;
 
 
-class PagSeguroConfiguration
+class Configuration
 {
     private string $environment;
 

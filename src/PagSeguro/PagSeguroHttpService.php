@@ -86,7 +86,7 @@ class PagSeguroHttpService implements PagSeguroService
 
     private function getUri(string $path): string {
         return $this->config->isProduction()
-            ? 'https://pagseguro.uol.com.br/v2'.$path
-            : 'https://sandbox.pagseguro.uol.com.br/v2'.$path;
+            ? 'https://ws.pagseguro.uol.com.br/v2'.$path
+            : 'https://ws.sandbox.pagseguro.uol.com.br/v2'.$path;
     }
 }

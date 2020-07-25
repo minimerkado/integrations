@@ -85,8 +85,8 @@ class Item implements XMLEncodable
         $item->addChild('id', $this->id);
         $item->addChild('description', $this->description);
         $item->addChild('quantity', $this->quantity);
-        $item->addChild('amount', $this->amount);
+        $item->addChild('amount', number_format($this->amount, 2));
         $item->addChild('weight', $this->weight);
-        self::when($this->shippingCost, fn($value) => $item->addChild('shippingCost', $value));
+        self::when($this->shippingCost, fn($value) => $item->addChild('shippingCost', number_format($value, 2)));
     }
 }

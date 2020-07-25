@@ -63,7 +63,7 @@ class Shipping implements XMLEncodable
     {
         $shipping = $root->addChild('shipping');
         $shipping->addChild('type', $this->type);
-        $shipping->addChild('cost', $this->cost);
+        $shipping->addChild('cost', number_format($this->cost, 2));
         $shipping->addChild('addressRequired', $this->addressRequired ? 'true' : 'false');
         self::when($this->address, fn($address) => $address->encode($shipping));
     }

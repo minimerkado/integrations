@@ -77,16 +77,12 @@ class CheckoutRequest implements Request, XMLEncodable
     }
 
     /**
-     * @param Items|callback $items
+     * @param Items $items
      * @return CheckoutRequest
      */
     public function setItems($items): CheckoutRequest
     {
-        if ($items instanceof Items) {
-            $this->items = $items;
-        } else {
-            $this->items = $items();
-        }
+        $this->items = $items;
 
         return $this;
     }
@@ -100,7 +96,7 @@ class CheckoutRequest implements Request, XMLEncodable
         $this->sender = $sender;
         return $this;
     }
-
+ 
     /**
      * @param Shipping $shipping
      * @return CheckoutRequest

@@ -9,7 +9,7 @@ use PagSeguro\Requests\Checkout\Objects\Document;
 use PagSeguro\Requests\Checkout\Objects\Documents;
 use SimpleXMLElement;
 
-class DocumentsTests extends TestCase
+class DocumentsTest extends TestCase
 {
     function testEncode() {
         $xml = new SimpleXMLElement('<root/>');

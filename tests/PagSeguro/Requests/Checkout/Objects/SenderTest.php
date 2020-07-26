@@ -9,7 +9,7 @@ use PagSeguro\Requests\Checkout\Objects\Document;
 use PagSeguro\Requests\Checkout\Objects\Phone;
 use PagSeguro\Requests\Checkout\Objects\Sender;
 
-class SenderTests extends TestCase
+class SenderTest extends TestCase
 {
     function testEncode()
     {

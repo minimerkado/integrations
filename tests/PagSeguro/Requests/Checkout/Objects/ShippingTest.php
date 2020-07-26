@@ -8,7 +8,7 @@ use Orchestra\Testbench\TestCase;
 use PagSeguro\Requests\Checkout\Objects\Address;
 use PagSeguro\Requests\Checkout\Objects\Shipping;
 
-class ShippingTests extends TestCase
+class ShippingTest extends TestCase
 {
     function testEncode()
     {

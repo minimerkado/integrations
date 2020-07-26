@@ -8,7 +8,7 @@ use Orchestra\Testbench\TestCase;
 use PagSeguro\Requests\Checkout\Objects\Item;
 use PagSeguro\Requests\Checkout\Objects\Items;
 
-class ItemsTests extends TestCase
+class ItemsTest extends TestCase
 {
     function testEncode()
     {

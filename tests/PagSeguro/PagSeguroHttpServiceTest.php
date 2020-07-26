@@ -23,7 +23,7 @@ use PagSeguro\Requests\Checkout\Objects\Phone;
 use PagSeguro\Requests\Checkout\Objects\Sender;
 use PagSeguro\Requests\Checkout\Objects\Shipping;
 
-class PagSeguroHttpServiceTests extends TestCase
+class PagSeguroHttpServiceTest extends TestCase
 {
     private PagSeguroService $service;
     private HandlerStack $handlerStack;

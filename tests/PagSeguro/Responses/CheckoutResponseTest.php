@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Orchestra\Testbench\TestCase;
 use PagSeguro\Responses\CheckoutResponse;
 
-class CheckoutResponseTests extends TestCase
+class CheckoutResponseTest extends TestCase
 {
     function testParse()
     {

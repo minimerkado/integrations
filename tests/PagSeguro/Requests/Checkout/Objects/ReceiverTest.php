@@ -7,7 +7,7 @@ namespace Tests\PagSeguro\Requests\Checkout\Objects;
 use Orchestra\Testbench\TestCase;
 use PagSeguro\Requests\Checkout\Objects\Receiver;
 
-class ReceiverTests extends TestCase
+class ReceiverTest extends TestCase
 {
     function testEncode()
     {

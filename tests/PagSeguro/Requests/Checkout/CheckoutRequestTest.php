@@ -14,7 +14,7 @@ use PagSeguro\Requests\Checkout\Objects\Phone;
 use PagSeguro\Requests\Checkout\Objects\Sender;
 use PagSeguro\Requests\Checkout\Objects\Shipping;
 
-class CheckoutRequestTests extends TestCase
+class CheckoutRequestTest extends TestCase
 {
     private CheckoutRequest $request;
 

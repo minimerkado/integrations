@@ -7,7 +7,7 @@ namespace Tests\PagSeguro\Requests\Checkout\Objects;
 use Orchestra\Testbench\TestCase;
 use PagSeguro\Requests\Checkout\Objects\Address;
 
-class AddressTests extends TestCase
+class AddressTest extends TestCase
 {
     function testEncode()
     {

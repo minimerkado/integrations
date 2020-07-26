@@ -21,12 +21,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Cache NPM
-      uses: actions/cache@v1
-      with:
-        path: node_modules
-        key: npm-${{ hashFiles('**/Package.resolved') }}
-
     - name: Cache Composer
       uses: actions/cache@v1
       with:

@@ -22,11 +22,11 @@ class ShippingTests extends TestCase
                 ->setCity('San Francisco')
                 ->setState('CA')
                 ->setCountry('United'))
-            ->setCost(30.5)
+            ->setCost(30.0)
             ->encode($xml);
 
         self::assertEquals('<?xml version="1.0"?>
-<root><shipping><type>1</type><cost>30.5</cost><addressRequired>false</addressRequired><address><street>Main Street</street><number>123</number><city>San Francisco</city><state>CA</state><country>United</country><postalCode>123456789</postalCode></address></shipping></root>
+<root><shipping><type>1</type><cost>30.00</cost><addressRequired>false</addressRequired><address><street>Main Street</street><number>123</number><city>San Francisco</city><state>CA</state><country>United</country><postalCode>123456789</postalCode></address></shipping></root>
 ', $xml->asXML());
     }
 }

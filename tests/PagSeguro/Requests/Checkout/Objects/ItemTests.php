@@ -22,7 +22,7 @@ class ItemTests extends TestCase
             ->encode($xml);
 
         self::assertEquals('<?xml version="1.0"?>
-<root><item><id>1</id><description>Nike Shoes</description><quantity>1</quantity><amount>150</amount><weight>75</weight><shippingCost>50</shippingCost></item></root>
+<root><item><id>1</id><description>Nike Shoes</description><quantity>1</quantity><amount>150.00</amount><weight>75</weight><shippingCost>50.00</shippingCost></item></root>
 ', $xml->asXML());
     }
 
@@ -38,7 +38,7 @@ class ItemTests extends TestCase
             ->encode($xml);
 
         self::assertEquals('<?xml version="1.0"?>
-<root><item><id>1</id><description>Nike Shoes</description><quantity>1</quantity><amount>150</amount><weight>75</weight></item></root>
+<root><item><id>1</id><description>Nike Shoes</description><quantity>1</quantity><amount>150.00</amount><weight>75</weight></item></root>
 ', $xml->asXML());
     }
 }

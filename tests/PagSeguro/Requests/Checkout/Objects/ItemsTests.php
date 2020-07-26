@@ -32,7 +32,7 @@ class ItemsTests extends TestCase
             ->encode($xml);
 
         self::assertEquals('<?xml version="1.0"?>
-<root><items><item><id>1</id><description>Nike Shoes</description><quantity>1</quantity><amount>150</amount><weight>75</weight><shippingCost>50</shippingCost></item><item><id>2</id><description>Adidas Shoes</description><quantity>2</quantity><amount>200</amount><weight>80</weight></item></items></root>
+<root><items><item><id>1</id><description>Nike Shoes</description><quantity>1</quantity><amount>150.00</amount><weight>75</weight><shippingCost>50.00</shippingCost></item><item><id>2</id><description>Adidas Shoes</description><quantity>2</quantity><amount>200.00</amount><weight>80</weight></item></items></root>
 ', $xml->asXML());
     }
 }

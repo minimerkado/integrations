@@ -85,7 +85,7 @@ class PagSeguroHttpServiceTests extends TestCase
         /** @var Request $request */
         $request = $container[0]['request'];
         self::assertEquals('POST', $request->getMethod());
-        self::assertEquals('sandbox.pagseguro.uol.com.br', $request->getUri()->getHost());
+        self::assertEquals('ws.sandbox.pagseguro.uol.com.br', $request->getUri()->getHost());
         self::assertEquals('email=test%40example.com&token=token12345', $request->getUri()->getQuery());
         self::assertEquals('36E9E393B7B77B0FF4DA7F8C6A635181', $response->getCode());
     }
@@ -93,6 +93,6 @@ class PagSeguroHttpServiceTests extends TestCase
     function testCheckoutUrl()
     {
         $url = $this->service->checkoutUrl('36E9E393B7B77B0FF4DA7F8C6A635181');
-        self::assertEquals('https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=36E9E393B7B77B0FF4DA7F8C6A635181', $url);
+        self::assertEquals('https://ws.sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=36E9E393B7B77B0FF4DA7F8C6A635181', $url);
     }
 }

@@ -4,14 +4,13 @@
 namespace PagSeguro\Requests\Checkout;
 
 
-use PagSeguro\Requests\Checkout\Objects\Item;
-use PagSeguro\Utilities;
 use PagSeguro\Requests\Checkout\Objects\Items;
 use PagSeguro\Requests\Checkout\Objects\Receiver;
 use PagSeguro\Requests\Checkout\Objects\Sender;
 use PagSeguro\Requests\Checkout\Objects\Shipping;
-use PagSeguro\Requests\XMLEncodable;
 use PagSeguro\Requests\Request;
+use PagSeguro\Requests\XMLEncodable;
+use PagSeguro\Utilities;
 use SimpleXMLElement;
 
 class CheckoutRequest implements Request, XMLEncodable
@@ -96,7 +95,7 @@ class CheckoutRequest implements Request, XMLEncodable
         $this->sender = $sender;
         return $this;
     }
- 
+
     /**
      * @param Shipping $shipping
      * @return CheckoutRequest

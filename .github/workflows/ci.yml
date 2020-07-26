@@ -34,6 +34,9 @@ jobs:
         extensions: dom, curl, libxml, pdo_mysql, bcmath, exif, mbstring, mcrypt, intl, zip
         tools: pecl, composer, phpunit
         coverage: pcov
-    
+
+    - name: Install dependencies
+      run: composer install
+
     - name: Execute tests
       run: vendor/bin/phpunit --verbose

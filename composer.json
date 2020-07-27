@@ -11,7 +11,8 @@
     ],    
     "autoload": {
         "psr-4": {
-            "PagSeguro\\": "src/PagSeguro/"
+            "PagSeguro\\": "src/PagSeguro/",
+            "PicPay\\": "src/PicPay/"
         }
     },
     "autoload-dev": {
@@ -22,10 +23,12 @@
     "extra": {
         "laravel": {
             "providers": [
-                "PagSeguro\\PagSeguroServiceProvider"
+                "PagSeguro\\PagSeguroServiceProvider",
+                "PicPay\\PicPayServiceProvider"
             ],
             "aliases": {
-                "PagSeguro": "PagSeguro\\Facades\\PagSeguro"
+                "PagSeguro": "PagSeguro\\Facades\\PagSeguro",
+                "PicPay": "PicPay\\Facades\\PicPay"
             }
         }
     },

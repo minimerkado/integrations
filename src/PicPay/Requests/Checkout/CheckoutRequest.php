@@ -101,8 +101,8 @@ class CheckoutRequest implements Request
                 "referenceId" => $this->referenceId,
                 "callbackUrl" => $this->callbackUrl,
                 "returnUrl" => $this->returnUrl,
-                "value" => $this->referenceId,
-                "expiresAt" => $this->referenceId,
+                "value" => $this->value,
+                "expiresAt" => $this->expiresAt,
                 "buyer" => $this->buyer->build(),
             ],
         ];

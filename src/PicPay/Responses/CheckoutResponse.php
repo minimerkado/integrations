@@ -9,8 +9,8 @@ class CheckoutResponse implements Response
 {
     private string $referenceId;
     private string $paymentUrl;
-    private Carbon $expiresAt;
-    private string $qrcode;
+    private ?Carbon $expiresAt = null;
+    private QrCode $qrcode;
 
     public function __construct(string $body)
     {
@@ -22,8 +22,8 @@ class CheckoutResponse implements Response
         $json = json_decode($body);
         $this->referenceId = $json->referenceId;
         $this->paymentUrl = $json->paymentUrl;
-        $this->expiresAt = $json->expiresAt;
-        $this->qrcode = $json->qrcode;
+        $this->expiresAt = Carbon::parse($json->expiresAt);
+        $this->qrcode = new QrCode($json->qrcode->content, $json->qrcode->base64);
     }
 
     /**
@@ -43,17 +43,17 @@ class CheckoutResponse implements Response
     }
 
     /**
-     * @return Carbon
+     * @return Carbon|null
      */
-    public function getExpiresAt(): Carbon
+    public function getExpiresAt(): ?Carbon
     {
         return $this->expiresAt;
     }
 
     /**
-     * @return string
+     * @return QrCode
      */
-    public function getQrcode(): string
+    public function getQrcode(): QrCode
     {
         return $this->qrcode;
     }

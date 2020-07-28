@@ -38,7 +38,7 @@ class PicPayHttpService implements PicPayService
      * @throws UnauthorizedException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    function checkoutUrl(CheckoutRequest $request): CheckoutResponse
+    function checkout(CheckoutRequest $request): CheckoutResponse
     {
         /** @var CheckoutResponse $response */
         $response = $this->request($request, fn($body) => new CheckoutResponse($body));

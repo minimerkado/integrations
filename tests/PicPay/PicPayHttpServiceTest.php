@@ -11,7 +11,6 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Orchestra\Testbench\TestCase;
-use PicPay\Configuration;
 use PicPay\Contracts\PicPayService;
 use PicPay\PicPayHttpService;
 use PicPay\Requests\Checkout\CheckoutRequest;
@@ -43,8 +42,7 @@ class PicPayHttpServiceTest extends TestCase
 
         $this->handlerStack = HandlerStack::create($mock);
         $client = new Client(['handler' => $this->handlerStack]);
-        $config = new Configuration([]);
-        $this->service = new PicPayHttpService($config, $client);
+        $this->service = new PicPayHttpService($client);
     }
 
     function testCheckout()
@@ -73,7 +71,7 @@ class PicPayHttpServiceTest extends TestCase
         /** @var Request $request */
         $request = $container[0]['request'];
         self::assertEquals('POST', $request->getMethod());
-        self::assertEquals('dev.picpay.com', $request->getUri()->getHost());
+        self::assertEquals('appws.picpay.com', $request->getUri()->getHost());
         self::assertEquals('token12345', $request->getHeaderLine('x-picpay-token'));
         self::assertEquals('https://app.picpay.com/checkout/NWFmMGRjNmViZDc0Y2EwMDMwNzZlYzEw', $response->getPaymentUrl());
     }

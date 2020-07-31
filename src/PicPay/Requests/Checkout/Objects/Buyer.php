@@ -70,5 +70,4 @@ class Buyer
             "phone" => $this->phone,
         ];
     }
-
 }

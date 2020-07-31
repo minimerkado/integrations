@@ -2,14 +2,13 @@
 
 namespace PicPay\Contracts;
 
-use PicPay\Requests\Checkout\CheckoutRequest;
-use PicPay\Responses\CheckoutResponse;
-
 interface PicPayService
 {
     /**
-     * @param CheckoutRequest $request
-     * @return string
+     * Do a Checkout request to PicPay API
+     *
+     * @param \PicPay\Requests\Checkout\CheckoutRequest $request request data to make the checkout
+     * @return \PicPay\Responses\CheckoutResponse checkout response
      */
-    function checkout(CheckoutRequest $request): CheckoutResponse;
+    function checkout(\PicPay\Requests\Checkout\CheckoutRequest $request): \PicPay\Responses\CheckoutResponse;
 }

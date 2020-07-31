@@ -17,17 +17,14 @@ use PicPay\Responses\Response;
 class PicPayHttpService implements PicPayService
 {
     private Client $http_client;
-    private Configuration $config;
 
     /**
      * PagSeguroHttpService constructor.
-     * @param Client $http_client
-     * @param Configuration $config
+     * @param ?Client $http_client
      */
-    public function __construct(Configuration $config, ?Client $http_client = null)
+    public function __construct(?Client $http_client = null)
     {
         $this->http_client = $http_client ?? new Client();
-        $this->config = $config;
     }
 
     /**
@@ -74,12 +71,6 @@ class PicPayHttpService implements PicPayService
     }
 
     private function getUri(string $path): string {
-        return $this->config->isProduction()
-            ? 'https://appws.picpay.com/ecommerce/public'.$path
-            : 'https://dev.picpay.com/ecommerce/public'.$path;
-    }
-
-    private function getToken(){
-        return "";
+        return 'https://appws.picpay.com/ecommerce/public'.$path;
     }
 }

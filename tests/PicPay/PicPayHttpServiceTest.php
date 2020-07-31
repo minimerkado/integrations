@@ -23,17 +23,15 @@ class PicPayHttpServiceTest extends TestCase
     private array $history = [];
     private MockHandler $mock;
     private PicPayService $service;
-    private HandlerStack $handlerStack;
 
     public function setUp(): void
     {
         parent::setUp();
         $this->history = [];
-
         $this->mock = new MockHandler();
-        $this->handlerStack = HandlerStack::create($this->mock);
-        $this->handlerStack->push(Middleware::history($this->history));
-        $client = new Client(['handler' => $this->handlerStack]);
+        $handlerStack = HandlerStack::create($this->mock);
+        $handlerStack->push(Middleware::history($this->history));
+        $client = new Client(['handler' => $handlerStack]);
         $this->service = new PicPayHttpService($client);
     }
 

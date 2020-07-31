@@ -25,33 +25,31 @@ use PagSeguro\Requests\Checkout\Objects\Shipping;
 
 class PagSeguroHttpServiceTest extends TestCase
 {
+    private array $history = [];
+    private MockHandler $mock;
     private PagSeguroService $service;
-    private HandlerStack $handlerStack;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $mock = new MockHandler([
-            new Response(200, [], '<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
-                <checkout>
-                    <code>36E9E393B7B77B0FF4DA7F8C6A635181</code>
-                    <date>2020-07-19T23:23:10.000-03:00</date>
-                </checkout>'
-            ),
-        ]);
-
-        $this->handlerStack = HandlerStack::create($mock);
-        $client = new Client(['handler' => $this->handlerStack]);
+        $this->history = [];
+        $this->mock = new MockHandler();
+        $handlerStack = HandlerStack::create($this->mock);
+        $handlerStack->push(Middleware::history($this->history));
+        $client = new Client(['handler' => $handlerStack]);
         $config = new Configuration([]);
         $this->service = new PagSeguroHttpService($config, $client);
     }
 
     function testCheckout()
     {
-        $container = [];
-        $history = Middleware::history($container);
-        $this->handlerStack->push($history);
+        $this->mock->append(new Response(200, [], '<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+            <checkout>
+                <code>36E9E393B7B77B0FF4DA7F8C6A635181</code>
+                <date>2020-07-19T23:23:10.000-03:00</date>
+            </checkout>
+        '));
 
         $request = (new CheckoutRequest('test@example.com', 'token12345'))
             ->setItems((new Items())
@@ -83,7 +81,7 @@ class PagSeguroHttpServiceTest extends TestCase
         $response = $this->service->checkout($request);
 
         /** @var Request $request */
-        $request = $container[0]['request'];
+        $request = $this->history[0]['request'];
         self::assertEquals('POST', $request->getMethod());
         self::assertEquals('ws.sandbox.pagseguro.uol.com.br', $request->getUri()->getHost());
         self::assertEquals('email=test%40example.com&token=token12345', $request->getUri()->getQuery());

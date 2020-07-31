@@ -1,7 +1,7 @@
 <?php
 
 
-namespace PagSeguro;
+namespace Common;
 
 
 trait Utilities
@@ -24,13 +24,15 @@ trait Utilities
      *
      * @param mixed|null $var variable to be checked
      * @param callback|null $callback called when value is not null
+     * @param mixed|null $default default value
+     * @return mixed|null callback return
      */
-    protected static function when($var, $callback)
+    protected static function when($var, $callback, $default = null)
     {
         if (is_null($var) || is_null($callback)) {
-            return;
+            return $default;
         }
 
-        $callback($var);
+        return $callback($var);
     }
 }

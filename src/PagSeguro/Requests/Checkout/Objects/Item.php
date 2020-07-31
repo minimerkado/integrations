@@ -5,7 +5,7 @@ namespace PagSeguro\Requests\Checkout\Objects;
 
 
 use PagSeguro\Requests\XMLEncodable;
-use PagSeguro\Utilities;
+use Common\Utilities;
 use SimpleXMLElement;
 
 class Item implements XMLEncodable

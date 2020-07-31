@@ -10,7 +10,7 @@ use PagSeguro\Requests\Checkout\Objects\Sender;
 use PagSeguro\Requests\Checkout\Objects\Shipping;
 use PagSeguro\Requests\Request;
 use PagSeguro\Requests\XMLEncodable;
-use PagSeguro\Utilities;
+use Common\Utilities;
 use SimpleXMLElement;
 
 class CheckoutRequest implements Request, XMLEncodable

@@ -94,7 +94,6 @@ class CheckoutRequest implements Request
     {
         return [
             'headers' => [
-                'Content-Type' => 'application/xml',
                 'x-picpay-token' => $this->token,
             ],
             'json' => [

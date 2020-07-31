@@ -4,7 +4,7 @@
 namespace PagSeguro\Requests\Checkout\Objects;
 
 
-use PagSeguro\Utilities;
+use Common\Utilities;
 use PagSeguro\Requests\XMLEncodable;
 use SimpleXMLElement;
 

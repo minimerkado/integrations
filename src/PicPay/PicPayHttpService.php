@@ -11,8 +11,10 @@ use PicPay\Exceptions\BadRequestException;
 use PicPay\Exceptions\PicPayException;
 use PicPay\Exceptions\UnauthorizedException;
 use PicPay\Requests\Checkout\CheckoutRequest;
+use PicPay\Responses\CancelResponse;
 use PicPay\Responses\CheckoutResponse;
 use PicPay\Responses\Response;
+use PicPay\Responses\StatusResponse;
 
 class PicPayHttpService implements PicPayService
 {
@@ -20,6 +22,7 @@ class PicPayHttpService implements PicPayService
 
     /**
      * PagSeguroHttpService constructor.
+     *
      * @param ?Client $http_client
      */
     public function __construct(?Client $http_client = null)
@@ -27,14 +30,6 @@ class PicPayHttpService implements PicPayService
         $this->http_client = $http_client ?? new Client();
     }
 
-    /**
-     * @param CheckoutRequest $request
-     * @return CheckoutResponse
-     * @throws BadRequestException
-     * @throws PicPayException
-     * @throws UnauthorizedException
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
     function checkout(CheckoutRequest $request): CheckoutResponse
     {
         /** @var CheckoutResponse $response */
@@ -42,9 +37,25 @@ class PicPayHttpService implements PicPayService
         return $response;
     }
 
+    function cancel(\PicPay\Requests\CancelRequest $request): \PicPay\Responses\CancelResponse
+    {
+        /** @var CancelResponse $response */
+        $response = $this->request($request, fn($body) => new CancelResponse($body));
+        return $response;
+    }
+
+    function status(\PicPay\Requests\StatusRequest $request): \PicPay\Responses\StatusResponse
+    {
+        /** @var StatusResponse $response */
+        $response = $this->request($request, fn($body) => new StatusResponse($body));
+        return $response;
+    }
+
     /**
-     * @param Request $request
-     * @param $parser
+     * Método genérico para realizar requisições na API do PicPay
+     *
+     * @param Request $request objeto da requisição
+     * @param callback $parser tradutor da resposta do API responsável por criar os objetos de retorno
      * @return Response
      * @throws BadRequestException
      * @throws PicPayException

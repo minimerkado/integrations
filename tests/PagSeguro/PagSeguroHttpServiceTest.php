@@ -38,8 +38,7 @@ class PagSeguroHttpServiceTest extends TestCase
         $handlerStack = HandlerStack::create($this->mock);
         $handlerStack->push(Middleware::history($this->history));
         $client = new Client(['handler' => $handlerStack]);
-        $config = new Configuration([]);
-        $this->service = new PagSeguroHttpService($config, $client);
+        $this->service = new PagSeguroHttpService([], $client);
     }
 
     function testCheckout()

@@ -10,9 +10,7 @@ class PagSeguroServiceProvider extends ServiceProvider
     {
         $this->app->singleton('pagseguro', function ($app) {
             $config = $app->make('config');
-
-            $serviceConfig = new Configuration($config->get('services.pagseguro', []));
-            return new PagSeguroHttpService($serviceConfig);
+            return new PagSeguroHttpService($config->get('services.pagseguro', []));
         });
     }
 

@@ -23,13 +23,14 @@ class PagSeguroHttpService implements PagSeguroService
 
     /**
      * PagSeguroHttpService constructor.
-     * @param Client $http_client
-     * @param Configuration $config
+     *
+     * @param array $config
+     * @param Client|null $http_client
      */
-    public function __construct(Configuration $config, ?Client $http_client = null)
+    public function __construct(array $config = [], ?Client $http_client = null)
     {
         $this->http_client = $http_client ?? new Client();
-        $this->config = $config;
+        $this->config = new Configuration($config);
     }
 
     function checkout(CheckoutRequest $request): CheckoutResponse

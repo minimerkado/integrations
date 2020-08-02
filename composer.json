@@ -13,7 +13,8 @@
         "psr-4": {
             "Common\\": "src/Common",
             "PagSeguro\\": "src/PagSeguro/",
-            "PicPay\\": "src/PicPay/"
+            "PicPay\\": "src/PicPay/",
+            "MercadoPago\\":  "src/MercadoPago/"
         }
     },
     "autoload-dev": {

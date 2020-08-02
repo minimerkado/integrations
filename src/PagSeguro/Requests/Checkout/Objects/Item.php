@@ -4,11 +4,11 @@
 namespace PagSeguro\Requests\Checkout\Objects;
 
 
-use PagSeguro\Requests\XMLEncodable;
+use Common\XmlObject;
 use Common\Utilities;
 use SimpleXMLElement;
 
-class Item implements XMLEncodable
+class Item implements XmlObject
 {
     use Utilities;
 

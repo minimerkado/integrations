@@ -4,6 +4,7 @@
 namespace PicPay\Responses;
 
 use Carbon\Carbon;
+use Common\Response;
 
 class CheckoutResponse implements Response
 {

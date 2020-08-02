@@ -1,6 +1,6 @@
 <?php
 
-namespace PicPay\Responses;
+namespace Common;
 
 interface Response
 {

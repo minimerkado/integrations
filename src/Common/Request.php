@@ -1,6 +1,7 @@
 <?php
 
-namespace PagSeguro\Requests;
+
+namespace Common;
 
 
 interface Request

@@ -4,8 +4,9 @@
 namespace PicPay;
 
 
+use Common\Request;
+use Common\Response;
 use GuzzleHttp\Client;
-use PicPay\Requests\Request;
 use PicPay\Contracts\PicPayService;
 use PicPay\Exceptions\BadRequestException;
 use PicPay\Exceptions\PicPayException;
@@ -13,7 +14,6 @@ use PicPay\Exceptions\UnauthorizedException;
 use PicPay\Requests\Checkout\CheckoutRequest;
 use PicPay\Responses\CancelResponse;
 use PicPay\Responses\CheckoutResponse;
-use PicPay\Responses\Response;
 use PicPay\Responses\StatusResponse;
 
 class PicPayHttpService implements PicPayService

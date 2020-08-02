@@ -2,8 +2,8 @@
 
 namespace PicPay\Requests\Checkout;
 
+use Common\Request;
 use PicPay\Requests\Checkout\Objects\Buyer;
-use PicPay\Requests\Request;
 
 class CheckoutRequest implements Request
 {
@@ -102,7 +102,7 @@ class CheckoutRequest implements Request
                 "returnUrl" => $this->returnUrl,
                 "value" => $this->value,
                 "expiresAt" => $this->expiresAt,
-                "buyer" => $this->buyer->build(),
+                "buyer" => $this->buyer->toJson(),
             ],
         ];
     }

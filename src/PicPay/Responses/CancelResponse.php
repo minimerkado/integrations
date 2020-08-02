@@ -4,6 +4,8 @@
 namespace PicPay\Responses;
 
 
+use Common\Response;
+
 class CancelResponse implements Response
 {
     private string $referenceId;

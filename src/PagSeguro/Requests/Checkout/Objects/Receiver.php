@@ -4,10 +4,10 @@
 namespace PagSeguro\Requests\Checkout\Objects;
 
 
-use PagSeguro\Requests\XMLEncodable;
+use Common\XmlObject;
 use SimpleXMLElement;
 
-class Receiver implements XMLEncodable
+class Receiver implements XmlObject
 {
     private string $email;
 

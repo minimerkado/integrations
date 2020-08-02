@@ -4,16 +4,16 @@
 namespace PagSeguro\Requests\Checkout;
 
 
+use Common\XmlObject;
 use PagSeguro\Requests\Checkout\Objects\Items;
 use PagSeguro\Requests\Checkout\Objects\Receiver;
 use PagSeguro\Requests\Checkout\Objects\Sender;
 use PagSeguro\Requests\Checkout\Objects\Shipping;
-use PagSeguro\Requests\Request;
-use PagSeguro\Requests\XMLEncodable;
 use Common\Utilities;
+use Common\Request;
 use SimpleXMLElement;
 
-class CheckoutRequest implements Request, XMLEncodable
+class CheckoutRequest implements Request, XmlObject
 {
     use Utilities;
 

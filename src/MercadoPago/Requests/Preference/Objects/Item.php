@@ -12,10 +12,13 @@ class Item implements JsonObject
     use Utilities;
 
     private string $title;
-    private ?string $description = null;
     private int $quantity = 1;
     private string $currency = 'BRL';
     private float $unit_price = 0.0;
+    private ?string $id = null;
+    private ?string $description = null;
+    private ?string $picture_url = null;
+    private ?string $category_id = null;
 
     /**
      * @param string $title
@@ -70,11 +73,14 @@ class Item implements JsonObject
     public function toJson(): array
     {
         return self::not_null([
+            'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
             'quantity' => $this->quantity,
             'currency' => $this->currency,
             'unit_price' => $this->unit_price,
+            'picture_url' => $this->picture_url,
+            'category_id' => $this->category_id,
         ]);
     }
 }

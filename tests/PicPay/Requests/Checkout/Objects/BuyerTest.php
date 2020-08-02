@@ -9,7 +9,7 @@ use PicPay\Requests\Checkout\Objects\Buyer;
 
 class BuyerTest extends TestCase
 {
-    function testBuild()
+    function testToJson()
     {
         $buyer = (new Buyer())
             ->setEmail("vinicius.parise@hotmail.com")
@@ -17,7 +17,7 @@ class BuyerTest extends TestCase
             ->setFirstName("Vinícius")
             ->setLastName("Gabriel")
             ->setPhone("34991890838")
-            ->build();
+            ->toJson();
 
         self::assertEquals([
             "firstName" => "Vinícius",

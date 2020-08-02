@@ -34,6 +34,8 @@ class CreatePreferenceRequest extends Request
     private ?Carbon $expiration_date_to = null;
 
     /**
+     * Itens do pedido
+     *
      * @param Item[] $items
      * @return CreatePreferenceRequest
      */
@@ -44,6 +46,8 @@ class CreatePreferenceRequest extends Request
     }
 
     /**
+     * Informações de envio.
+     *
      * @param Shipments $shipments
      * @return CreatePreferenceRequest
      */
@@ -54,6 +58,8 @@ class CreatePreferenceRequest extends Request
     }
 
     /**
+     * Referência que pode sincronizar com seu sistema de pagamentos.
+     *
      * @param string $external_reference
      * @return CreatePreferenceRequest
      */
@@ -64,6 +70,10 @@ class CreatePreferenceRequest extends Request
     }
 
     /**
+     * No caso de estar especificado o comprador será redirecionado para o seu site imediatamente após a compra.
+     *  - **approved**: The redirection takes place only for approved payments.
+     *  - **all**: The redirection takes place only for approved payments, forward compatibility only
+     *  if we change the default behavior
      * @param string|null $auto_return
      * @return CreatePreferenceRequest
      */
@@ -74,6 +84,8 @@ class CreatePreferenceRequest extends Request
     }
 
     /**
+     * Informações sobre o comprador.
+     *
      * @param Payer|null $payer
      * @return CreatePreferenceRequest
      */
@@ -84,6 +96,8 @@ class CreatePreferenceRequest extends Request
     }
 
     /**
+     * Url de retorno ao site do vendedor.
+     *
      * @param BackUrls|null $back_urls
      * @return CreatePreferenceRequest
      */
@@ -94,6 +108,8 @@ class CreatePreferenceRequest extends Request
     }
 
     /**
+     * URL para a qual você gostaria de receber notificações de pagamentos.
+     *
      * @param string|null $notification_url
      * @return CreatePreferenceRequest
      */
@@ -104,6 +120,8 @@ class CreatePreferenceRequest extends Request
     }
 
     /**
+     * Informações adicionais.
+     *
      * @param string|null $additional_info
      * @return CreatePreferenceRequest
      */
@@ -114,6 +132,8 @@ class CreatePreferenceRequest extends Request
     }
 
     /**
+     * Determina se uma preferência expira.
+     *
      * @param bool $expires
      * @return CreatePreferenceRequest
      */
@@ -124,6 +144,8 @@ class CreatePreferenceRequest extends Request
     }
 
     /**
+     * Data de expiração de meios de pagamento em dinheiro.
+     *
      * @param Carbon|null $date_of_expiration
      * @return CreatePreferenceRequest
      */
@@ -134,6 +156,8 @@ class CreatePreferenceRequest extends Request
     }
 
     /**
+     * Data a partir da qual a preferência estará ativa.
+     *
      * @param Carbon|null $expiration_date_from
      * @return CreatePreferenceRequest
      */
@@ -144,6 +168,8 @@ class CreatePreferenceRequest extends Request
     }
 
     /**
+     * Data em que a preferência expira.
+     *
      * @param Carbon|null $expiration_date_to
      * @return CreatePreferenceRequest
      */
@@ -153,7 +179,7 @@ class CreatePreferenceRequest extends Request
         return $this;
     }
 
-    public function toJson()
+    public function toJson(): array
     {
         return self::not_null([
             'items' => array_map(fn($item) => $item->toJson(), $this->items),

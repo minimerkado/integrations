@@ -6,6 +6,7 @@ namespace MercadoPago\Requests\Preference;
 
 use Carbon\Carbon;
 use Common\Utilities;
+use MercadoPago\Requests\Checkout\Objects\Items;
 use MercadoPago\Requests\Preference\Objects\Item;
 use MercadoPago\Requests\Preference\Objects\Payer;
 use MercadoPago\Requests\Preference\Objects\PaymentMethods;
@@ -19,8 +20,7 @@ class CreatePreferenceRequest extends Request
     const AUTO_RETURN_ALL = 'all';
     const AUTO_RETURN_APPROVED = 'approved';
 
-    /** @var Item[] */
-    private array $items = [];
+    private Items $items;
     private Shipments $shipments;
     private string $external_reference;
     private ?PaymentMethods $payment_methods = null;
@@ -37,6 +37,16 @@ class CreatePreferenceRequest extends Request
     private ?Carbon $expiration_date_to = null;
 
     /**
+     * @param Items $items
+     * @return CreatePreferenceRequest
+     */
+    public function setItems(Items $items): CreatePreferenceRequest
+    {
+        $this->items = $items;
+        return $this;
+    }
+
+    /**
      * Itens da preferência
      *
      * @param Item $item
@@ -44,7 +54,7 @@ class CreatePreferenceRequest extends Request
      */
     public function addItem(Item $item): CreatePreferenceRequest
     {
-        $this->items[] = $item;
+        $this->items->addItem($item);
         return $this;
     }
 

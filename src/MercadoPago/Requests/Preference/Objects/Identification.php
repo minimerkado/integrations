@@ -12,6 +12,17 @@ class Identification implements JsonObject
     private string $number;
 
     /**
+     * Identification constructor.
+     * @param string $type
+     * @param string $number
+     */
+    public function __construct(string $type, string $number)
+    {
+        $this->type = $type;
+        $this->number = $number;
+    }
+
+    /**
      * @param string $type
      * @return Identification
      */

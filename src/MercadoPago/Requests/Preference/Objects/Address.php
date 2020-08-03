@@ -14,10 +14,10 @@ class Address implements JsonObject
     private string $zip_code;
     private string $street_name;
     private string $street_number;
-    private ?string $state_name;
-    private ?string $city_name;
-    private ?string $floor;
-    private ?string $apartment;
+    private ?string $state_name = null;
+    private ?string $city_name = null;
+    private ?string $floor = null;
+    private ?string $apartment = null;
 
     /**
      * @param string $zip_code

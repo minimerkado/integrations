@@ -25,6 +25,14 @@ class Shipments implements JsonObject
     private ?bool $free_shipping = null;
     private ?Address $receiver_address = null;
 
+    static function custom(float $cost, bool $free_shipping): Shipments
+    {
+        return (new Shipments())
+            ->setMode(self::MODE_CUSTOM)
+            ->setCost($cost)
+            ->setFreeShipping($free_shipping);
+    }
+
     /**
      * Modo de envio:
      *
@@ -139,7 +147,7 @@ class Shipments implements JsonObject
             'free_methods' => $free_methods,
             'cost' => $this->cost,
             'free_shipping' => $this->free_shipping,
-            'receiver_address' => $this->receiver_address
+            'receiver_address' => self::when($this->receiver_address, fn($value) => $value->toJson()),
         ]);
     }
 }

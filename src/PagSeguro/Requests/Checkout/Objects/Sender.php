@@ -5,10 +5,10 @@ namespace PagSeguro\Requests\Checkout\Objects;
 
 
 use Common\Utilities;
-use PagSeguro\Requests\XMLEncodable;
+use Common\XmlObject;
 use SimpleXMLElement;
 
-class Sender implements XMLEncodable
+class Sender implements XmlObject
 {
     use Utilities;
 

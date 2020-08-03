@@ -3,6 +3,7 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/MercadoPago" isTestSource="false" packagePrefix="MercadoPago\" />
       <sourceFolder url="file://$MODULE_DIR$/src/PicPay" isTestSource="false" packagePrefix="PicPay\" />
       <sourceFolder url="file://$MODULE_DIR$/src/Common" isTestSource="false" packagePrefix="Common\" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />

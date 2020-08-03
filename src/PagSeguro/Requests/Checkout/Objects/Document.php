@@ -4,10 +4,10 @@
 namespace PagSeguro\Requests\Checkout\Objects;
 
 
-use PagSeguro\Requests\XMLEncodable;
+use Common\XmlObject;
 use SimpleXMLElement;
 
-class Document implements XMLEncodable
+class Document implements XmlObject
 {
     const TYPE_CPF = 'CPF';
     const TYPE_CNPJ = 'CNPJ';

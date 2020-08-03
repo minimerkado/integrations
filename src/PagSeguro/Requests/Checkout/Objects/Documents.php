@@ -4,10 +4,10 @@
 namespace PagSeguro\Requests\Checkout\Objects;
 
 
-use PagSeguro\Requests\XMLEncodable;
+use Common\XmlObject;
 use SimpleXMLElement;
 
-class Documents implements XMLEncodable
+class Documents implements XmlObject
 {
     /** @var Document[] */
     private array $documents = [];

@@ -4,6 +4,8 @@
 namespace PicPay\Responses;
 
 
+use Common\Response;
+
 class StatusResponse implements Response
 {
     private string $referenceId;

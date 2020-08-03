@@ -2,7 +2,9 @@
 
 namespace PicPay\Requests\Checkout\Objects;
 
-class Buyer
+use Common\JsonObject;
+
+class Buyer implements JsonObject
 {
     private string $firstName;
     private string $lastName;
@@ -60,7 +62,7 @@ class Buyer
         return $this;
     }
 
-    public function build(): array
+    public function toJson(): array
     {
         return [
             "firstName" => $this->firstName,

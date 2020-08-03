@@ -13,7 +13,8 @@
         "psr-4": {
             "Common\\": "src/Common",
             "PagSeguro\\": "src/PagSeguro/",
-            "PicPay\\": "src/PicPay/"
+            "PicPay\\": "src/PicPay/",
+            "MercadoPago\\":  "src/MercadoPago/"
         }
     },
     "autoload-dev": {
@@ -25,11 +26,13 @@
         "laravel": {
             "providers": [
                 "PagSeguro\\PagSeguroServiceProvider",
-                "PicPay\\PicPayServiceProvider"
+                "PicPay\\PicPayServiceProvider",
+                "MercadoPago\\MercadoPagoServiceProvider"
             ],
             "aliases": {
                 "PagSeguro": "PagSeguro\\Facades\\PagSeguro",
-                "PicPay": "PicPay\\Facades\\PicPay"
+                "PicPay": "PicPay\\Facades\\PicPay",
+                "MercadoPago": "MercadoPago\\Facades\\MercadoPago"
             }
         }
     },

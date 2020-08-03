@@ -3,10 +3,10 @@
 namespace PagSeguro\Requests\Checkout\Objects;
 
 use Common\Utilities;
-use PagSeguro\Requests\XMLEncodable;
+use Common\XmlObject;
 use SimpleXMLElement;
 
-class Shipping implements XMLEncodable
+class Shipping implements XmlObject
 {
     use Utilities;
 

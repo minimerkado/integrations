@@ -35,4 +35,24 @@ trait Utilities
 
         return $callback($var);
     }
+
+    /**
+     * Recursively remove null values from array
+     *
+     * @param array $array input array
+     * @return array array without null values
+     */
+    protected static function not_null(array $array): array
+    {
+        foreach ($array as $key => &$value) {
+            if (is_array($value)) {
+                $value = self::not_null($value);
+            }
+            if ($value === null || $value === []) {
+                unset($array[$key]);
+            }
+        }
+
+        return array_filter($array, fn ($var) => !is_null($var));
+    }
 }

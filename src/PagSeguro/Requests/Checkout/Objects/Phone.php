@@ -4,10 +4,10 @@
 namespace PagSeguro\Requests\Checkout\Objects;
 
 
-use PagSeguro\Requests\XMLEncodable;
+use Common\XmlObject;
 use SimpleXMLElement;
 
-class Phone implements XMLEncodable
+class Phone implements XmlObject
 {
     private string $areaCode;
     private string $number;

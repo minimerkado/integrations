@@ -4,6 +4,7 @@
 namespace PicPay\Requests;
 
 
+use Common\Request;
 use Common\Utilities;
 
 class CancelRequest implements Request

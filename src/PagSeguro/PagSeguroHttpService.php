@@ -4,6 +4,8 @@
 namespace PagSeguro;
 
 
+use Common\Request;
+use Common\Response;
 use GuzzleHttp\Client;
 use PagSeguro\Contracts\PagSeguroService;
 use PagSeguro\Exceptions\BadRequestException;
@@ -12,9 +14,7 @@ use PagSeguro\Exceptions\InvalidContentTypeException;
 use PagSeguro\Exceptions\PagSeguroException;
 use PagSeguro\Exceptions\UnauthorizedException;
 use PagSeguro\Requests\Checkout\CheckoutRequest;
-use PagSeguro\Requests\Request;
 use PagSeguro\Responses\CheckoutResponse;
-use PagSeguro\Responses\Response;
 
 class PagSeguroHttpService implements PagSeguroService
 {

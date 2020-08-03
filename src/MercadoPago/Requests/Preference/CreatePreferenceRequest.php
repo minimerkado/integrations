@@ -49,6 +49,16 @@ class CreatePreferenceRequest extends Request
     }
 
     /**
+     * @param Item[] $items
+     * @return CreatePreferenceRequest
+     */
+    public function setItems(array $items): CreatePreferenceRequest
+    {
+        $this->items = $items;
+        return $this;
+    }
+
+    /**
      * Informações de envio.
      *
      * @param Shipments $shipments

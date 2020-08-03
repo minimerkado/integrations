@@ -6,9 +6,9 @@ namespace MercadoPago\Requests\Preference;
 
 use Carbon\Carbon;
 use Common\Utilities;
-use MercadoPago\Requests\Preference\Objects\BackUrls;
 use MercadoPago\Requests\Preference\Objects\Item;
 use MercadoPago\Requests\Preference\Objects\Payer;
+use MercadoPago\Requests\Preference\Objects\PaymentMethods;
 use MercadoPago\Requests\Preference\Objects\Shipments;
 use MercadoPago\Requests\Request;
 
@@ -23,9 +23,12 @@ class CreatePreferenceRequest extends Request
     private array $items = [];
     private Shipments $shipments;
     private string $external_reference;
-    private ?string $auto_return;
+    private ?PaymentMethods $payment_methods = null;
+    private ?string $auto_return = null;
     private ?Payer $payer = null;
-    private ?BackUrls $back_urls = null;
+    private ?string $pending_back_url = null;
+    private ?string $success_back_url = null;
+    private ?string $failure_back_url = null;
     private ?string $notification_url = null;
     private ?string $additional_info = null;
     private bool $expires = false;
@@ -34,14 +37,14 @@ class CreatePreferenceRequest extends Request
     private ?Carbon $expiration_date_to = null;
 
     /**
-     * Itens do pedido
+     * Itens da preferência
      *
-     * @param Item[] $items
+     * @param Item $item
      * @return CreatePreferenceRequest
      */
-    public function setItems(array $items): CreatePreferenceRequest
+    public function addItem(Item $item): CreatePreferenceRequest
     {
-        $this->items = $items;
+        $this->items[] = $item;
         return $this;
     }
 
@@ -54,6 +57,16 @@ class CreatePreferenceRequest extends Request
     public function setShipments(Shipments $shipments): CreatePreferenceRequest
     {
         $this->shipments = $shipments;
+        return $this;
+    }
+
+    /**
+     * @param PaymentMethods|null $payment_methods
+     * @return CreatePreferenceRequest
+     */
+    public function setPaymentMethods(?PaymentMethods $payment_methods): CreatePreferenceRequest
+    {
+        $this->payment_methods = $payment_methods;
         return $this;
     }
 
@@ -96,14 +109,32 @@ class CreatePreferenceRequest extends Request
     }
 
     /**
-     * Url de retorno ao site do vendedor.
-     *
-     * @param BackUrls|null $back_urls
+     * @param string|null $pending_back_url
      * @return CreatePreferenceRequest
      */
-    public function setBackUrls(?BackUrls $back_urls): CreatePreferenceRequest
+    public function setPendingBackUrl(?string $pending_back_url): CreatePreferenceRequest
     {
-        $this->back_urls = $back_urls;
+        $this->pending_back_url = $pending_back_url;
+        return $this;
+    }
+
+    /**
+     * @param string|null $success_back_url
+     * @return CreatePreferenceRequest
+     */
+    public function setSuccessBackUrl(?string $success_back_url): CreatePreferenceRequest
+    {
+        $this->success_back_url = $success_back_url;
+        return $this;
+    }
+
+    /**
+     * @param string|null $failure_back_url
+     * @return CreatePreferenceRequest
+     */
+    public function setFailureBackUrl(?string $failure_back_url): CreatePreferenceRequest
+    {
+        $this->failure_back_url = $failure_back_url;
         return $this;
     }
 
@@ -185,9 +216,14 @@ class CreatePreferenceRequest extends Request
             'items' => array_map(fn($item) => $item->toJson(), $this->items),
             'shipments' => $this->shipments->toJson(),
             'external_reference' => $this->external_reference,
-            'auto_return' => $this->auto_return,
             'payer' => self::when($this->payer, fn($value) => $value->toJson()),
-            'back_urls' => self::when($this->back_urls, fn($value) => $value->toJson()),
+            'payment_methods' => self::when($this->payment_methods, fn($value) => $value->toJson()),
+            'auto_return' => $this->auto_return,
+            'back_urls' => [
+                'success' => $this->success_back_url,
+                'pending' => $this->pending_back_url,
+                'failure' => $this->failure_back_url,
+            ],
             'notification_url' => $this->notification_url,
             'additional_info' => $this->additional_info,
             'expires' => $this->expires,

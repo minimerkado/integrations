@@ -17,17 +17,14 @@ use MercadoPago\Responses\PreferenceResponse;
 class MercadoPagoHttpService implements MercadoPagoService
 {
     private Client $http_client;
-    private Configuration $config;
 
     /**
      * MercadoPagoHttpService constructor.
-     * @param array $config
      * @param ?Client $http_client
      */
-    public function __construct($config = [], ?Client $http_client = null)
+    public function __construct(?Client $http_client = null)
     {
         $this->http_client = $http_client ?? new Client();
-        $this->config = new Configuration($config);
     }
 
     public function createPreference(CreatePreferenceRequest $request): PreferenceResponse
@@ -68,8 +65,6 @@ class MercadoPagoHttpService implements MercadoPagoService
 
     private function getUri(string $path): string
     {
-        return $this->config->isProduction()
-            ? 'https://www.mercadopago.com/mla'.$path
-            : 'https://sandbox.mercadopago.com/mla'.$path;
+        return 'https://api.mercadopago.com/'.$path;
     }
 }

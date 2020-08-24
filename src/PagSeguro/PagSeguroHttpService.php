@@ -42,7 +42,7 @@ class PagSeguroHttpService implements PagSeguroService
 
     function checkoutUrl(string $code): string
     {
-        return $this->getUri("/checkout/payment.html?code=$code");
+        return "https://pagseguro.uol.com.br/v2/checkout/payment.html?code=$code";
     }
 
     /**

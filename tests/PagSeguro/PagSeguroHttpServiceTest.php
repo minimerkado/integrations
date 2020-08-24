@@ -90,6 +90,6 @@ class PagSeguroHttpServiceTest extends TestCase
     function testCheckoutUrl()
     {
         $url = $this->service->checkoutUrl('36E9E393B7B77B0FF4DA7F8C6A635181');
-        self::assertEquals('https://ws.sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=36E9E393B7B77B0FF4DA7F8C6A635181', $url);
+        self::assertEquals('https://pagseguro.uol.com.br/v2/checkout/payment.html?code=36E9E393B7B77B0FF4DA7F8C6A635181', $url);
     }
 }

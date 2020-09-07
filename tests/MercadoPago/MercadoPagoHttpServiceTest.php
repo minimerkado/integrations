@@ -141,7 +141,7 @@ class MercadoPagoHttpServiceTest extends TestCase
         /** @var Request $request */
         $request = $this->history[0]['request'];
 
-        self::assertEquals('https://api.mercadopago.com//checkout/preferences?access_token=token12345', (string) $request->getUri());
+        self::assertEquals('https://api.mercadopago.com/checkout/preferences?access_token=token12345', (string) $request->getUri());
         self::assertEquals('POST', $request->getMethod());
         self::assertEquals('202809963-920c288b-4ebb-40be-966f-700250fa5370', $response->getId());
         self::assertEquals('https://www.mercadopago.com/mla/checkout/start?pref_id=202809963-920c288b-4ebb-40be-966f-700250fa5370', $response->getInitPoint());

@@ -24,9 +24,9 @@ class PagSeguro extends Facade
      * @param array $options
      * @return string
      */
-    function notificationUrl(): string
+    public static function notificationUrl($reference): string
     {
-        return config('app.url') . self::prefix();
+        return config('app.url') . self::prefix() . "/$reference";
     }
 
     /**
@@ -35,7 +35,7 @@ class PagSeguro extends Facade
     public static function routes()
     {
         Route::prefix(self::prefix())->middleware('throttle:60,1')->group(function ($router) {
-            $router->post('/', [
+            $router->post('/{ref}', [
                 'uses' => config('services.pagseguro.webhook.handler', '\PagSeguro\Http\WebhookController@handle'),
                 'as' => 'pagseguro.webhook.handle',
             ]);

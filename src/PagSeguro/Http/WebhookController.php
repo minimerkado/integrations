@@ -15,10 +15,10 @@ class WebhookController extends Controller
 {
     use DispatchesJobs, ValidatesRequests;
 
-    public function handle(Request $request)
+    public function handle(string $reference, Request $request)
     {
         if ($code = $request->input('notificationCode')) {
-            TransactionStatusChanged::dispatch($code);
+            TransactionStatusChanged::dispatch($reference, $code);
         }
 
         return response('', 200);

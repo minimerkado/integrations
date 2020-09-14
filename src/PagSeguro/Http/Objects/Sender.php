@@ -1,14 +1,15 @@
 <?php
 
 
-namespace PagSeguro\Requests\Checkout\Objects;
+namespace PagSeguro\Http\Objects;
 
 
 use Common\Utilities;
-use Common\XmlObject;
+use Common\XmlDecodable;
+use Common\XmlEncodable;
 use SimpleXMLElement;
 
-class Sender implements XmlObject
+class Sender implements XmlEncodable, XmlDecodable
 {
     use Utilities;
 
@@ -75,5 +76,14 @@ class Sender implements XmlObject
         $sender->addChild('email', $this->email);
         self::when($this->phone, fn(Phone $phone) => $phone->encode($sender));
         self::when($this->documents, fn(Documents $value) => $value->encode($sender));
+    }
+
+    public function decode(SimpleXMLElement $root): Sender
+    {
+        $this->name = $root->name;
+        $this->email = $root->email;
+        $this->phone = self::when($root->phone, fn($phone) => (new Phone())->decode($phone));
+
+        return $this;
     }
 }

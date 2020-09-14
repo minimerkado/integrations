@@ -1,13 +1,13 @@
 <?php
 
 
-namespace PagSeguro\Requests\Checkout\Objects;
+namespace PagSeguro\Http\Objects;
 
 
-use Common\XmlObject;
+use Common\XmlEncodable;
 use SimpleXMLElement;
 
-class Document implements XmlObject
+class Document implements XmlEncodable
 {
     const TYPE_CPF = 'CPF';
     const TYPE_CNPJ = 'CNPJ';

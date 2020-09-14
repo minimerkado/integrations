@@ -1,13 +1,14 @@
 <?php
 
 
-namespace PagSeguro\Requests\Checkout\Objects;
+namespace PagSeguro\Http\Objects;
 
 
-use Common\XmlObject;
+use Common\XmlDecodable;
+use Common\XmlEncodable;
 use SimpleXMLElement;
 
-class Items implements XmlObject
+class Items implements XmlEncodable, XmlDecodable
 {
     /** @var Item[]  */
     private array $items = [];
@@ -28,5 +29,14 @@ class Items implements XmlObject
         foreach ($this->items as $item) {
             $item->encode($items);
         }
+    }
+
+    public function decode(\SimpleXMLElement $root): Items
+    {
+        foreach ($root->children() as $item) {
+            $this->items[] = (new Item())->decode($item);
+        }
+
+        return $this;
     }
 }

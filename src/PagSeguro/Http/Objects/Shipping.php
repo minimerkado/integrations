@@ -1,12 +1,13 @@
 <?php
 
-namespace PagSeguro\Requests\Checkout\Objects;
+namespace PagSeguro\Http\Objects;
 
 use Common\Utilities;
-use Common\XmlObject;
+use Common\XmlDecodable;
+use Common\XmlEncodable;
 use SimpleXMLElement;
 
-class Shipping implements XmlObject
+class Shipping implements XmlEncodable, XmlDecodable
 {
     use Utilities;
 
@@ -66,5 +67,14 @@ class Shipping implements XmlObject
         $shipping->addChild('cost', number_format($this->cost, 2));
         $shipping->addChild('addressRequired', $this->addressRequired ? 'true' : 'false');
         self::when($this->address, fn($address) => $address->encode($shipping));
+    }
+
+    public function decode(\SimpleXMLElement $root): Shipping
+    {
+        $this->type = (int) $root->type;
+        $this->cost = (float) $root->cost;
+        $this->address = self::when($root->address, fn($xml) => (new Address())->decode($xml));
+
+        return $this;
     }
 }

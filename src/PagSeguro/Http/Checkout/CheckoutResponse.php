@@ -1,7 +1,7 @@
 <?php
 
 
-namespace PagSeguro\Responses;
+namespace PagSeguro\Http\Checkout;
 
 
 use Carbon\Carbon;

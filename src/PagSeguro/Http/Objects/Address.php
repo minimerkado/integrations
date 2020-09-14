@@ -1,14 +1,15 @@
 <?php
 
 
-namespace PagSeguro\Requests\Checkout\Objects;
+namespace PagSeguro\Http\Objects;
 
 
 use Common\Utilities;
-use Common\XmlObject;
+use Common\XmlDecodable;
+use Common\XmlEncodable;
 use SimpleXMLElement;
 
-class Address implements XmlObject
+class Address implements XmlEncodable, XmlDecodable
 {
     use Utilities;
 
@@ -112,5 +113,18 @@ class Address implements XmlObject
         self::when($this->state, fn($value) => $address->addChild('state', $value));
         self::when($this->country, fn($value) => $address->addChild('country', $value));
         self::when($this->postalCode, fn($value) => $address->addChild('postalCode', $value));
+    }
+
+    public function decode(\SimpleXMLElement $root): Address
+    {
+        $this->street = $root->street;
+        $this->number = $root->number;
+        $this->district = $root->district;
+        $this->complement = $root->complement;
+        $this->city = $root->city;
+        $this->country = $root->country;
+        $this->postalCode = $root->postalCode;
+
+        return $this;
     }
 }

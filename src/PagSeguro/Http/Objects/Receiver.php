@@ -1,13 +1,13 @@
 <?php
 
 
-namespace PagSeguro\Requests\Checkout\Objects;
+namespace PagSeguro\Http\Objects;
 
 
-use Common\XmlObject;
+use Common\XmlEncodable;
 use SimpleXMLElement;
 
-class Receiver implements XmlObject
+class Receiver implements XmlEncodable
 {
     private string $email;
 

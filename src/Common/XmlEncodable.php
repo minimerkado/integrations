@@ -4,10 +4,10 @@
 namespace Common;
 
 
-interface XmlObject
+interface XmlEncodable
 {
     /**
-     * Encode this request object to a SimpleXMLElement
+     * Encode this object to a SimpleXMLElement
      *
      * @param \SimpleXMLElement $root
      */

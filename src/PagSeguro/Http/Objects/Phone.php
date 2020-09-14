@@ -1,13 +1,14 @@
 <?php
 
 
-namespace PagSeguro\Requests\Checkout\Objects;
+namespace PagSeguro\Http\Objects;
 
 
-use Common\XmlObject;
+use Common\XmlDecodable;
+use Common\XmlEncodable;
 use SimpleXMLElement;
 
-class Phone implements XmlObject
+class Phone implements XmlEncodable, XmlDecodable
 {
     private string $areaCode;
     private string $number;
@@ -17,7 +18,7 @@ class Phone implements XmlObject
      * @param string $areaCode
      * @param string $number
      */
-    public function __construct(string $areaCode, string $number)
+    public function __construct(string $areaCode = '', string $number = '')
     {
         $this->areaCode = $areaCode;
         $this->number = $number;
@@ -48,5 +49,12 @@ class Phone implements XmlObject
          $phone = $root->addChild('phone');
          $phone->addChild('areaCode', $this->areaCode);
          $phone->addChild('number', $this->number);
+    }
+
+    public function decode(\SimpleXMLElement $root): XmlDecodable
+    {
+        $this->areaCode = $root->areaCode;
+        $this->number = $root->number;
+        return $this;
     }
 }

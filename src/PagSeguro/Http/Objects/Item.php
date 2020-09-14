@@ -1,14 +1,15 @@
 <?php
 
 
-namespace PagSeguro\Requests\Checkout\Objects;
+namespace PagSeguro\Http\Objects;
 
 
-use Common\XmlObject;
+use Common\XmlDecodable;
+use Common\XmlEncodable;
 use Common\Utilities;
 use SimpleXMLElement;
 
-class Item implements XmlObject
+class Item implements XmlEncodable, XmlDecodable
 {
     use Utilities;
 
@@ -88,5 +89,15 @@ class Item implements XmlObject
         $item->addChild('amount', number_format($this->amount, 2));
         $item->addChild('weight', $this->weight);
         self::when($this->shippingCost, fn($value) => $item->addChild('shippingCost', number_format($value, 2)));
+    }
+
+    public function decode(\SimpleXMLElement $root): Item
+    {
+        $this->id = $root->id;
+        $this->description = $root->description;
+        $this->quantity = (int) $root->quantity;
+        $this->amount = (float) $root->amount;
+
+        return $this;
     }
 }

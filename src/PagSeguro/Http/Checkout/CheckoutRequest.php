@@ -1,24 +1,20 @@
 <?php
 
 
-namespace PagSeguro\Requests\Checkout;
+namespace PagSeguro\Http\Checkout;
 
-
-use Common\XmlObject;
-use PagSeguro\Requests\Checkout\Objects\Items;
-use PagSeguro\Requests\Checkout\Objects\Receiver;
-use PagSeguro\Requests\Checkout\Objects\Sender;
-use PagSeguro\Requests\Checkout\Objects\Shipping;
+use PagSeguro\Http\Checkout\Objects\Items;
+use PagSeguro\Http\Checkout\Objects\Receiver;
+use PagSeguro\Http\Checkout\Objects\Sender;
+use PagSeguro\Http\Checkout\Objects\Shipping;
 use Common\Utilities;
-use Common\Request;
+use PagSeguro\Http\PostRequest;
 use SimpleXMLElement;
 
-class CheckoutRequest implements Request, XmlObject
+class CheckoutRequest extends PostRequest
 {
     use Utilities;
 
-    private string $email;
-    private string $token;
     private string $currency = 'BRL';
     private Items $items;
     private Receiver $receiver;
@@ -43,26 +39,6 @@ class CheckoutRequest implements Request, XmlObject
         $this->token = $token;
         $this->receiver = new Receiver($email);
         $this->shipping = new Shipping();
-    }
-
-    /**
-     * @param string $email
-     * @return CheckoutRequest
-     */
-    public function setEmail(string $email): CheckoutRequest
-    {
-        $this->email = $email;
-        return $this;
-    }
-
-    /**
-     * @param string $token
-     * @return CheckoutRequest
-     */
-    public function setToken(string $token): CheckoutRequest
-    {
-        $this->token = $token;
-        return $this;
     }
 
     /**
@@ -176,28 +152,13 @@ class CheckoutRequest implements Request, XmlObject
         return $this;
     }
 
-    public function getMethod()
-    {
-        return 'POST';
-    }
-
     public function getPath()
     {
-        return '/checkout';
+        return '/v2/checkout';
     }
-
-    public function build(): array
+    public function getRootElement()
     {
-        $root = new SimpleXMLElement('<checkout/>');
-        $this->encode($root);
-
-        return [
-            'query' => [
-                'email' => $this->email,
-                'token' => $this->token,
-            ],
-            'body' => $root->asXML(),
-        ];
+        return new SimpleXMLElement('<checkout/>');
     }
 
     public function encode(SimpleXMLElement $root)

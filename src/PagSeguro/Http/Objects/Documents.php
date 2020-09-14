@@ -1,13 +1,13 @@
 <?php
 
 
-namespace PagSeguro\Requests\Checkout\Objects;
+namespace PagSeguro\Http\Objects;
 
 
-use Common\XmlObject;
+use Common\XmlEncodable;
 use SimpleXMLElement;
 
-class Documents implements XmlObject
+class Documents implements XmlEncodable
 {
     /** @var Document[] */
     private array $documents = [];

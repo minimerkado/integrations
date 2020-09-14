@@ -50,31 +50,11 @@ class Transaction implements XmlDecodable
     }
 
     /**
-     * @param string $code
-     * @return Transaction
-     */
-    public function setCode(string $code): Transaction
-    {
-        $this->code = $code;
-        return $this;
-    }
-
-    /**
      * @return Carbon
      */
     public function getDate(): Carbon
     {
         return $this->date;
-    }
-
-    /**
-     * @param Carbon $date
-     * @return Transaction
-     */
-    public function setDate(Carbon $date): Transaction
-    {
-        $this->date = $date;
-        return $this;
     }
 
     /**
@@ -86,31 +66,11 @@ class Transaction implements XmlDecodable
     }
 
     /**
-     * @param Carbon $lastEventDate
-     * @return Transaction
-     */
-    public function setLastEventDate(Carbon $lastEventDate): Transaction
-    {
-        $this->lastEventDate = $lastEventDate;
-        return $this;
-    }
-
-    /**
      * @return Carbon|null
      */
     public function getEscrowEndDate(): ?Carbon
     {
         return $this->escrowEndDate;
-    }
-
-    /**
-     * @param Carbon|null $escrowEndDate
-     * @return Transaction
-     */
-    public function setEscrowEndDate(?Carbon $escrowEndDate): Transaction
-    {
-        $this->escrowEndDate = $escrowEndDate;
-        return $this;
     }
 
     /**
@@ -122,31 +82,11 @@ class Transaction implements XmlDecodable
     }
 
     /**
-     * @param string|null $reference
-     * @return Transaction
-     */
-    public function setReference(?string $reference): Transaction
-    {
-        $this->reference = $reference;
-        return $this;
-    }
-
-    /**
      * @return string|null
      */
     public function getPaymentLink(): ?string
     {
         return $this->paymentLink;
-    }
-
-    /**
-     * @param string|null $paymentLink
-     * @return Transaction
-     */
-    public function setPaymentLink(?string $paymentLink): Transaction
-    {
-        $this->paymentLink = $paymentLink;
-        return $this;
     }
 
     /**
@@ -158,31 +98,11 @@ class Transaction implements XmlDecodable
     }
 
     /**
-     * @param int $type
-     * @return Transaction
-     */
-    public function setType(int $type): Transaction
-    {
-        $this->type = $type;
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getStatus(): int
     {
         return $this->status;
-    }
-
-    /**
-     * @param int $status
-     * @return Transaction
-     */
-    public function setStatus(int $status): Transaction
-    {
-        $this->status = $status;
-        return $this;
     }
 
     /**
@@ -194,31 +114,11 @@ class Transaction implements XmlDecodable
     }
 
     /**
-     * @param PaymentMethod $paymentMethod
-     * @return Transaction
-     */
-    public function setPaymentMethod(PaymentMethod $paymentMethod): Transaction
-    {
-        $this->paymentMethod = $paymentMethod;
-        return $this;
-    }
-
-    /**
      * @return float
      */
     public function getGrossAmount(): float
     {
         return $this->grossAmount;
-    }
-
-    /**
-     * @param float $grossAmount
-     * @return Transaction
-     */
-    public function setGrossAmount(float $grossAmount): Transaction
-    {
-        $this->grossAmount = $grossAmount;
-        return $this;
     }
 
     /**
@@ -230,31 +130,11 @@ class Transaction implements XmlDecodable
     }
 
     /**
-     * @param float $discountAmount
-     * @return Transaction
-     */
-    public function setDiscountAmount(float $discountAmount): Transaction
-    {
-        $this->discountAmount = $discountAmount;
-        return $this;
-    }
-
-    /**
      * @return float
      */
     public function getFeeAmount(): float
     {
         return $this->feeAmount;
-    }
-
-    /**
-     * @param float $feeAmount
-     * @return Transaction
-     */
-    public function setFeeAmount(float $feeAmount): Transaction
-    {
-        $this->feeAmount = $feeAmount;
-        return $this;
     }
 
     /**
@@ -266,31 +146,11 @@ class Transaction implements XmlDecodable
     }
 
     /**
-     * @param float $netAmount
-     * @return Transaction
-     */
-    public function setNetAmount(float $netAmount): Transaction
-    {
-        $this->netAmount = $netAmount;
-        return $this;
-    }
-
-    /**
      * @return float
      */
     public function getExtraAmount(): float
     {
         return $this->extraAmount;
-    }
-
-    /**
-     * @param float $extraAmount
-     * @return Transaction
-     */
-    public function setExtraAmount(float $extraAmount): Transaction
-    {
-        $this->extraAmount = $extraAmount;
-        return $this;
     }
 
     /**
@@ -302,31 +162,11 @@ class Transaction implements XmlDecodable
     }
 
     /**
-     * @param int $installmentCount
-     * @return Transaction
-     */
-    public function setInstallmentCount(int $installmentCount): Transaction
-    {
-        $this->installmentCount = $installmentCount;
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getItemCount(): int
     {
         return $this->itemCount;
-    }
-
-    /**
-     * @param int $itemCount
-     * @return Transaction
-     */
-    public function setItemCount(int $itemCount): Transaction
-    {
-        $this->itemCount = $itemCount;
-        return $this;
     }
 
     /**
@@ -338,16 +178,6 @@ class Transaction implements XmlDecodable
     }
 
     /**
-     * @param Shipping $shipping
-     * @return Transaction
-     */
-    public function setShipping(Shipping $shipping): Transaction
-    {
-        $this->shipping = $shipping;
-        return $this;
-    }
-
-    /**
      * @return Items
      */
     public function getItems(): Items
@@ -356,31 +186,11 @@ class Transaction implements XmlDecodable
     }
 
     /**
-     * @param Items $items
-     * @return Transaction
-     */
-    public function setItems(Items $items): Transaction
-    {
-        $this->items = $items;
-        return $this;
-    }
-
-    /**
      * @return Sender
      */
     public function getSender(): Sender
     {
         return $this->sender;
-    }
-
-    /**
-     * @param Sender $sender
-     * @return Transaction
-     */
-    public function setSender(Sender $sender): Transaction
-    {
-        $this->sender = $sender;
-        return $this;
     }
 
     public function decode(\SimpleXMLElement $root): Transaction

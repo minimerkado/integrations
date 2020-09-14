@@ -21,17 +21,4 @@ abstract class PagSeguroRequest implements Request
         $this->email = $email;
         $this->token = $token;
     }
-
-    public function build(): array
-    {
-        $this->encode($this->getRootElement());
-
-        return [
-            'query' => [
-                'email' => $this->email,
-                'token' => $this->token,
-            ],
-            'body' => $root->asXML(),
-        ];
-    }
 }

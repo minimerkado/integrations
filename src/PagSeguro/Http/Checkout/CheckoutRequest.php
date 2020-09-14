@@ -175,7 +175,7 @@ class CheckoutRequest extends PostRequest
     {
         return '/v2/checkout';
     }
-    public function getRootElement()
+    public function getRootElement(): SimpleXMLElement
     {
         return new SimpleXMLElement('<checkout/>');
     }

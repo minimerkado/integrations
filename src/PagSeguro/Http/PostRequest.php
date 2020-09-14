@@ -8,7 +8,7 @@ use Common\XmlEncodable;
 
 abstract class PostRequest extends PagSeguroRequest implements XmlEncodable
 {
-    public abstract function getRootElement();
+    public abstract function getRootElement(): \SimpleXMLElement;
 
     public function getMethod()
     {

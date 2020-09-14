@@ -11,17 +11,16 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Orchestra\Testbench\TestCase;
-use PagSeguro\Configuration;
 use PagSeguro\Contracts\PagSeguroService;
 use PagSeguro\PagSeguroHttpService;
-use PagSeguro\Requests\Checkout\CheckoutRequest;
-use PagSeguro\Requests\Checkout\Objects\Address;
-use PagSeguro\Requests\Checkout\Objects\Document;
-use PagSeguro\Requests\Checkout\Objects\Item;
-use PagSeguro\Requests\Checkout\Objects\Items;
-use PagSeguro\Requests\Checkout\Objects\Phone;
-use PagSeguro\Requests\Checkout\Objects\Sender;
-use PagSeguro\Requests\Checkout\Objects\Shipping;
+use PagSeguro\Http\Checkout\CheckoutRequest;
+use PagSeguro\Http\Objects\Address;
+use PagSeguro\Http\Objects\Document;
+use PagSeguro\Http\Objects\Item;
+use PagSeguro\Http\Objects\Items;
+use PagSeguro\Http\Objects\Phone;
+use PagSeguro\Http\Objects\Sender;
+use PagSeguro\Http\Objects\Shipping;
 
 class PagSeguroHttpServiceTest extends TestCase
 {
@@ -38,7 +37,9 @@ class PagSeguroHttpServiceTest extends TestCase
         $handlerStack = HandlerStack::create($this->mock);
         $handlerStack->push(Middleware::history($this->history));
         $client = new Client(['handler' => $handlerStack]);
-        $this->service = new PagSeguroHttpService([], $client);
+        $this->service = new PagSeguroHttpService([
+            'environment' => 'production'
+        ], $client);
     }
 
     function testCheckout()
@@ -82,7 +83,7 @@ class PagSeguroHttpServiceTest extends TestCase
         /** @var Request $request */
         $request = $this->history[0]['request'];
         self::assertEquals('POST', $request->getMethod());
-        self::assertEquals('ws.sandbox.pagseguro.uol.com.br', $request->getUri()->getHost());
+        self::assertEquals('ws.pagseguro.uol.com.br', $request->getUri()->getHost());
         self::assertEquals('email=test%40example.com&token=token12345', $request->getUri()->getQuery());
         self::assertEquals('36E9E393B7B77B0FF4DA7F8C6A635181', $response->getCode());
     }

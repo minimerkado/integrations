@@ -203,7 +203,7 @@ class Transaction implements XmlDecodable
         $this->paymentLink = $root->paymentLink;
         $this->type = (int) $root->type;
         $this->status = (int) $root->status;
-        $this->paymentMethod = (new paymentMethod())->decode($root->paymentMethod);
+        $this->paymentMethod = (new PaymentMethod())->decode($root->paymentMethod);
         $this->grossAmount = (float) $root->grossAmount;
         $this->discountAmount = (float) $root->discountAmount;
         $this->feeAmount = (float) $root->feeAmount;

@@ -10,6 +10,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use PagSeguro\Contracts\PagSeguroService;
+use PagSeguro\Events\TransactionStatusChanged;
 
 class WebhookController extends Controller
 {
@@ -29,6 +30,8 @@ class WebhookController extends Controller
 
     public function handle(Request $request)
     {
-
+        $code = $request->input('notificationCode');
+        event(new TransactionStatusChanged($code));
+        return response('', 200);
     }
 }

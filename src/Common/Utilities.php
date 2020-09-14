@@ -11,7 +11,7 @@ trait Utilities
      *
      * @param mixed $var variable to be checked
      * @param mixed $default default value if $var is null
-     * @param callback $transform transform function if $var is not null
+     * @param callback|null $transform transform function if $var is not null
      * @return mixed transformed value or $default if $var is null
      */
     protected static function optional($var, $transform = null, $default = [])
@@ -29,7 +29,7 @@ trait Utilities
      */
     protected static function when($var, $callback, $default = null)
     {
-        if (is_null($var) || is_null($callback)) {
+        if (empty($var) || is_null($callback)) {
             return $default;
         }
 

@@ -23,7 +23,8 @@ class CheckoutRequest extends PostRequest
     private ?float $extraAmount = null;
     private ?string $reference = null;
     private ?string $redirectUrl = null;
-    private ?bool $enableRecover = null;
+    private ?string $notificationUrl = null;
+    private bool $enableRecover = false;
     private ?int $timeout = null;
     private ?int $maxAge = null;
     private ?int $maxUses = null;
@@ -35,8 +36,7 @@ class CheckoutRequest extends PostRequest
      */
     public function __construct(string $email, string $token)
     {
-        $this->email = $email;
-        $this->token = $token;
+        parent::__construct($email, $token);
         $this->receiver = new Receiver($email);
         $this->shipping = new Shipping();
     }
@@ -55,20 +55,19 @@ class CheckoutRequest extends PostRequest
      * @param Items $items
      * @return CheckoutRequest
      */
-    public function setItems($items): CheckoutRequest
+    public function setItems(Items $items): CheckoutRequest
     {
         $this->items = $items;
-
         return $this;
     }
 
     /**
-     * @param Sender|null $sender
+     * @param Receiver $receiver
      * @return CheckoutRequest
      */
-    public function setSender(?Sender $sender): CheckoutRequest
+    public function setReceiver(Receiver $receiver): CheckoutRequest
     {
-        $this->sender = $sender;
+        $this->receiver = $receiver;
         return $this;
     }
 
@@ -79,6 +78,16 @@ class CheckoutRequest extends PostRequest
     public function setShipping(Shipping $shipping): CheckoutRequest
     {
         $this->shipping = $shipping;
+        return $this;
+    }
+
+    /**
+     * @param Sender|null $sender
+     * @return CheckoutRequest
+     */
+    public function setSender(?Sender $sender): CheckoutRequest
+    {
+        $this->sender = $sender;
         return $this;
     }
 
@@ -113,10 +122,20 @@ class CheckoutRequest extends PostRequest
     }
 
     /**
-     * @param bool|null $enableRecover
+     * @param string|null $notificationUrl
      * @return CheckoutRequest
      */
-    public function setEnableRecover(?bool $enableRecover): CheckoutRequest
+    public function setNotificationUrl(?string $notificationUrl): CheckoutRequest
+    {
+        $this->notificationUrl = $notificationUrl;
+        return $this;
+    }
+
+    /**
+     * @param bool $enableRecover
+     * @return CheckoutRequest
+     */
+    public function setEnableRecover(bool $enableRecover): CheckoutRequest
     {
         $this->enableRecover = $enableRecover;
         return $this;
@@ -164,6 +183,7 @@ class CheckoutRequest extends PostRequest
     public function encode(SimpleXMLElement $root)
     {
         $root->addChild('currency', $this->currency);
+        $root->addChild('enableRecover', $this->enableRecover ? 'true' : 'false');
         $this->items->encode($root);
         $this->receiver->encode($root);
         $this->shipping->encode($root);
@@ -171,8 +191,8 @@ class CheckoutRequest extends PostRequest
         self::when($this->sender, fn($value) => $value->encode($root));
         self::when($this->extraAmount, fn($value) => $root->addChild('extraAmount', $value));
         self::when($this->reference, fn($value) => $root->addChild('reference', $value));
-        self::when($this->redirectUrl, fn($value) => $root->addChild('redirectUrl', $value));
-        self::when($this->enableRecover, fn($value) => $root->addChild('enableRecover', $value));
+        self::when($this->redirectUrl, fn($value) => $root->addChild('redirectURL', $value));
+        self::when($this->notificationUrl, fn($value) => $root->addChild('notificationURL', $value));
         self::when($this->timeout, fn($value) => $root->addChild('timeout', $value));
         self::when($this->maxAge, fn($value) => $root->addChild('maxAge', $value));
         self::when($this->maxUses, fn($value) => $root->addChild('maxUses', $value));

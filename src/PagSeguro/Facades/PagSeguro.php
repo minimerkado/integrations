@@ -13,24 +13,33 @@ class PagSeguro extends Facade
         return 'pagseguro';
     }
 
-    /**
-     * Binds the Iugu webhook routes.
-     *
-     * @param  array  $options
-     * @return void
-     */
-    public static function routes(array $options = [])
+    private static function getOptions()
     {
-        $defaultOptions = [
-            'prefix' => '/webhooks/pagseguro',
-            'namespace' => '\PagSeguro\Http',
+        return [
+            'prefix' => config('services.pagseguro.webhook.prefix', '/webhooks/pagseguro'),
         ];
+    }
 
-        $options = array_merge($defaultOptions, $options);
+    /**
+     * Get notification url
+     *
+     * @param array $options
+     * @return string
+     */
+    function notificationUrl(array $options = []): string
+    {
+        $options = self::getOptions();
+        return config('app.url') . $options['prefix'];
+    }
 
-        Route::group($options, function ($router) {
-            $router->any('/', [
-                'uses' => 'WebhookController@handle',
+    /**
+     * Binds PagSeguro webhook routes.
+     */
+    public static function routes()
+    {
+        Route::group(self::getOptions(), function ($router) {
+            $router->post('/', [
+                'uses' => config('services.pagseguro.webhook.handler', '\PagSeguro\Http\WebhookController@handle'),
                 'as' => 'pagseguro.webhook.handle',
             ]);
         });

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Tests\PagSeguro\Requests\Checkout;
+namespace Tests\PagSeguro\Http\Checkout;
 
 
 use Orchestra\Testbench\TestCase;
@@ -60,7 +60,8 @@ class CheckoutRequestTest extends TestCase
             ->setRedirectUrl('http://www.example.com/redirect')
             ->setTimeout(3600)
             ->setMaxAge(60)
-            ->setMaxUses(1);
+            ->setMaxUses(1)
+            ->setEnableRecover(false);
     }
 
     function testEncode()
@@ -68,7 +69,7 @@ class CheckoutRequestTest extends TestCase
         $xml = new \SimpleXMLElement('<checkout/>');
         $this->request->encode($xml);
         self::assertEquals('<?xml version="1.0"?>
-<checkout><currency>BRL</currency><items><item><id>1</id><description>Nike Shoes</description><quantity>1</quantity><amount>150.00</amount><weight>75</weight><shippingCost>50.00</shippingCost></item><item><id>2</id><description>Adidas Shoes</description><quantity>2</quantity><amount>200.00</amount><weight>80</weight></item></items><receiver><email>test@example.com</email></receiver><shipping><type>1</type><cost>30.50</cost><addressRequired>false</addressRequired><address><street>Main Street</street><number>123</number><city>San Francisco</city><state>CA</state><country>United</country><postalCode>123456789</postalCode></address></shipping><sender><name>John Doe</name><email>test@example.com</email><phone><areaCode>11</areaCode><number>912345678</number></phone><documents><document><type>CPF</type><value>111.111.111-11</value></document></documents></sender><extraAmount>14</extraAmount><reference>123</reference><redirectUrl>http://www.example.com/redirect</redirectUrl><timeout>3600</timeout><maxAge>60</maxAge><maxUses>1</maxUses></checkout>
+<checkout><currency>BRL</currency><enableRecover>false</enableRecover><items><item><id>1</id><description>Nike Shoes</description><quantity>1</quantity><amount>150.00</amount><weight>75</weight><shippingCost>50.00</shippingCost></item><item><id>2</id><description>Adidas Shoes</description><quantity>2</quantity><amount>200.00</amount><weight>80</weight></item></items><receiver><email>test@example.com</email></receiver><shipping><type>1</type><cost>30.50</cost><addressRequired>false</addressRequired><address><street>Main Street</street><number>123</number><city>San Francisco</city><state>CA</state><country>United</country><postalCode>123456789</postalCode></address></shipping><sender><name>John Doe</name><email>test@example.com</email><phone><areaCode>11</areaCode><number>912345678</number></phone><documents><document><type>CPF</type><value>111.111.111-11</value></document></documents></sender><extraAmount>14</extraAmount><reference>123</reference><redirectURL>http://www.example.com/redirect</redirectURL><timeout>3600</timeout><maxAge>60</maxAge><maxUses>1</maxUses></checkout>
 ', $xml->asXML());
     }
 
@@ -80,7 +81,7 @@ class CheckoutRequestTest extends TestCase
                 'token' => 'token12345',
             ],
             'body' => '<?xml version="1.0"?>
-<checkout><currency>BRL</currency><items><item><id>1</id><description>Nike Shoes</description><quantity>1</quantity><amount>150.00</amount><weight>75</weight><shippingCost>50.00</shippingCost></item><item><id>2</id><description>Adidas Shoes</description><quantity>2</quantity><amount>200.00</amount><weight>80</weight></item></items><receiver><email>test@example.com</email></receiver><shipping><type>1</type><cost>30.50</cost><addressRequired>false</addressRequired><address><street>Main Street</street><number>123</number><city>San Francisco</city><state>CA</state><country>United</country><postalCode>123456789</postalCode></address></shipping><sender><name>John Doe</name><email>test@example.com</email><phone><areaCode>11</areaCode><number>912345678</number></phone><documents><document><type>CPF</type><value>111.111.111-11</value></document></documents></sender><extraAmount>14</extraAmount><reference>123</reference><redirectUrl>http://www.example.com/redirect</redirectUrl><timeout>3600</timeout><maxAge>60</maxAge><maxUses>1</maxUses></checkout>
+<checkout><currency>BRL</currency><enableRecover>false</enableRecover><items><item><id>1</id><description>Nike Shoes</description><quantity>1</quantity><amount>150.00</amount><weight>75</weight><shippingCost>50.00</shippingCost></item><item><id>2</id><description>Adidas Shoes</description><quantity>2</quantity><amount>200.00</amount><weight>80</weight></item></items><receiver><email>test@example.com</email></receiver><shipping><type>1</type><cost>30.50</cost><addressRequired>false</addressRequired><address><street>Main Street</street><number>123</number><city>San Francisco</city><state>CA</state><country>United</country><postalCode>123456789</postalCode></address></shipping><sender><name>John Doe</name><email>test@example.com</email><phone><areaCode>11</areaCode><number>912345678</number></phone><documents><document><type>CPF</type><value>111.111.111-11</value></document></documents></sender><extraAmount>14</extraAmount><reference>123</reference><redirectURL>http://www.example.com/redirect</redirectURL><timeout>3600</timeout><maxAge>60</maxAge><maxUses>1</maxUses></checkout>
 '
         ], $this->request->build());
     }

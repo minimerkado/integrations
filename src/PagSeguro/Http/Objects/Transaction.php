@@ -24,7 +24,7 @@ class Transaction implements XmlDecodable
     private Carbon $date;
     private Carbon $lastEventDate;
     private ?Carbon $escrowEndDate = null;
-    private string $reference;
+    private ?string $reference = null;
     private ?string $paymentLink = null;
     private int $type;
     private int $status;
@@ -50,11 +50,31 @@ class Transaction implements XmlDecodable
     }
 
     /**
+     * @param string $code
+     * @return Transaction
+     */
+    public function setCode(string $code): Transaction
+    {
+        $this->code = $code;
+        return $this;
+    }
+
+    /**
      * @return Carbon
      */
     public function getDate(): Carbon
     {
         return $this->date;
+    }
+
+    /**
+     * @param Carbon $date
+     * @return Transaction
+     */
+    public function setDate(Carbon $date): Transaction
+    {
+        $this->date = $date;
+        return $this;
     }
 
     /**
@@ -66,6 +86,16 @@ class Transaction implements XmlDecodable
     }
 
     /**
+     * @param Carbon $lastEventDate
+     * @return Transaction
+     */
+    public function setLastEventDate(Carbon $lastEventDate): Transaction
+    {
+        $this->lastEventDate = $lastEventDate;
+        return $this;
+    }
+
+    /**
      * @return Carbon|null
      */
     public function getEscrowEndDate(): ?Carbon
@@ -74,11 +104,31 @@ class Transaction implements XmlDecodable
     }
 
     /**
-     * @return string
+     * @param Carbon|null $escrowEndDate
+     * @return Transaction
      */
-    public function getReference(): string
+    public function setEscrowEndDate(?Carbon $escrowEndDate): Transaction
+    {
+        $this->escrowEndDate = $escrowEndDate;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getReference(): ?string
     {
         return $this->reference;
+    }
+
+    /**
+     * @param string|null $reference
+     * @return Transaction
+     */
+    public function setReference(?string $reference): Transaction
+    {
+        $this->reference = $reference;
+        return $this;
     }
 
     /**
@@ -90,11 +140,31 @@ class Transaction implements XmlDecodable
     }
 
     /**
+     * @param string|null $paymentLink
+     * @return Transaction
+     */
+    public function setPaymentLink(?string $paymentLink): Transaction
+    {
+        $this->paymentLink = $paymentLink;
+        return $this;
+    }
+
+    /**
      * @return int
      */
     public function getType(): int
     {
         return $this->type;
+    }
+
+    /**
+     * @param int $type
+     * @return Transaction
+     */
+    public function setType(int $type): Transaction
+    {
+        $this->type = $type;
+        return $this;
     }
 
     /**
@@ -106,11 +176,31 @@ class Transaction implements XmlDecodable
     }
 
     /**
+     * @param int $status
+     * @return Transaction
+     */
+    public function setStatus(int $status): Transaction
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    /**
      * @return PaymentMethod
      */
     public function getPaymentMethod(): PaymentMethod
     {
         return $this->paymentMethod;
+    }
+
+    /**
+     * @param PaymentMethod $paymentMethod
+     * @return Transaction
+     */
+    public function setPaymentMethod(PaymentMethod $paymentMethod): Transaction
+    {
+        $this->paymentMethod = $paymentMethod;
+        return $this;
     }
 
     /**
@@ -122,11 +212,31 @@ class Transaction implements XmlDecodable
     }
 
     /**
+     * @param float $grossAmount
+     * @return Transaction
+     */
+    public function setGrossAmount(float $grossAmount): Transaction
+    {
+        $this->grossAmount = $grossAmount;
+        return $this;
+    }
+
+    /**
      * @return float
      */
     public function getDiscountAmount(): float
     {
         return $this->discountAmount;
+    }
+
+    /**
+     * @param float $discountAmount
+     * @return Transaction
+     */
+    public function setDiscountAmount(float $discountAmount): Transaction
+    {
+        $this->discountAmount = $discountAmount;
+        return $this;
     }
 
     /**
@@ -138,11 +248,31 @@ class Transaction implements XmlDecodable
     }
 
     /**
+     * @param float $feeAmount
+     * @return Transaction
+     */
+    public function setFeeAmount(float $feeAmount): Transaction
+    {
+        $this->feeAmount = $feeAmount;
+        return $this;
+    }
+
+    /**
      * @return float
      */
     public function getNetAmount(): float
     {
         return $this->netAmount;
+    }
+
+    /**
+     * @param float $netAmount
+     * @return Transaction
+     */
+    public function setNetAmount(float $netAmount): Transaction
+    {
+        $this->netAmount = $netAmount;
+        return $this;
     }
 
     /**
@@ -154,11 +284,31 @@ class Transaction implements XmlDecodable
     }
 
     /**
+     * @param float $extraAmount
+     * @return Transaction
+     */
+    public function setExtraAmount(float $extraAmount): Transaction
+    {
+        $this->extraAmount = $extraAmount;
+        return $this;
+    }
+
+    /**
      * @return int
      */
     public function getInstallmentCount(): int
     {
         return $this->installmentCount;
+    }
+
+    /**
+     * @param int $installmentCount
+     * @return Transaction
+     */
+    public function setInstallmentCount(int $installmentCount): Transaction
+    {
+        $this->installmentCount = $installmentCount;
+        return $this;
     }
 
     /**
@@ -170,11 +320,31 @@ class Transaction implements XmlDecodable
     }
 
     /**
+     * @param int $itemCount
+     * @return Transaction
+     */
+    public function setItemCount(int $itemCount): Transaction
+    {
+        $this->itemCount = $itemCount;
+        return $this;
+    }
+
+    /**
      * @return Shipping
      */
     public function getShipping(): Shipping
     {
         return $this->shipping;
+    }
+
+    /**
+     * @param Shipping $shipping
+     * @return Transaction
+     */
+    public function setShipping(Shipping $shipping): Transaction
+    {
+        $this->shipping = $shipping;
+        return $this;
     }
 
     /**
@@ -186,11 +356,31 @@ class Transaction implements XmlDecodable
     }
 
     /**
+     * @param Items $items
+     * @return Transaction
+     */
+    public function setItems(Items $items): Transaction
+    {
+        $this->items = $items;
+        return $this;
+    }
+
+    /**
      * @return Sender
      */
     public function getSender(): Sender
     {
         return $this->sender;
+    }
+
+    /**
+     * @param Sender $sender
+     * @return Transaction
+     */
+    public function setSender(Sender $sender): Transaction
+    {
+        $this->sender = $sender;
+        return $this;
     }
 
     public function decode(\SimpleXMLElement $root): Transaction

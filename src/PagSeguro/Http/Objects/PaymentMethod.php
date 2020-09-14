@@ -18,14 +18,40 @@ class PaymentMethod implements XmlDecodable
     private int $type;
     private int $code;
 
+    /**
+     * @return int
+     */
     public function getType(): int
     {
         return $this->type;
     }
 
+    /**
+     * @param int $type
+     * @return PaymentMethod
+     */
+    public function setType(int $type): PaymentMethod
+    {
+        $this->type = $type;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
     public function getCode(): int
     {
         return $this->code;
+    }
+
+    /**
+     * @param int $code
+     * @return PaymentMethod
+     */
+    public function setCode(int $code): PaymentMethod
+    {
+        $this->code = $code;
+        return $this;
     }
 
     public function decode(\SimpleXMLElement $root): PaymentMethod

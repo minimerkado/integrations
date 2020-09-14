@@ -19,4 +19,12 @@ class NotificationResponse implements Response
         $xml = simplexml_load_string($body);
         $this->transaction = (new Transaction())->decode($xml);
     }
+
+    /**
+     * @return Transaction
+     */
+    public function getTransaction(): Transaction
+    {
+        return $this->transaction;
+    }
 }

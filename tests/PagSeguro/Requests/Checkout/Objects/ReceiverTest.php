@@ -5,7 +5,7 @@ namespace Tests\PagSeguro\Requests\Checkout\Objects;
 
 
 use Orchestra\Testbench\TestCase;
-use PagSeguro\Requests\Checkout\Objects\Receiver;
+use PagSeguro\Http\Objects\Receiver;
 
 class ReceiverTest extends TestCase
 {

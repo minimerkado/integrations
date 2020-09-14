@@ -5,9 +5,9 @@ namespace Tests\PagSeguro\Requests\Checkout\Objects;
 
 
 use Orchestra\Testbench\TestCase;
-use PagSeguro\Requests\Checkout\Objects\Document;
-use PagSeguro\Requests\Checkout\Objects\Phone;
-use PagSeguro\Requests\Checkout\Objects\Sender;
+use PagSeguro\Http\Objects\Document;
+use PagSeguro\Http\Objects\Phone;
+use PagSeguro\Http\Objects\Sender;
 
 class SenderTest extends TestCase
 {

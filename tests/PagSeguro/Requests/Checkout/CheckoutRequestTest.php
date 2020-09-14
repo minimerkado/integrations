@@ -5,14 +5,14 @@ namespace Tests\PagSeguro\Requests\Checkout;
 
 
 use Orchestra\Testbench\TestCase;
-use PagSeguro\Requests\Checkout\CheckoutRequest;
-use PagSeguro\Requests\Checkout\Objects\Address;
-use PagSeguro\Requests\Checkout\Objects\Document;
-use PagSeguro\Requests\Checkout\Objects\Item;
-use PagSeguro\Requests\Checkout\Objects\Items;
-use PagSeguro\Requests\Checkout\Objects\Phone;
-use PagSeguro\Requests\Checkout\Objects\Sender;
-use PagSeguro\Requests\Checkout\Objects\Shipping;
+use PagSeguro\Http\Checkout\CheckoutRequest;
+use PagSeguro\Http\Objects\Address;
+use PagSeguro\Http\Objects\Document;
+use PagSeguro\Http\Objects\Item;
+use PagSeguro\Http\Objects\Items;
+use PagSeguro\Http\Objects\Phone;
+use PagSeguro\Http\Objects\Sender;
+use PagSeguro\Http\Objects\Shipping;
 
 class CheckoutRequestTest extends TestCase
 {

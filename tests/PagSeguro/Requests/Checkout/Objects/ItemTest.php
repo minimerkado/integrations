@@ -5,7 +5,7 @@ namespace Tests\PagSeguro\Requests\Checkout\Objects;
 
 
 use Orchestra\Testbench\TestCase;
-use PagSeguro\Requests\Checkout\Objects\Item;
+use PagSeguro\Http\Objects\Item;
 
 class ItemTest extends TestCase
 {

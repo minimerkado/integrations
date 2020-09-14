@@ -5,7 +5,7 @@ namespace Tests\PagSeguro\Requests\Checkout\Objects;
 
 
 use Orchestra\Testbench\TestCase;
-use PagSeguro\Requests\Checkout\Objects\Address;
+use PagSeguro\http\Objects\Address;
 
 class AddressTest extends TestCase
 {

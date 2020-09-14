@@ -3,12 +3,12 @@
 
 namespace PagSeguro\Http\Checkout;
 
-use PagSeguro\Http\Checkout\Objects\Items;
-use PagSeguro\Http\Checkout\Objects\Receiver;
-use PagSeguro\Http\Checkout\Objects\Sender;
-use PagSeguro\Http\Checkout\Objects\Shipping;
-use Common\Utilities;
+use PagSeguro\Http\Objects\Items;
+use PagSeguro\Http\Objects\Receiver;
+use PagSeguro\Http\Objects\Sender;
+use PagSeguro\Http\Objects\Shipping;
 use PagSeguro\Http\PostRequest;
+use Common\Utilities;
 use SimpleXMLElement;
 
 class CheckoutRequest extends PostRequest

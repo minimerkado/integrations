@@ -6,7 +6,7 @@ namespace Tests\PagSeguro\Responses;
 
 use Carbon\Carbon;
 use Orchestra\Testbench\TestCase;
-use PagSeguro\Responses\CheckoutResponse;
+use PagSeguro\Http\Checkout\CheckoutResponse;
 
 class CheckoutResponseTest extends TestCase
 {

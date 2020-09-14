@@ -5,8 +5,8 @@ namespace Tests\PagSeguro\Requests\Checkout\Objects;
 
 
 use Orchestra\Testbench\TestCase;
-use PagSeguro\Requests\Checkout\Objects\Address;
-use PagSeguro\Requests\Checkout\Objects\Shipping;
+use PagSeguro\Http\Objects\Address;
+use PagSeguro\Http\Objects\Shipping;
 
 class ShippingTest extends TestCase
 {

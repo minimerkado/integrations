@@ -5,8 +5,8 @@ namespace Tests\PagSeguro\Requests\Checkout\Objects;
 
 
 use Orchestra\Testbench\TestCase;
-use PagSeguro\Requests\Checkout\Objects\Document;
-use PagSeguro\Requests\Checkout\Objects\Documents;
+use PagSeguro\Http\Objects\Document;
+use PagSeguro\Http\Objects\Documents;
 use SimpleXMLElement;
 
 class DocumentsTest extends TestCase

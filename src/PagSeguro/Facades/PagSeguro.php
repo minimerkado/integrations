@@ -13,11 +13,9 @@ class PagSeguro extends Facade
         return 'pagseguro';
     }
 
-    private static function getOptions()
+    private static function prefix()
     {
-        return [
-            'prefix' => config('services.pagseguro.webhook.prefix', '/webhooks/pagseguro'),
-        ];
+        return config('services.pagseguro.webhook.prefix', '/webhooks/pagseguro');
     }
 
     /**
@@ -26,10 +24,9 @@ class PagSeguro extends Facade
      * @param array $options
      * @return string
      */
-    function notificationUrl(array $options = []): string
+    function notificationUrl(): string
     {
-        $options = self::getOptions();
-        return config('app.url') . $options['prefix'];
+        return config('app.url') . self::prefix();
     }
 
     /**
@@ -37,7 +34,7 @@ class PagSeguro extends Facade
      */
     public static function routes()
     {
-        Route::group(self::getOptions(), function ($router) {
+        Route::prefix(self::prefix())->middleware('throttle:60,1')->group(function ($router) {
             $router->post('/', [
                 'uses' => config('services.pagseguro.webhook.handler', '\PagSeguro\Http\WebhookController@handle'),
                 'as' => 'pagseguro.webhook.handle',

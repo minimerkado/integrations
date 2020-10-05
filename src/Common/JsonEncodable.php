@@ -4,7 +4,7 @@
 namespace Common;
 
 
-interface JsonObject
+interface JsonEncodable
 {
     public function toJson(): array;
 }

@@ -4,9 +4,9 @@
 namespace MercadoPago\Requests\Preference\Objects;
 
 
-use Common\JsonObject;
+use Common\JsonEncodable;
 
-class Phone implements JsonObject
+class Phone implements JsonEncodable
 {
     private string $area_code;
     private string $number;

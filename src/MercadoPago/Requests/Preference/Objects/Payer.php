@@ -4,10 +4,10 @@
 namespace MercadoPago\Requests\Preference\Objects;
 
 
-use Common\JsonObject;
+use Common\JsonEncodable;
 use Common\Utilities;
 
-class Payer implements JsonObject
+class Payer implements JsonEncodable
 {
     use Utilities;
 

@@ -35,8 +35,7 @@ class Shipments implements JsonEncodable
     static function free(): Shipments
     {
         return (new Shipments())
-            ->setMode(self::MODE_CUSTOM)
-            ->setFreeShipping(true);
+            ->setMode(self::MODE_NOT_SPECIFIED);
     }
 
     /**

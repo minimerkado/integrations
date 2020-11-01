@@ -133,7 +133,7 @@ class MercadoPagoHttpServiceTest extends TestCase
                 ->setName('John doe')
                 ->setEmail('johndoe@example.com')
                 ->setPhone(new Phone('82', '98888-0000')))
-            ->setShipments(Shipments::custom(15.0, false))
+            ->setShipments(Shipments::custom(15.0))
             ->setNotificationUrl('https://example.com/webhook/mercadopago/notification');
 
         $response = $this->service->createPreference($request);

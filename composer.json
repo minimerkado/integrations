@@ -40,7 +40,7 @@
         "php": ">=7.4",
         "ext-json": "*",
         "ext-simplexml": "*",
-        "guzzlehttp/guzzle": "^6.5",
+        "guzzlehttp/guzzle": "^7.0",
         "nesbot/carbon": "^2.36"
     },
     "require-dev": {

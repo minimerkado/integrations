@@ -34,7 +34,7 @@ class PagSeguro extends Facade
      */
     public static function routes()
     {
-        Route::prefix(self::prefix())->middleware('throttle:60,1')->group(function ($router) {
+        Route::prefix(self::prefix())->middleware('webhook')->group(function ($router) {
             $router->post('/{ref}', [
                 'uses' => config('services.pagseguro.webhook.handler', '\PagSeguro\Http\WebhookController@handle'),
                 'as' => 'pagseguro.webhook.handle',

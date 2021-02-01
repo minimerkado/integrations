@@ -7,16 +7,16 @@ namespace PicPay;
 use Common\Request;
 use Common\Response;
 use GuzzleHttp\Client;
-use PicPay\Contracts\PicPayService;
+use PicPay\Contracts\RevenuecatService;
 use PicPay\Exceptions\BadRequestException;
 use PicPay\Exceptions\PicPayException;
 use PicPay\Exceptions\UnauthorizedException;
 use PicPay\Requests\Checkout\CheckoutRequest;
-use PicPay\Responses\CancelResponse;
+use PicPay\Responses\SubscribersResponse;
 use PicPay\Responses\CheckoutResponse;
 use PicPay\Responses\StatusResponse;
 
-class PicPayHttpService implements PicPayService
+class RevenuecatHttpService implements RevenuecatService
 {
     private Client $http_client;
 
@@ -37,14 +37,14 @@ class PicPayHttpService implements PicPayService
         return $response;
     }
 
-    function cancel(\PicPay\Requests\CancelRequest $request): \PicPay\Responses\CancelResponse
+    function cancel(\PicPay\Requests\CancelRequest $request): \PicPay\Responses\SubscribersResponse
     {
-        /** @var CancelResponse $response */
-        $response = $this->request($request, fn($body) => new CancelResponse($body));
+        /** @var SubscribersResponse $response */
+        $response = $this->request($request, fn($body) => new SubscribersResponse($body));
         return $response;
     }
 
-    function status(\PicPay\Requests\StatusRequest $request): \PicPay\Responses\StatusResponse
+    function status(\PicPay\Requests\SubscribersRequest $request): \PicPay\Responses\StatusResponse
     {
         /** @var StatusResponse $response */
         $response = $this->request($request, fn($body) => new StatusResponse($body));

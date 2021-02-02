@@ -2,9 +2,9 @@
 
 namespace PicPay\Requests\Checkout\Objects;
 
-use Common\JsonObject;
+use Common\JsonEncodable;
 
-class Buyer implements JsonObject
+class Buyer implements JsonEncodable
 {
     private string $firstName;
     private string $lastName;

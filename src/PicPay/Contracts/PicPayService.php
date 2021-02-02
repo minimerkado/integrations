@@ -16,15 +16,15 @@ interface PicPayService
      * Cancela uma requisiçao de pagamento
      *
      * @param \PicPay\Requests\CancelRequest $request dados da requisição
-     * @return \PicPay\Responses\SubscribersResponse
+     * @return \PicPay\Responses\CancelResponse
      */
-    function cancel(\PicPay\Requests\CancelRequest $request): \PicPay\Responses\SubscribersResponse;
+    function cancel(\PicPay\Requests\CancelRequest $request): \PicPay\Responses\CancelResponse;
 
     /**
      * Obtem status de uma requisição de pagamento
      *
-     * @param \PicPay\Requests\SubscribersRequest $request dados da requisição
+     * @param \PicPay\Requests\StatusRequest $request dados da requisição
      * @return \PicPay\Responses\StatusResponse
      */
-    function status(\PicPay\Requests\SubscribersRequest $request): \PicPay\Responses\StatusResponse;
+    function status(\PicPay\Requests\StatusRequest $request): \PicPay\Responses\StatusResponse;
 }

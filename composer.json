@@ -15,7 +15,7 @@
             "PagSeguro\\": "src/PagSeguro/",
             "PicPay\\": "src/PicPay/",
             "MercadoPago\\":  "src/MercadoPago/",
-            "Revenuecat\\":  "src/Revenuecat/",
+            "Revenuecat\\":  "src/Revenuecat/"
         }
     },
     "autoload-dev": {
@@ -29,7 +29,7 @@
                 "PagSeguro\\PagSeguroServiceProvider",
                 "PicPay\\PicPayServiceProvider",
                 "MercadoPago\\MercadoPagoServiceProvider",
-                "Revenuecat\\RevenuecatServiceProvider",
+                "Revenuecat\\RevenuecatServiceProvider"
             ],
             "aliases": {
                 "PagSeguro": "PagSeguro\\Facades\\PagSeguro",

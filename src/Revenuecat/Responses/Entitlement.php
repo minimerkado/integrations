@@ -27,4 +27,35 @@ class Entitlement implements Response
         $this->id = $id;
     }
 
+    /**
+     * @return mixed|string
+     */
+    public function getExpiresDate()
+    {
+        return $this->expires_date;
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function getProductIdentifier()
+    {
+        return $this->product_identifier;
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function getPurchaseDate()
+    {
+        return $this->purchase_date;
+    }
+
+    /**
+     * @return string
+     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
 }

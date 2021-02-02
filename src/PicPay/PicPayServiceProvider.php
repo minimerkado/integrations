@@ -9,7 +9,7 @@ class PicPayServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('picpay', function ($app) {
-            return new RevenuecatHttpService();
+            return new PicPayHttpService();
         });
     }
 

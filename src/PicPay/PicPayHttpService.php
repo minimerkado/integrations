@@ -16,7 +16,7 @@ use PicPay\Responses\SubscribersResponse;
 use PicPay\Responses\CheckoutResponse;
 use PicPay\Responses\StatusResponse;
 
-class RevenuecatHttpService implements RevenuecatService
+class PicPayHttpService implements RevenuecatService
 {
     private Client $http_client;
 

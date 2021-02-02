@@ -16,7 +16,7 @@ use Revenuecat\Responses\SubscribersResponse;
 class RevenuecatHttpService implements RevenuecatService
 {
     private Client $http_client;
-    pritave string $token;
+    private string $token;
 
     /**
      * PagSeguroHttpService constructor.
@@ -46,8 +46,8 @@ class RevenuecatHttpService implements RevenuecatService
     function request(Request $request, $parser): Response
     {
         $options = array_merge([
-            'headers' => [
-                'Authorization: Bearer' => $this->token,
+            "headers" => [
+                "Authorization: Bearer $this->token",
             ],
         ], $request->build());
 

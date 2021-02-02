@@ -5,35 +5,26 @@ namespace Revenuecat\Responses;
 
 
 use Common\Response;
+use Illuminate\Support\Arr;
 
 class Entitlement implements Response
 {
     private string $expires_date;
     private string $product_identifier;
     private string $purchase_date;
+    private string $id;
 
     /**
      * Entitlement constructor.
-     * @param string $expires_date
-     * @param string $product_identifier
-     * @param string $purchase_date
+     * @param string $id
+     * @param array $arr
      */
-    public function __construct(string $expires_date, string $product_identifier, string $purchase_date)
+    public function __construct(string $id, array $arr)
     {
-        $this->expires_date = $expires_date;
-        $this->product_identifier = $product_identifier;
-        $this->purchase_date = $purchase_date;
-    }
-
-
-    public function build(){
-        return [
-            "pro_cat" => [
-                "expires_date" => $this->expires_date,
-                "product_identifier" => $this->product_identifier,
-                "purchase_date" => $this->purchase_date,
-            ]
-        ];
+        $this->expires_date = Arr::get($arr, "expires_date");
+        $this->product_identifier = Arr::get($arr, "product_identifier");
+        $this->purchase_date = Arr::get($arr, "purchase_date");
+        $this->id = $id;
     }
 
 }

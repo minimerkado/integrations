@@ -1,6 +1,6 @@
 <?php
 
-namespace PicPay;
+namespace Revenuecat;
 
 use Illuminate\Support\ServiceProvider;
 

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace PicPay;
+namespace Revenuecat;
 
 
 use Common\Request;
@@ -16,6 +16,7 @@ use Revenuecat\Responses\SubscribersResponse;
 class RevenuecatHttpService implements RevenuecatService
 {
     private Client $http_client;
+    pritave string $token;
 
     /**
      * PagSeguroHttpService constructor.
@@ -46,7 +47,7 @@ class RevenuecatHttpService implements RevenuecatService
     {
         $options = array_merge([
             'headers' => [
-                'Authorization: Bearer' => "asdasdasda",
+                'Authorization: Bearer' => $this->token,
             ],
         ], $request->build());
 

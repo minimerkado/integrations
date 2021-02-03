@@ -4,9 +4,9 @@
 namespace MercadoPago\Requests\Preference\Objects;
 
 
-use Common\JsonObject;
+use Common\JsonEncodable;
 
-class Identification implements JsonObject
+class Identification implements JsonEncodable
 {
     private string $type;
     private string $number;

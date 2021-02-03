@@ -65,6 +65,6 @@ class MercadoPagoHttpService implements MercadoPagoService
 
     private function getUri(string $path): string
     {
-        return 'https://api.mercadopago.com/'.$path;
+        return 'https://api.mercadopago.com'.$path;
     }
 }

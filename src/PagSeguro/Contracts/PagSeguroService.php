@@ -3,8 +3,12 @@
 namespace PagSeguro\Contracts;
 
 use PagSeguro\Exceptions\PagSeguroException;
-use PagSeguro\Requests\Checkout\CheckoutRequest;
-use PagSeguro\Responses\CheckoutResponse;
+use PagSeguro\Http\Checkout\CheckoutRequest;
+use PagSeguro\Http\Checkout\CheckoutResponse;
+use PagSeguro\Http\Transaction\NotificationRequest;
+use PagSeguro\Http\Transaction\NotificationResponse;
+use PagSeguro\Http\Transaction\TransactionRequest;
+use PagSeguro\Http\Transaction\TransactionResponse;
 
 interface PagSeguroService
 {
@@ -24,4 +28,20 @@ interface PagSeguroService
      * @return string
      */
     function checkoutUrl(string $code): string;
+
+    /**
+     * Get transaction details
+     *
+     * @param TransactionRequest $request
+     * @return TransactionResponse
+     */
+    function getTransaction(TransactionRequest $request): TransactionResponse;
+
+    /**
+     * Get notification
+     *
+     * @param NotificationRequest $request
+     * @return NotificationResponse
+     */
+    function getNotification(NotificationRequest $request): NotificationResponse;
 }

@@ -31,7 +31,7 @@ class CreatePreferenceRequestTest extends TestCase
                 ->setName('John doe')
                 ->setEmail('johndoe@example.com')
                 ->setPhone(new Phone('82', '98888-0000')))
-            ->setShipments(Shipments::custom(15.0, false))
+            ->setShipments(Shipments::custom(15.0))
             ->setPaymentMethods((new PaymentMethods())
                 ->setDefaultPaymentMethodId('credit_card')
                 ->setInstallments(12)
@@ -63,8 +63,7 @@ class CreatePreferenceRequestTest extends TestCase
             ],
             'shipments' => [
                 'mode' => 'custom',
-                'cost' => 15.0,
-                'free_shipping' => false,
+                'cost' => 15.0
             ],
             'external_reference' => 'external123',
             'payer' => [

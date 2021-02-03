@@ -4,10 +4,10 @@
 namespace MercadoPago\Requests\Preference\Objects;
 
 
-use Common\JsonObject;
+use Common\JsonEncodable;
 use Common\Utilities;
 
-class Shipments implements JsonObject
+class Shipments implements JsonEncodable
 {
     use Utilities;
 
@@ -25,12 +25,17 @@ class Shipments implements JsonObject
     private ?bool $free_shipping = null;
     private ?Address $receiver_address = null;
 
-    static function custom(float $cost, bool $free_shipping): Shipments
+    static function custom(float $cost): Shipments
     {
         return (new Shipments())
             ->setMode(self::MODE_CUSTOM)
-            ->setCost($cost)
-            ->setFreeShipping($free_shipping);
+            ->setCost($cost);
+    }
+
+    static function free(): Shipments
+    {
+        return (new Shipments())
+            ->setMode(self::MODE_NOT_SPECIFIED);
     }
 
     /**

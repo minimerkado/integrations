@@ -13,8 +13,12 @@ use PagSeguro\Exceptions\ForbiddenException;
 use PagSeguro\Exceptions\InvalidContentTypeException;
 use PagSeguro\Exceptions\PagSeguroException;
 use PagSeguro\Exceptions\UnauthorizedException;
-use PagSeguro\Requests\Checkout\CheckoutRequest;
-use PagSeguro\Responses\CheckoutResponse;
+use PagSeguro\Http\Checkout\CheckoutRequest;
+use PagSeguro\Http\Checkout\CheckoutResponse;
+use PagSeguro\Http\Transaction\NotificationRequest;
+use PagSeguro\Http\Transaction\NotificationResponse;
+use PagSeguro\Http\Transaction\TransactionRequest;
+use PagSeguro\Http\Transaction\TransactionResponse;
 
 class PagSeguroHttpService implements PagSeguroService
 {
@@ -42,7 +46,21 @@ class PagSeguroHttpService implements PagSeguroService
 
     function checkoutUrl(string $code): string
     {
-        return "https://pagseguro.uol.com.br/v2/checkout/payment.html?code=$code";
+        return $this->getUri("/v2/checkout/payment.html?code=$code");
+    }
+
+    function getTransaction(TransactionRequest $request): TransactionResponse
+    {
+        /** @var TransactionResponse $response */
+        $response = $this->request($request, fn($body) => new TransactionResponse($body));
+        return $response;
+    }
+
+    function getNotification(NotificationRequest $request): NotificationResponse
+    {
+        /** @var NotificationResponse $response */
+        $response = $this->request($request, fn($body) => new NotificationResponse($body));
+        return $response;
     }
 
     /**
@@ -62,7 +80,7 @@ class PagSeguroHttpService implements PagSeguroService
             ]
         ], $request->build());
 
-        $response = $this->http_client->request($request->getMethod(), $this->getUri($request->getPath()), $options);
+        $response = $this->http_client->request($request->getMethod(), $this->getEndpointUri($request->getPath()), $options);
         $status_code = $response->getStatusCode();
         $body = (string) $response->getBody();
 
@@ -87,7 +105,13 @@ class PagSeguroHttpService implements PagSeguroService
 
     private function getUri(string $path): string {
         return $this->config->isProduction()
-            ? 'https://ws.pagseguro.uol.com.br/v2'.$path
-            : 'https://ws.sandbox.pagseguro.uol.com.br/v2'.$path;
+            ? 'https://pagseguro.uol.com.br'.$path
+            : 'https://sandbox.pagseguro.uol.com.br'.$path;
+    }
+
+    private function getEndpointUri(string $path): string {
+        return $this->config->isProduction()
+            ? 'https://ws.pagseguro.uol.com.br'.$path
+            : 'https://ws.sandbox.pagseguro.uol.com.br'.$path;
     }
 }

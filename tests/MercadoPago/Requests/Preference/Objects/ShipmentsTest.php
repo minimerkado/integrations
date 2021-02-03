@@ -51,12 +51,11 @@ class ShipmentsTest extends TestCase
 
     public function testToJsonForCustom()
     {
-        $shipments = Shipments::custom(15.0, false);
+        $shipments = Shipments::custom(15.0);
 
         self::assertEquals([
             'mode' => 'custom',
             'cost' => 15.0,
-            'free_shipping' => false,
         ], $shipments->toJson());
 
     }

@@ -3,10 +3,9 @@
 
 namespace Revenuecat\Requests;
 
-use Common\Request;
 use Common\Utilities;
 
-class SubscribersRequest implements Request
+class SubscribersRequest extends Request
 {
     use Utilities;
     private string $app_user_id;
@@ -30,5 +29,11 @@ class SubscribersRequest implements Request
         return "/v1/subscribers/$this->app_user_id";
     }
 
-    public function build() { return null; }
+    public function toJson(): array
+    {
+        return self::not_null([
+            'app_user_id' => $this->app_user_id,
+            'fetch_token' => "",
+        ]);
+    }
 }

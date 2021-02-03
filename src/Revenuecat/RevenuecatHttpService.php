@@ -48,6 +48,7 @@ class RevenuecatHttpService implements RevenuecatService
         $options = array_merge([
             "headers" => [
                 "Authorization: Bearer $this->token",
+                'Accept' => 'application/json',
             ],
         ], $request->build());
 

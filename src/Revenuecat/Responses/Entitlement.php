@@ -21,16 +21,19 @@ class Entitlement
      */
     public function __construct(string $id, array $arr)
     {
-        $this->expires_date = Carbon::parse(Arr::get($arr, "expires_date"));
+        $expires_date = Arr::get($arr, "expires_date");
+        $this->expires_date = $expires_date !== null
+            ? Carbon::parse($expires_date)
+            : null;
         $this->product_identifier = Arr::get($arr, "product_identifier");
         $this->purchase_date = Carbon::parse(Arr::get($arr, "purchase_date"));
         $this->id = $id;
     }
 
     /**
-     * @return mixed|string
+     * @return Carbon|null
      */
-    public function getExpiresDate()
+    public function getExpiresDate(): ?Carbon
     {
         return $this->expires_date;
     }
@@ -44,9 +47,9 @@ class Entitlement
     }
 
     /**
-     * @return mixed|string
+     * @return Carbon
      */
-    public function getPurchaseDate()
+    public function getPurchaseDate(): Carbon
     {
         return $this->purchase_date;
     }

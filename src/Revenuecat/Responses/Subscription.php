@@ -3,18 +3,19 @@
 
 namespace Revenuecat\Responses;
 
+use Carbon\Carbon;
 use Illuminate\Support\Arr;
 
 class Subscription
 {
-    private ?string $billing_issues_detected_at;
-    private string $expires_date;
+    private ?Carbon $billing_issues_detected_at;
+    private Carbon $expires_date;
     private bool $is_sandbox;
-    private ?string $original_purchase_date;
+    private Carbon $original_purchase_date;
     private string $period_type;
-    private string $purchase_date;
+    private Carbon $purchase_date;
     private string $store;
-    private ?string $unsubscribe_detected_at;
+    private ?Carbon $unsubscribe_detected_at;
     private string $id;
 
     /**
@@ -25,34 +26,43 @@ class Subscription
     public function __construct(string $id, array $arr)
     {
         $this->id = $id;
-        $this->billing_issues_detected_at = Arr::get($arr, "billing_issues_detected_at");
-        $this->expires_date = Arr::get($arr, "expires_date");
+        $billing_issues_detected_at = Arr::get($arr, "billing_issues_detected_at");
+
+        $this->billing_issues_detected_at = $billing_issues_detected_at !== null
+            ? Carbon::parse($billing_issues_detected_at)
+            : null;
+        
+        $this->expires_date = Carbon::parse(Arr::get($arr, "expires_date"));
         $this->is_sandbox = Arr::get($arr, "is_sandbox");
-        $this->original_purchase_date = Arr::get($arr, "original_purchase_date");
+        $this->original_purchase_date = Carbon::parse(Arr::get($arr, "original_purchase_date"));
         $this->period_type = Arr::get($arr, "period_type");
-        $this->purchase_date = Arr::get($arr, "purchase_date");
+        $this->purchase_date =Carbon::parse(Arr::get($arr, "purchase_date"));
         $this->store = Arr::get($arr, "store");
-        $this->unsubscribe_detected_at = Arr::get($arr, "unsubscribe_detected_at");
+
+        $unsubscribe_detected_at = Arr::get($arr, "unsubscribe_detected_at");
+        $this->unsubscribe_detected_at = $unsubscribe_detected_at !== null
+            ? Carbon::parse($unsubscribe_detected_at)
+            : null;
     }
 
     /**
-     * @return mixed|string
+     * @return Carbon|null
      */
-    public function getBillingIssuesDetectedAt()
+    public function getBillingIssuesDetectedAt(): ?Carbon
     {
         return $this->billing_issues_detected_at;
     }
 
     /**
-     * @return mixed|string
+     * @return Carbon
      */
-    public function getExpiresDate()
+    public function getExpiresDate(): Carbon
     {
         return $this->expires_date;
     }
 
     /**
-     * @return mixed|string
+     * @return bool|mixed
      */
     public function getIsSandbox()
     {
@@ -60,9 +70,9 @@ class Subscription
     }
 
     /**
-     * @return mixed|string
+     * @return Carbon|null
      */
-    public function getOriginalPurchaseDate()
+    public function getOriginalPurchaseDate(): ?Carbon
     {
         return $this->original_purchase_date;
     }
@@ -76,9 +86,9 @@ class Subscription
     }
 
     /**
-     * @return mixed|string
+     * @return Carbon
      */
-    public function getPurchaseDate()
+    public function getPurchaseDate(): Carbon
     {
         return $this->purchase_date;
     }
@@ -92,9 +102,9 @@ class Subscription
     }
 
     /**
-     * @return mixed|string
+     * @return Carbon|null
      */
-    public function getUnsubscribeDetectedAt()
+    public function getUnsubscribeDetectedAt(): ?Carbon
     {
         return $this->unsubscribe_detected_at;
     }

@@ -11,18 +11,17 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Orchestra\Testbench\TestCase;
-use PicPay\Contracts\RevenuecatService;
 use PicPay\PicPayHttpService;
 use PicPay\Requests\CancelRequest;
 use PicPay\Requests\Checkout\CheckoutRequest;
 use PicPay\Requests\Checkout\Objects\Buyer;
-use PicPay\Requests\SubscribersRequest;
+use PicPay\Requests\StatusRequest;
 
 class PicPayHttpServiceTest extends TestCase
 {
     private array $history = [];
     private MockHandler $mock;
-    private RevenuecatService $service;
+    private PicPayHttpService $service;
 
     public function setUp(): void
     {
@@ -105,7 +104,7 @@ class PicPayHttpServiceTest extends TestCase
             }
         '));
 
-        $request = new SubscribersRequest('token12345', 'order12345');
+        $request = new StatusRequest('token12345', 'order12345');
 
         $response = $this->service->status($request);
 

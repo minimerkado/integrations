@@ -31,7 +31,7 @@ class Subscription
         $this->billing_issues_detected_at = $billing_issues_detected_at !== null
             ? Carbon::parse($billing_issues_detected_at)
             : null;
-        
+
         $this->expires_date = Carbon::parse(Arr::get($arr, "expires_date"));
         $this->is_sandbox = Arr::get($arr, "is_sandbox");
         $this->original_purchase_date = Carbon::parse(Arr::get($arr, "original_purchase_date"));

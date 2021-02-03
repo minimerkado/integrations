@@ -7,14 +7,14 @@ use Illuminate\Support\Arr;
 
 class Subscription
 {
-    private string $billing_issues_detected_at;
+    private ?string $billing_issues_detected_at;
     private string $expires_date;
-    private string $is_sandbox;
-    private string $original_purchase_date;
+    private bool $is_sandbox;
+    private ?string $original_purchase_date;
     private string $period_type;
     private string $purchase_date;
     private string $store;
-    private string $unsubscribe_detected_at;
+    private ?string $unsubscribe_detected_at;
     private string $id;
 
     /**

@@ -7,7 +7,7 @@ namespace Revenuecat\Responses;
 use Common\Response;
 use Illuminate\Support\Arr;
 
-class Entitlement implements Response
+class Entitlement
 {
     private string $expires_date;
     private string $product_identifier;

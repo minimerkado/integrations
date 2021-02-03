@@ -3,11 +3,9 @@
 
 namespace Revenuecat\Responses;
 
-
-use Common\Response;
 use Illuminate\Support\Arr;
 
-class Subscription implements Response
+class Subscription
 {
     private string $billing_issues_detected_at;
     private string $expires_date;

@@ -16,7 +16,7 @@ use Revenuecat\Responses\SubscribersResponse;
 class RevenuecatHttpService implements RevenuecatService
 {
     private Client $http_client;
-    private string $token;
+    private string $token = "asdasdasd";
 
     /**
      * PagSeguroHttpService constructor.

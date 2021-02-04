@@ -26,7 +26,7 @@ class SubscribersResponse implements Response
             $this->entitlements[] = new Entitlement($id, $arr);
         }
 
-        $subscriptions = Arr::get($json,'subscriptions');
+        $subscriptions = Arr::get($json,'subscriber.subscriptions');
         foreach ($subscriptions as $id => $arr) {
             $this->subscriptions[] = new Subscription($id, $arr);
         }

@@ -11,6 +11,7 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Orchestra\Testbench\TestCase;
+use PicPay\Contracts\PicPayService;
 use PicPay\PicPayHttpService;
 use PicPay\Requests\CancelRequest;
 use PicPay\Requests\Checkout\CheckoutRequest;
@@ -21,7 +22,7 @@ class PicPayHttpServiceTest extends TestCase
 {
     private array $history = [];
     private MockHandler $mock;
-    private PicPayHttpService $service;
+    private PicPayService $service;
 
     public function setUp(): void
     {

@@ -31,10 +31,12 @@ class PagSeguro extends Facade
 
     /**
      * Binds PagSeguro webhook routes.
+     *
+     * @param array $middleware middleware config for this route
      */
-    public static function routes()
+    public static function routes($middleware = [])
     {
-        Route::prefix(self::prefix())->middleware('webhook')->group(function ($router) {
+        Route::prefix(self::prefix())->middleware($middleware)->group(function ($router) {
             $router->post('/{ref}', [
                 'uses' => config('services.pagseguro.webhook.handler', '\PagSeguro\Http\WebhookController@handle'),
                 'as' => 'pagseguro.webhook.handle',

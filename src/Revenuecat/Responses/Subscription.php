@@ -8,6 +8,15 @@ use Illuminate\Support\Arr;
 
 class Subscription
 {
+    const PERIOD_TRIAL = 'trial';
+    const PERIOD_NORMAL = 'normal';
+    const PERIOD_INTRO = 'intro';
+
+    const APP_STORE = 'app_store';
+    const MAC_APP_STORE = 'mac_app_store';
+    const PLAY_STORE = 'play_store';
+    const STRIPE = 'stripe';
+
     private ?Carbon $billing_issues_detected_at;
     private Carbon $expires_date;
     private bool $is_sandbox;
@@ -43,6 +52,26 @@ class Subscription
         $this->unsubscribe_detected_at = $unsubscribe_detected_at !== null
             ? Carbon::parse($unsubscribe_detected_at)
             : null;
+    }
+
+    public function isExpired(): bool
+    {
+        return $this->expires_date->isBefore(now());
+    }
+
+    public function isCanceled(): bool
+    {
+        return $this->unsubscribe_detected_at != null;
+    }
+
+    public function isTrial(): bool
+    {
+        return $this->period_type == self::PERIOD_TRIAL;
+    }
+
+    public function isBillingFailed(): bool
+    {
+        return $this->billing_issues_detected_at != null;
     }
 
     /**

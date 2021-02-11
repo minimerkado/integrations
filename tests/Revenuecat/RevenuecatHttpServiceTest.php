@@ -28,7 +28,7 @@ class RevenuecatHttpServiceTest extends TestCase
         $handlerStack = HandlerStack::create($this->mock);
         $handlerStack->push(Middleware::history($this->history));
         $client = new Client(['handler' => $handlerStack]);
-        $this->service = new RevenuecatHttpService($client);
+        $this->service = new RevenuecatHttpService(['api_key' => 'teste'], $client);
     }
 
 

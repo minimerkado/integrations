@@ -32,6 +32,16 @@ class SubscribersResponse implements Response
         }
     }
 
+    public function getSubscriptionById(string $id): ?Subscription
+    {
+        return collect($this->subscriptions)->first(fn (Subscription $value, $key) => $value->getId() == $id);
+    }
+
+    public function getEntitlementById(string $id): ?Entitlement
+    {
+        return collect($this->entitlements)->first(fn (Entitlement $value, $key) => $value->getId() == $id);
+    }
+
     /**
      * @return Entitlement[]
      */

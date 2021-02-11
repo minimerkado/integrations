@@ -16,18 +16,28 @@ use Revenuecat\Responses\SubscribersResponse;
 class RevenuecatHttpService implements RevenuecatService
 {
     private Client $http_client;
-    private string $token = "asdasdasd";
+    private string $token;
 
     /**
-     * PagSeguroHttpService constructor.
-     *
-     * @param ?Client $http_client
+     * RevenuecatHttpService constructor.
+     * @param array $config
+     * @param Client|null $http_client
      */
-    public function __construct(?Client $http_client = null)
+    public function __construct(array $config, ?Client $http_client = null)
     {
         $this->http_client = $http_client ?? new Client();
+        $this->token = $config['api_key'];
     }
 
+    /**
+     * Get subscribers
+     * 
+     * @param SubscribersRequest $request
+     * @return SubscribersResponse
+     * @throws RevenuecatException
+     * @throws UnauthorizedException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     function get(SubscribersRequest $request): SubscribersResponse
     {
         /** @var SubscribersResponse $response */

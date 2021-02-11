@@ -31,9 +31,6 @@ class SubscribersRequest extends Request
 
     public function toJson(): array
     {
-        return self::not_null([
-            'app_user_id' => $this->app_user_id,
-            'fetch_token' => "",
-        ]);
+        return [];
     }
 }

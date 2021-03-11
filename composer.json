@@ -15,7 +15,8 @@
             "PagSeguro\\": "src/PagSeguro/",
             "PicPay\\": "src/PicPay/",
             "MercadoPago\\":  "src/MercadoPago/",
-            "Revenuecat\\":  "src/Revenuecat/"
+            "Revenuecat\\":  "src/Revenuecat/",
+            "JivoChat\\":  "src/JivoChat/"
         }
     },
     "autoload-dev": {

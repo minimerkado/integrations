@@ -11,7 +11,9 @@ use MercadoPago\Contracts\MercadoPagoService;
 use MercadoPago\Exceptions\BadRequestException;
 use MercadoPago\Exceptions\MercadoPagoException;
 use MercadoPago\Exceptions\UnauthorizedException;
+use MercadoPago\Requests\Payment\GetPaymentRequest;
 use MercadoPago\Requests\Preference\CreatePreferenceRequest;
+use MercadoPago\Responses\PaymentResponse;
 use MercadoPago\Responses\PreferenceResponse;
 
 class MercadoPagoHttpService implements MercadoPagoService
@@ -27,6 +29,27 @@ class MercadoPagoHttpService implements MercadoPagoService
         $this->http_client = $http_client ?? new Client();
     }
 
+    /**
+     * Obtém um pagamento através do ID
+     *
+     * @throws MercadoPagoException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getPayment(GetPaymentRequest $request): PaymentResponse
+    {
+        /** @var PaymentResponse $response */
+        $response = $this->request($request, fn($body) => new PaymentResponse($body));
+        return $response;
+    }
+
+    /**
+     * Cria uma preferência no Mercado Pago
+     *
+     * @param CreatePreferenceRequest $request
+     * @return PreferenceResponse
+     * @throws MercadoPagoException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function createPreference(CreatePreferenceRequest $request): PreferenceResponse
     {
         /** @var PreferenceResponse $response */

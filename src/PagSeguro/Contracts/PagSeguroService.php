@@ -9,6 +9,8 @@ use PagSeguro\Http\Transaction\NotificationRequest;
 use PagSeguro\Http\Transaction\NotificationResponse;
 use PagSeguro\Http\Transaction\TransactionRequest;
 use PagSeguro\Http\Transaction\TransactionResponse;
+use PagSeguro\Http\Transaction\TransactionsRequest;
+use PagSeguro\Http\Transaction\TransactionsResponse;
 
 interface PagSeguroService
 {
@@ -28,6 +30,14 @@ interface PagSeguroService
      * @return string
      */
     function checkoutUrl(string $code): string;
+
+    /**
+     * Search for transactions
+     *
+     * @param TransactionsRequest $request
+     * @return TransactionsResponse
+     */
+    function searchTransactions(TransactionsRequest $request): TransactionsResponse;
 
     /**
      * Get transaction details

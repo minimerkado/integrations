@@ -13,6 +13,7 @@ use MercadoPago\Exceptions\MercadoPagoException;
 use MercadoPago\Exceptions\UnauthorizedException;
 use MercadoPago\Requests\Payment\GetPaymentRequest;
 use MercadoPago\Requests\Preference\CreatePreferenceRequest;
+use MercadoPago\Responses\IdentificationTypesResponse;
 use MercadoPago\Responses\PaymentResponse;
 use MercadoPago\Responses\PreferenceResponse;
 
@@ -27,6 +28,20 @@ class MercadoPagoHttpService implements MercadoPagoService
     public function __construct(?Client $http_client = null)
     {
         $this->http_client = $http_client ?? new Client();
+    }
+
+    /**
+     * Veja todos os tipos de documentos disponíveis por país e obtenha uma lista
+     * com a identificação e detalhes de cada um deles.
+     *
+     * @throws MercadoPagoException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getIdentificationTypes(GetPaymentRequest $request): IdentificationTypesResponse
+    {
+        /** @var IdentificationTypesResponse $response */
+        $response = $this->request($request, fn($body) => new IdentificationTypesResponse($body));
+        return $response;
     }
 
     /**

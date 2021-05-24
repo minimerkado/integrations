@@ -203,7 +203,6 @@ class Transaction implements XmlDecodable
         $this->paymentLink = $root->paymentLink;
         $this->type = (int) $root->type;
         $this->status = (int) $root->status;
-        $this->paymentMethod = (new PaymentMethod())->decode($root->paymentMethod);
         $this->grossAmount = (float) $root->grossAmount;
         $this->discountAmount = (float) $root->discountAmount;
         $this->feeAmount = (float) $root->feeAmount;
@@ -211,9 +210,15 @@ class Transaction implements XmlDecodable
         $this->extraAmount = (float) $root->extraAmount;
         $this->installmentCount = (int) $root->installmentCount;
         $this->itemsCount = (int) $root->itemsCount;
-        $this->items = (new Items())->decode($root->items);
-        $this->shipping = (new Shipping())->decode($root->shipping);
-        $this->sender = (new Sender())->decode($root->sender);
+
+        if ($method = $root->paymentMethod)
+            $this->paymentMethod = (new PaymentMethod())->decode($method);
+        if ($items = $root->items)
+            $this->items = (new Items())->decode($items);
+        if ($shipping = $root->shipping)
+            $this->shipping = (new Shipping())->decode($shipping);
+        if ($sender = $root->sender)
+            $this->sender = (new Sender())->decode($sender);
 
         return $this;
     }

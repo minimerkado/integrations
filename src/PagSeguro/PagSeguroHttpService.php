@@ -19,6 +19,8 @@ use PagSeguro\Http\Transaction\NotificationRequest;
 use PagSeguro\Http\Transaction\NotificationResponse;
 use PagSeguro\Http\Transaction\TransactionRequest;
 use PagSeguro\Http\Transaction\TransactionResponse;
+use PagSeguro\Http\Transaction\TransactionsRequest;
+use PagSeguro\Http\Transaction\TransactionsResponse;
 
 class PagSeguroHttpService implements PagSeguroService
 {
@@ -47,6 +49,13 @@ class PagSeguroHttpService implements PagSeguroService
     function checkoutUrl(string $code): string
     {
         return $this->getUri("/v2/checkout/payment.html?code=$code");
+    }
+
+    function searchTransactions(TransactionsRequest $request): TransactionsResponse
+    {
+        /** @var TransactionsResponse $response */
+        $response = $this->request($request, fn($body) => new TransactionsResponse($body));
+        return $response;
     }
 
     function getTransaction(TransactionRequest $request): TransactionResponse

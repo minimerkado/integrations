@@ -18,20 +18,13 @@ abstract class Request implements \Common\Request
         $this->access_token = $access_token;
     }
 
-    /**
-     * Get json representation of this request
-     *
-     * @return array
-     */
-    abstract public function toJson(): array;
-
     public function build(): array
     {
         return [
-            'query' => [
-                'access_token' => $this->access_token
+            'headers' => [
+                'Authorization' => "Bearer $this->access_token",
+                'Accept' => 'application/json',
             ],
-            'json' => $this->toJson(),
         ];
     }
 }

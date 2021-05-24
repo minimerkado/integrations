@@ -6,13 +6,14 @@ namespace MercadoPago\Requests\Preference;
 
 use Carbon\Carbon;
 use Common\Utilities;
+use MercadoPago\Requests\PostRequest;
 use MercadoPago\Requests\Preference\Objects\Item;
 use MercadoPago\Requests\Preference\Objects\Payer;
 use MercadoPago\Requests\Preference\Objects\PaymentMethods;
 use MercadoPago\Requests\Preference\Objects\Shipments;
 use MercadoPago\Requests\Request;
 
-class CreatePreferenceRequest extends Request
+class CreatePreferenceRequest extends PostRequest
 {
     use Utilities;
 

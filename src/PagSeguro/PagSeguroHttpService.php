@@ -86,10 +86,16 @@ class PagSeguroHttpService implements PagSeguroService
         $options = array_merge([
             'headers' => [
                 'Content-Type' => 'application/xml',
-            ]
+            ],
+            'http_errors' => false
         ], $request->build());
 
-        $response = $this->http_client->request($request->getMethod(), $this->getEndpointUri($request->getPath()), $options);
+        $response = $this->http_client->request(
+            method: $request->getMethod(),
+            uri: $this->getEndpointUri($request->getPath()),
+            options: $options
+        );
+
         $status_code = $response->getStatusCode();
         $body = (string) $response->getBody();
 

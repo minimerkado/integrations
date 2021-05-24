@@ -84,7 +84,16 @@ class MercadoPagoHttpService implements MercadoPagoService
      */
     function request(Request $request, $parser): Response
     {
-        $response = $this->http_client->request($request->getMethod(), $this->getUri($request->getPath()), $request->build());
+        $options = array_merge($request->build(), [
+            'http_errors' => false
+        ]);
+
+        $response = $this->http_client->request(
+            method: $request->getMethod(),
+            uri: $this->getUri($request->getPath()),
+            options: $options
+        );
+
         $status_code = $response->getStatusCode();
         $body = (string) $response->getBody();
 

@@ -5,9 +5,16 @@ namespace PagSeguro\Facades;
 
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\Facades\Route;
+use PagSeguro\PagSeguroFakeService;
 
 class PagSeguro extends Facade
 {
+    public static function fake()
+    {
+        static::swap($fake = new PagSeguroFakeService());
+        return $fake;
+    }
+
     protected static function getFacadeAccessor()
     {
         return 'pagseguro';

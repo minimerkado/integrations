@@ -31,13 +31,6 @@ class MercadoPagoHttpService implements MercadoPagoService
         $this->http_client = $http_client ?? new Client();
     }
 
-    /**
-     * Veja todos os tipos de documentos disponíveis por país e obtenha uma lista
-     * com a identificação e detalhes de cada um deles.
-     *
-     * @throws MercadoPagoException
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
     public function getIdentificationTypes(GetIdentificationTypesRequest $request): IdentificationTypesResponse
     {
         /** @var IdentificationTypesResponse $response */
@@ -45,12 +38,6 @@ class MercadoPagoHttpService implements MercadoPagoService
         return $response;
     }
 
-    /**
-     * Obtém um pagamento através do ID
-     *
-     * @throws MercadoPagoException
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
     public function getPayment(GetPaymentRequest $request): PaymentResponse
     {
         /** @var PaymentResponse $response */
@@ -58,14 +45,6 @@ class MercadoPagoHttpService implements MercadoPagoService
         return $response;
     }
 
-    /**
-     * Cria uma preferência no Mercado Pago
-     *
-     * @param CreatePreferenceRequest $request
-     * @return PreferenceResponse
-     * @throws MercadoPagoException
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
     public function createPreference(CreatePreferenceRequest $request): PreferenceResponse
     {
         /** @var PreferenceResponse $response */

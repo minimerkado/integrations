@@ -6,9 +6,16 @@ namespace MercadoPago\Facades;
 
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\Facades\Route;
+use MercadoPago\MercadoPagoFakeService;
 
 class MercadoPago extends Facade
 {
+    public static function fake()
+    {
+        static::swap($fake = new MercadoPagoFakeService());
+        return $fake;
+    }
+
     protected static function getFacadeAccessor()
     {
         return 'mercadopago';

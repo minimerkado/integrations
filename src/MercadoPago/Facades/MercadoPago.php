@@ -34,7 +34,7 @@ class MercadoPago extends Facade
      */
     public static function notificationUrl($reference): string
     {
-        return config('app.url') . self::prefix() . "/$reference";
+        return route('webhook.mercadopago', ['ref' => $reference]);
     }
 
     /**
@@ -47,7 +47,7 @@ class MercadoPago extends Facade
         Route::prefix(self::prefix())->middleware($middleware)->group(function ($router) {
             $router->post('/{ref}', [
                 'uses' => config('services.mercadopago.webhook.handler', '\MercadoPago\Http\WebhookController@handle'),
-                'as' => 'mercadopago.webhook.handle',
+                'as' => 'webhook.mercadopago',
             ]);
         });
     }

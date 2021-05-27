@@ -12,9 +12,13 @@ use Orchestra\Testbench\TestCase;
 
 class WebhookControllerTest extends TestCase
 {
-    function testHandleForPaymentCreated() {
+    protected function setUp(): void
+    {
+        parent::setUp();
         MercadoPago::routes();
+    }
 
+    function testHandleForPaymentCreated() {
         Event::fake([
             PaymentCreated::class,
         ]);
@@ -35,8 +39,6 @@ class WebhookControllerTest extends TestCase
     }
 
     function testHandleForPaymentUpdated() {
-        MercadoPago::routes();
-
         Event::fake([
             PaymentUpdated::class,
         ]);

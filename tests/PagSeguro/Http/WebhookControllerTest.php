@@ -11,9 +11,14 @@ use PagSeguro\Facades\PagSeguro;
 
 class WebhookControllerTest extends TestCase
 {
-    function testHandle() {
-        PagSeguro::routes();
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        PagSeguro::routes();
+    }
+
+    function testHandle() {
         Event::fake([
             TransactionStatusChanged::class,
         ]);

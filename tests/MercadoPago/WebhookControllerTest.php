@@ -5,7 +5,6 @@ namespace Tests\MercadoPago;
 
 
 use Illuminate\Support\Facades\Event;
-use MercadoPago\Events\PaymentCreated;
 use MercadoPago\Events\PaymentUpdated;
 use MercadoPago\Facades\MercadoPago;
 use Orchestra\Testbench\TestCase;
@@ -20,7 +19,7 @@ class WebhookControllerTest extends TestCase
 
     function testHandleForPaymentCreated() {
         Event::fake([
-            PaymentCreated::class,
+            PaymentUpdated::class,
         ]);
 
         $data = [
@@ -35,7 +34,7 @@ class WebhookControllerTest extends TestCase
         $this->post('/webhooks/mercadopago', $data)->assertStatus(404);
         $this->get('/webhooks/mercadopago/REF1234', $data)->assertStatus(405);
 
-        Event::assertDispatched(PaymentCreated::class, fn ($e) => $e->reference === 'REF1234' && $e->payment_id === 'PAG1234');
+        Event::assertDispatched(PaymentUpdated::class, fn ($e) => $e->reference === 'REF1234' && $e->payment_id === 'PAG1234');
     }
 
     function testHandleForPaymentUpdated() {

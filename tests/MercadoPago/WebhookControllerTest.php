@@ -57,6 +57,22 @@ class WebhookControllerTest extends TestCase
         Event::assertDispatched(PaymentUpdated::class, fn ($e) => $e->reference === 'REF1234' && $e->payment_id === 'PAG1234');
     }
 
+    function testHandleForPaymentIPN() {
+        Event::fake([
+            PaymentUpdated::class,
+        ]);
+
+        $data = [
+            'topic' => 'payment',
+        ];
+
+        $this->post('/webhooks/mercadopago/REF1234?topic=payment&id=PAG1234', $data)->assertStatus(200);
+        $this->post('/webhooks/mercadopago', $data)->assertStatus(404);
+        $this->get('/webhooks/mercadopago/REF1234', $data)->assertStatus(405);
+
+        Event::assertDispatched(PaymentUpdated::class, fn ($e) => $e->reference === 'REF1234' && $e->payment_id === 'PAG1234');
+    }
+
     function testNotificationUrl()
     {
         self::assertEquals('https://minimerkado.test/webhooks/mercadopago/REF1234', MercadoPago::notificationUrl('REF1234'));

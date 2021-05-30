@@ -6,7 +6,7 @@ namespace MercadoPago\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 
-class PaymentUpdated
+class MercadoPagoPaymentNotification
 {
     use Dispatchable;
 

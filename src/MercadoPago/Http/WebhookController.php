@@ -5,7 +5,7 @@ namespace MercadoPago\Http;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use MercadoPago\Events\PaymentUpdated;
+use MercadoPago\Events\MercadoPagoPaymentNotification;
 
 class WebhookController extends Controller
 {
@@ -28,7 +28,7 @@ class WebhookController extends Controller
     {
         switch ($topic) {
             case self::TOPIC_PAYMENT:
-                PaymentUpdated::dispatch($reference, $id);
+                MercadoPagoPaymentNotification::dispatch($reference, $id);
                 break;
             default:
                 break;
@@ -40,7 +40,7 @@ class WebhookController extends Controller
         switch ($action) {
             case self::ACTION_CREATED:
             case self::ACTION_UPDATED:
-                PaymentUpdated::dispatch($reference, $id);
+                MercadoPagoPaymentNotification::dispatch($reference, $id);
                 break;
             default:
                 break;

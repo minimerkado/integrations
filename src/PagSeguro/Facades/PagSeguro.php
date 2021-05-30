@@ -31,9 +31,14 @@ class PagSeguro extends Facade
      * @param array $options
      * @return string
      */
-    public static function notificationUrl($reference): string
+    public static function notificationUrl($reference, bool $force_https = true): string
     {
-        return route('webhook.pagseguro', ['ref' => $reference]);
+        $url = route('webhook.pagseguro', ['ref' => $reference]);
+
+        if ($force_https)
+            return str_replace('http://', 'https://', $url);
+
+        return $url;
     }
 
     /**

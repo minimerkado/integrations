@@ -5,7 +5,7 @@ namespace Tests\MercadoPago;
 
 
 use Illuminate\Support\Facades\Event;
-use MercadoPago\Events\MercadoPagoPaymentNotification;
+use MercadoPago\Events\PaymentNotification;
 use MercadoPago\Facades\MercadoPago;
 use Orchestra\Testbench\TestCase;
 
@@ -19,7 +19,7 @@ class WebhookControllerTest extends TestCase
 
     function testHandleForPaymentCreated() {
         Event::fake([
-            MercadoPagoPaymentNotification::class,
+            PaymentNotification::class,
         ]);
 
         $data = [
@@ -34,12 +34,12 @@ class WebhookControllerTest extends TestCase
         $this->post('/webhooks/mercadopago', $data)->assertStatus(404);
         $this->get('/webhooks/mercadopago/REF1234', $data)->assertStatus(405);
 
-        Event::assertDispatched(MercadoPagoPaymentNotification::class, fn ($e) => $e->reference === 'REF1234' && $e->payment_id === 'PAG1234');
+        Event::assertDispatched(PaymentNotification::class, fn ($e) => $e->reference === 'REF1234' && $e->payment_id === 'PAG1234');
     }
 
     function testHandleForPaymentUpdated() {
         Event::fake([
-            MercadoPagoPaymentNotification::class,
+            PaymentNotification::class,
         ]);
 
         $data = [
@@ -54,12 +54,12 @@ class WebhookControllerTest extends TestCase
         $this->post('/webhooks/mercadopago', $data)->assertStatus(404);
         $this->get('/webhooks/mercadopago/REF1234', $data)->assertStatus(405);
 
-        Event::assertDispatched(MercadoPagoPaymentNotification::class, fn ($e) => $e->reference === 'REF1234' && $e->payment_id === 'PAG1234');
+        Event::assertDispatched(PaymentNotification::class, fn ($e) => $e->reference === 'REF1234' && $e->payment_id === 'PAG1234');
     }
 
     function testHandleForPaymentIPN() {
         Event::fake([
-            MercadoPagoPaymentNotification::class,
+            PaymentNotification::class,
         ]);
 
         $data = [
@@ -70,7 +70,7 @@ class WebhookControllerTest extends TestCase
         $this->post('/webhooks/mercadopago', $data)->assertStatus(404);
         $this->get('/webhooks/mercadopago/REF1234', $data)->assertStatus(405);
 
-        Event::assertDispatched(MercadoPagoPaymentNotification::class, fn ($e) => $e->reference === 'REF1234' && $e->payment_id === 'PAG1234');
+        Event::assertDispatched(PaymentNotification::class, fn ($e) => $e->reference === 'REF1234' && $e->payment_id === 'PAG1234');
     }
 
     function testNotificationUrl()

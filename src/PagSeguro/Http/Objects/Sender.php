@@ -14,7 +14,7 @@ class Sender implements XmlEncodable, XmlDecodable
     use Utilities;
 
     private string $name;
-    private string $email;
+    private ?string $email = null;
     private ?Phone $phone = null;
     private ?Documents $documents = null;
 
@@ -29,10 +29,10 @@ class Sender implements XmlEncodable, XmlDecodable
     }
 
     /**
-     * @param string $email
+     * @param string|null $email
      * @return Sender
      */
-    public function setEmail(string $email): Sender
+    public function setEmail(?string $email): Sender
     {
         $this->email = $email;
         return $this;
@@ -73,7 +73,7 @@ class Sender implements XmlEncodable, XmlDecodable
     {
         $sender = $root->addChild('sender');
         $sender->addChild('name', $this->name);
-        $sender->addChild('email', $this->email);
+        self::when($this->email, fn(string $email) => $sender->addChild('email', $email));
         self::when($this->phone, fn(Phone $phone) => $phone->encode($sender));
         self::when($this->documents, fn(Documents $value) => $value->encode($sender));
     }

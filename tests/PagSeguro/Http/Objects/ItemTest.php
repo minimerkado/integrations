@@ -17,12 +17,12 @@ class ItemTest extends TestCase
             ->setDescription('Nike Shoes')
             ->setQuantity(1)
             ->setWeight(75)
-            ->setAmount(150.0)
+            ->setAmount(1500.0)
             ->setShippingCost(50.0)
             ->encode($xml);
 
         self::assertEquals('<?xml version="1.0"?>
-<root><item><id>1</id><description>Nike Shoes</description><quantity>1</quantity><amount>150.00</amount><weight>75</weight><shippingCost>50.00</shippingCost></item></root>
+<root><item><id>1</id><description>Nike Shoes</description><quantity>1</quantity><amount>1500.00</amount><weight>75</weight><shippingCost>50.00</shippingCost></item></root>
 ', $xml->asXML());
     }
 

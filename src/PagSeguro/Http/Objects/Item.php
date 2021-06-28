@@ -86,9 +86,9 @@ class Item implements XmlEncodable, XmlDecodable
         $item->addChild('id', $this->id);
         $item->addChild('description', $this->description);
         $item->addChild('quantity', $this->quantity);
-        $item->addChild('amount', number_format($this->amount, 2));
+        $item->addChild('amount', self::format($this->amount, 2));
         $item->addChild('weight', $this->weight);
-        self::when($this->shippingCost, fn($value) => $item->addChild('shippingCost', number_format($value, 2)));
+        self::when($this->shippingCost, fn($value) => $item->addChild('shippingCost', self::format($value, 2)));
     }
 
     public function decode(\SimpleXMLElement $root): Item

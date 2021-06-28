@@ -7,6 +7,18 @@ namespace Common;
 trait Utilities
 {
     /**
+     * Format a float value
+     *
+     * @param float|int $value value to be formatted
+     * @param int $decimals number of decimal places
+     * @return string formatted value
+     */
+    protected static function format(float|int $value, int $decimals = 2): string
+    {
+        return number_format($value, $decimals, '.', '');
+    }
+
+    /**
      * Check if a value is null and return a default value
      *
      * @param mixed $var variable to be checked

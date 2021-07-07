@@ -35,7 +35,7 @@
                 "PagSeguro": "PagSeguro\\Facades\\PagSeguro",
                 "PicPay": "PicPay\\Facades\\PicPay",
                 "MercadoPago": "MercadoPago\\Facades\\MercadoPago",
-                "Revenuecat": "RevenueCat"
+                "RevenueCat": "RevenueCat\\Facades\\RevenueCat"
             }
         }
     },

@@ -10,7 +10,6 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use Orchestra\Testbench\TestCase;
-use RevenueCat\Requests\GetSubscriberRequest;
 use RevenueCat\RevenueCatHttpService;
 
 class RevenueCatHttpServiceTest extends TestCase

@@ -12,7 +12,6 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Orchestra\Testbench\TestCase;
 use PagSeguro\Contracts\PagSeguroService;
-use PagSeguro\PagSeguroHttpService;
 use PagSeguro\Http\Checkout\CheckoutRequest;
 use PagSeguro\Http\Objects\Address;
 use PagSeguro\Http\Objects\Document;
@@ -21,6 +20,7 @@ use PagSeguro\Http\Objects\Items;
 use PagSeguro\Http\Objects\Phone;
 use PagSeguro\Http\Objects\Sender;
 use PagSeguro\Http\Objects\Shipping;
+use PagSeguro\PagSeguroHttpService;
 
 class PagSeguroHttpServiceTest extends TestCase
 {

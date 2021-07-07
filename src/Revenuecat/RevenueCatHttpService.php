@@ -9,6 +9,8 @@ use Common\Response;
 use GuzzleHttp\Client;
 use Illuminate\Support\Arr;
 use RevenueCat\Contracts\RevenueCatService;
+use RevenueCat\Exceptions\BadRequestException;
+use RevenueCat\Exceptions\NotFoundException;
 use RevenueCat\Exceptions\RevenueCatException;
 use RevenueCat\Exceptions\UnauthorizedException;
 use RevenueCat\Requests\GetSubscriberRequest;
@@ -58,7 +60,7 @@ class RevenueCatHttpService implements RevenueCatService
     function request(Request $request, $parser): Response
     {
         $options = array_merge([
-            "headers" => [
+            'headers' => [
                 'Authorization' => "Bearer $this->token",
                 'Accept' => 'application/json',
             ],
@@ -68,13 +70,17 @@ class RevenueCatHttpService implements RevenueCatService
         $status_code = $response->getStatusCode();
         $body = (string) $response->getBody();
 
-        if ($status_code >= 200 && $status_code < 300) {
+        if ($status_code >= 200 && $status_code < 300)
             return $parser($body);
-        }
 
-        if ($status_code === 401) {
+        if ($status_code === 400)
+            throw new BadRequestException();
+
+        if ($status_code === 401)
             throw new UnauthorizedException();
-        }
+
+        if ($status_code === 404)
+            throw new NotFoundException();
 
         throw new RevenueCatException("Status code: $status_code");
     }

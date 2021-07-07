@@ -2,7 +2,6 @@
 
 namespace RevenueCat\Contracts;
 
-use RevenueCat\Requests\GetSubscriberRequest;
 use RevenueCat\Responses\SubscriberResponse;
 
 interface RevenueCatService

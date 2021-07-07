@@ -11,7 +11,6 @@ use MercadoPago\Requests\Preference\Objects\Item;
 use MercadoPago\Requests\Preference\Objects\Payer;
 use MercadoPago\Requests\Preference\Objects\PaymentMethods;
 use MercadoPago\Requests\Preference\Objects\Shipments;
-use MercadoPago\Requests\Request;
 
 class CreatePreferenceRequest extends PostRequest
 {

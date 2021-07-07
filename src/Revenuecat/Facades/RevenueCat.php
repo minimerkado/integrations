@@ -9,6 +9,6 @@ class RevenueCat extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'revenueCat';
+        return 'revenuecat';
     }
 }

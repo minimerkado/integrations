@@ -6,7 +6,6 @@ namespace MercadoPago\Facades;
 
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 use MercadoPago\MercadoPagoFakeService;
 
 class MercadoPago extends Facade

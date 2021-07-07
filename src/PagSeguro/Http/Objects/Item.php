@@ -4,9 +4,9 @@
 namespace PagSeguro\Http\Objects;
 
 
+use Common\Utilities;
 use Common\XmlDecodable;
 use Common\XmlEncodable;
-use Common\Utilities;
 use SimpleXMLElement;
 
 class Item implements XmlEncodable, XmlDecodable

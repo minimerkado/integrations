@@ -3,8 +3,6 @@
 namespace PagSeguro\Http;
 
 
-use PagSeguro\Http\PagSeguroRequest;
-
 abstract class GetRequest extends PagSeguroRequest
 {
     public abstract function getQuery(): array;

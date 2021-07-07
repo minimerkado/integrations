@@ -12,10 +12,10 @@
     "autoload": {
         "psr-4": {
             "Common\\": "src/Common",
-            "PagSeguro\\": "src/PagSeguro/",
-            "PicPay\\": "src/PicPay/",
-            "MercadoPago\\":  "src/MercadoPago/",
-            "RevenueCat\\":  "src/RevenueCat/"
+            "PagSeguro\\": "src/PagSeguro",
+            "PicPay\\": "src/PicPay",
+            "MercadoPago\\":  "src/MercadoPago",
+            "RevenueCat\\":  "src/RevenueCat"
         }
     },
     "autoload-dev": {

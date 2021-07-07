@@ -8,7 +8,7 @@ class RevenueCatServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->singleton('revenueCat', function ($app) {
+        $this->app->singleton('revenuecat', function ($app) {
             $config = $app->make('config');
             return new RevenueCatHttpService($config->get('services.revenueCat', []));
         });

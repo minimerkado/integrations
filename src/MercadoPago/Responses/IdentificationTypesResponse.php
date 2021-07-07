@@ -4,8 +4,6 @@
 namespace MercadoPago\Responses;
 
 
-use Common\Response;
-
 class IdentificationTypesResponse extends CollectionResponse
 {
     public function __construct(string $body)

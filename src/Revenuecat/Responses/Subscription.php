@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Revenuecat\Responses;
+namespace RevenueCat\Responses;
 
 use Carbon\Carbon;
 use Illuminate\Support\Arr;

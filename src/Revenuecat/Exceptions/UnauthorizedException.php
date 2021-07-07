@@ -1,6 +1,6 @@
 <?php
 
 
-namespace Revenuecat\Exceptions;
+namespace RevenueCat\Exceptions;
 
-class UnauthorizedException extends RevenuecatException { }
+class UnauthorizedException extends RevenueCatException { }

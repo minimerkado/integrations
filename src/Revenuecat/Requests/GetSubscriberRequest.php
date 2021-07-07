@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Revenuecat\Requests;
+namespace RevenueCat\Requests;
 
 use Common\Utilities;
 
-class SubscribersRequest extends Request
+class GetSubscriberRequest extends Request
 {
     use Utilities;
     private string $app_user_id;

@@ -1,11 +1,11 @@
 <?php
 
-namespace Revenuecat\Facades;
+namespace RevenueCat\Facades;
 
 
 use Illuminate\Support\Facades\Facade;
 
-class Revenuecat extends Facade
+class RevenueCat extends Facade
 {
     protected static function getFacadeAccessor()
     {

@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Revenuecat\Exceptions;
+namespace RevenueCat\Exceptions;
 
 use Exception;
 use Throwable;
 
-class RevenuecatException extends Exception
+class RevenueCatException extends Exception
 {
     public function __construct($message = "", $code = 0, Throwable $previous = null)
     {

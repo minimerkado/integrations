@@ -1,19 +1,40 @@
 <?php
 
 
-namespace Tests\Revenuecat\Responses;
+namespace Tests\RevenueCat;
 
 
-use Carbon\Carbon;
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
+use GuzzleHttp\Psr7\Response;
 use Orchestra\Testbench\TestCase;
-use Revenuecat\Responses\SubscribersResponse;
+use RevenueCat\Requests\GetSubscriberRequest;
+use RevenueCat\RevenueCatHttpService;
 
-class SubscribersResponseTest extends TestCase
+class RevenueCatHttpServiceTest extends TestCase
 {
-    function testParse()
+    private array $history = [];
+    private MockHandler $mock;
+    private RevenueCatHttpService $service;
+
+    public function setUp(): void
     {
-        $response = new SubscribersResponse('
-            {
+        parent::setUp();
+        $this->history = [];
+        $this->mock = new MockHandler();
+        $handlerStack = HandlerStack::create($this->mock);
+        $handlerStack->push(Middleware::history($this->history));
+        $client = new Client(['handler' => $handlerStack]);
+        $this->service = new RevenueCatHttpService(['api_key' => 'teste'], $client);
+    }
+
+
+    function testGet()
+    {
+        $this->mock->append(new Response(200, [], '
+             {
                 "request_date": "2019-07-26T17:40:10Z",
                 "request_date_ms": 1564162810884,
                 "subscriber": {
@@ -76,35 +97,14 @@ class SubscribersResponseTest extends TestCase
                     }
                 }
             }
-        ');
+        '));
 
-        $entitlements = $response->getEntitlements()[0];
-        self::assertEquals('pro_cat', $entitlements->getId());
-        self::assertEquals(null, $entitlements->getExpiresDate());
-        self::assertEquals('onetime', $entitlements->getProductIdentifier());
-        self::assertEquals(Carbon::parse("2019-04-05T21:52:45Z"), $entitlements->getPurchaseDate());
+        $response = $this->service->getSubscriber('token12345');
 
-        $subscriptions = $response->getSubscriptions()[0];
-        self::assertEquals('annual', $subscriptions->getId());
-        self::assertEquals(null, $subscriptions->getBillingIssuesDetectedAt());
-        self::assertEquals(Carbon::parse("2019-06-14T21:07:40Z"), $subscriptions->getExpiresDate());
-        self::assertEquals(true, $subscriptions->getIsSandbox());
-        self::assertEquals(Carbon::parse("2019-02-21T00:42:05Z"), $subscriptions->getOriginalPurchaseDate());
-        self::assertEquals("normal", $subscriptions->getPeriodType());
-        self::assertEquals(Carbon::parse("2019-06-14T20:07:40Z"), $subscriptions->getPurchaseDate());
-        self::assertEquals("app_store", $subscriptions->getStore());
-        self::assertEquals(Carbon::parse("2019-06-17T22:48:38Z"), $subscriptions->getUnsubscribeDetectedAt());
-
-        $subscriptions2 = $response->getSubscriptions()[1];
-        self::assertEquals('onemonth', $subscriptions2->getId());
-        self::assertEquals(null, $subscriptions2->getBillingIssuesDetectedAt());
-        self::assertEquals(Carbon::parse("2019-06-17T22:47:55Z"), $subscriptions2->getExpiresDate());
-        self::assertEquals(true, $subscriptions2->getIsSandbox());
-        self::assertEquals(Carbon::parse("2019-02-21T00:42:05Z"), $subscriptions2->getOriginalPurchaseDate());
-        self::assertEquals("normal", $subscriptions2->getPeriodType());
-        self::assertEquals(Carbon::parse("2019-06-17T22:42:55Z"), $subscriptions2->getPurchaseDate());
-        self::assertEquals("app_store", $subscriptions2->getStore());
-        self::assertEquals(Carbon::parse("2019-06-17T22:48:38Z"), $subscriptions2->getUnsubscribeDetectedAt());
-
+        $request = $this->history[0]['request'];
+        self::assertEquals('GET', $request->getMethod());
+        self::assertEquals('https://api.revenuecat.com/v1/subscribers/token12345', (string) $request->getUri());
+        self::assertNotNull( $response->getEntitlements());
+        self::assertNotNull( $response->getSubscriptions());
     }
 }

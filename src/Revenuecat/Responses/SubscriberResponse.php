@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Revenuecat\Responses;
+namespace RevenueCat\Responses;
 
 
 use Common\Response;
 use Illuminate\Support\Arr;
 
-class SubscribersResponse implements Response
+class SubscriberResponse implements Response
 {
     private array $entitlements;
     private array $subscriptions;

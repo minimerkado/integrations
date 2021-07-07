@@ -1,47 +1,49 @@
 <?php
 
 
-namespace Revenuecat;
+namespace RevenueCat;
 
 
 use Common\Request;
 use Common\Response;
 use GuzzleHttp\Client;
-use Revenuecat\Contracts\RevenuecatService;
-use Revenuecat\Exceptions\RevenuecatException;
-use Revenuecat\Exceptions\UnauthorizedException;
-use Revenuecat\Requests\SubscribersRequest;
-use Revenuecat\Responses\SubscribersResponse;
+use Illuminate\Support\Arr;
+use RevenueCat\Contracts\RevenueCatService;
+use RevenueCat\Exceptions\RevenueCatException;
+use RevenueCat\Exceptions\UnauthorizedException;
+use RevenueCat\Requests\GetSubscriberRequest;
+use RevenueCat\Responses\SubscriberResponse;
 
-class RevenuecatHttpService implements RevenuecatService
+class RevenueCatHttpService implements RevenueCatService
 {
     private Client $http_client;
     private string $token;
 
     /**
-     * RevenuecatHttpService constructor.
+     * RevenueCatHttpService constructor.
+     *
      * @param array $config
      * @param Client|null $http_client
      */
     public function __construct(array $config, ?Client $http_client = null)
     {
         $this->http_client = $http_client ?? new Client();
-        $this->token = $config['api_key'];
+        $this->token = Arr::get($config, 'key', '');
     }
 
     /**
-     * Get subscribers
+     * Gets the latest subscriber info or creates one if it doesn't exist.
      * 
-     * @param SubscribersRequest $request
-     * @return SubscribersResponse
-     * @throws RevenuecatException
+     * @param string $user_id
+     * @return SubscriberResponse
+     * @throws RevenueCatException
      * @throws UnauthorizedException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    function get(SubscribersRequest $request): SubscribersResponse
+    function getSubscriber(string $user_id): SubscriberResponse
     {
-        /** @var SubscribersResponse $response */
-        $response = $this->request($request, fn($body) => new SubscribersResponse($body));
+        /** @var SubscriberResponse $response */
+        $response = $this->request(new GetSubscriberRequest($user_id), fn($body) => new SubscriberResponse($body));
         return $response;
     }
 
@@ -49,7 +51,7 @@ class RevenuecatHttpService implements RevenuecatService
      * @param Request $request
      * @param $parser
      * @return Response
-     * @throws RevenuecatException
+     * @throws RevenueCatException
      * @throws UnauthorizedException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -74,7 +76,7 @@ class RevenuecatHttpService implements RevenuecatService
             throw new UnauthorizedException();
         }
 
-        throw new RevenuecatException("Status code: $status_code");
+        throw new RevenueCatException("Status code: $status_code");
     }
 
     private function getUri(string $path): string {

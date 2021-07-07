@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Revenuecat\Requests;
+namespace RevenueCat\Requests;
 
 
 abstract class Request implements \Common\Request

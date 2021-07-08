@@ -4,7 +4,10 @@
 namespace RevenueCat\Http;
 
 
-use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Arr;
+use Money\Currency;
+use Money\Money;
 
 class SubscriptionEvent
 {
@@ -15,8 +18,7 @@ class SubscriptionEvent
     private array $aliases = [];
     private int $event_timestamp_ms;
     private float $price;
-    private ?string $currency = null;
-
+    private string $currency;
     private string $product_id;
     private array $entitlement_ids = [];
     private string $period_type;
@@ -24,12 +26,11 @@ class SubscriptionEvent
     private string $environment;
     private bool $is_trial_conversion = false;
     private bool $is_family_share = false;
-
     private ?int $purchased_at_ms = null;
     private ?int $grace_period_expiration_at_ms = null;
     private ?int $expiration_at_ms = null;
     private ?int $auto_resume_at_ms = null;
-    private ?string $cancel_reason;
+    private ?string $cancel_reason = null;
     private ?string $new_product_id = null;
     private ?float $price_in_purchased_currency = null;
     private ?float $takehome_percentage = null;
@@ -40,12 +41,38 @@ class SubscriptionEvent
 
     public function __construct(array $data)
     {
-        $this->parse($data);
+        $this->parse(Arr::get($data, 'event'));
     }
 
     public function parse(array $data)
     {
-
+        $this->id = $data['id'];
+        $this->type = $data['type'];
+        $this->app_user_id = $data['app_user_id'];
+        $this->original_app_user_id = $data['original_app_user_id'];
+        $this->aliases = $data['aliases'] ?? [];
+        $this->event_timestamp_ms = $data['event_timestamp_ms'];
+        $this->price = $data['price'];
+        $this->currency = $data['currency'] ?? 'BRL';
+        $this->product_id = $data['product_id'];
+        $this->entitlement_ids = $data['entitlement_ids'] ?? [];
+        $this->period_type = $data['period_type'];
+        $this->store = $data['store'];
+        $this->environment = $data['environment'];
+        $this->is_trial_conversion = Arr::get($data, '$is_trial_conversion', false);
+        $this->is_family_share = Arr::get($data, 'is_family_share', false);
+        $this->purchased_at_ms = Arr::get($data, 'purchased_at_ms');
+        $this->grace_period_expiration_at_ms = Arr::get($data, 'grace_period_expiration_at_ms');
+        $this->expiration_at_ms = Arr::get($data, 'expiration_at_ms');
+        $this->auto_resume_at_ms = Arr::get($data, 'auto_resume_at_ms');
+        $this->cancel_reason = Arr::get($data, 'cancel_reason');
+        $this->new_product_id = Arr::get($data, 'new_product_id');
+        $this->price_in_purchased_currency = Arr::get($data, 'price_in_purchased_currency');
+        $this->takehome_percentage = Arr::get($data, 'takehome_percentage');
+        $this->transaction_id = Arr::get($data, 'transaction_id');
+        $this->original_transaction_id = Arr::get($data, 'original_transaction_id');
+        $this->transferred_from = Arr::get($data, 'transferred_from');
+        $this->transferred_to = Arr::get($data, 'transferred_to');
     }
 
     /**
@@ -89,27 +116,20 @@ class SubscriptionEvent
     }
 
     /**
-     * @return int
+     * @return Carbon
      */
-    public function getEventTimestampMs(): int
+    public function getEventTimestamp(): Carbon
     {
-        return $this->event_timestamp_ms;
+        return Carbon::createFromTimestamp($this->event_timestamp_ms);
     }
 
     /**
      * @return float
      */
-    public function getPrice(): float
+    public function getPrice(): Money
     {
-        return $this->price;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getCurrency(): ?string
-    {
-        return $this->currency;
+        $price = (int) $this->price * 100;
+        return new Money($price, new Currency($this->currency));
     }
 
     /**
@@ -169,35 +189,47 @@ class SubscriptionEvent
     }
 
     /**
-     * @return int|null
+     * @return Carbon|null
      */
-    public function getPurchasedAtMs(): ?int
+    public function getPurchasedAt(): ?Carbon
     {
-        return $this->purchased_at_ms;
+        if ($time = $this->purchased_at_ms)
+            return Carbon::createFromTimestamp($time);
+
+        return null;
     }
 
     /**
-     * @return int|null
+     * @return Carbon|null
      */
-    public function getGracePeriodExpirationAtMs(): ?int
+    public function getGracePeriodExpirationAtMs(): ?Carbon
     {
-        return $this->grace_period_expiration_at_ms;
+        if ($time = $this->grace_period_expiration_at_ms)
+            return Carbon::createFromTimestamp($time);
+
+        return null;
     }
 
     /**
-     * @return int|null
+     * @return Carbon|null
      */
-    public function getExpirationAtMs(): ?int
+    public function getExpirationAtMs(): ?Carbon
     {
-        return $this->expiration_at_ms;
+        if ($time = $this->expiration_at_ms)
+            return Carbon::createFromTimestamp($time);
+
+        return null;
     }
 
     /**
-     * @return int|null
+     * @return Carbon|null
      */
-    public function getAutoResumeAtMs(): ?int
+    public function getAutoResumeAtMs(): ?Carbon
     {
-        return $this->auto_resume_at_ms;
+        if ($time = $this->auto_resume_at_ms)
+            return Carbon::createFromTimestamp($time);
+
+        return null;
     }
 
     /**

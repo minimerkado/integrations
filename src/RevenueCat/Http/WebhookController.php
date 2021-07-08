@@ -11,7 +11,12 @@ class WebhookController extends Controller
 {
     public function handle(Request $request)
     {
-        $event = new SubscriptionEvent($request->all());
+        $this->dispatch(new SubscriptionEvent($request->all()));
         return response('', 200);
+    }
+
+    private function dispatch(SubscriptionEvent $event): void
+    {
+        
     }
 }

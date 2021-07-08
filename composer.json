@@ -44,7 +44,8 @@
         "ext-json": "*",
         "ext-simplexml": "*",
         "guzzlehttp/guzzle": "^7.0",
-        "nesbot/carbon": "^2.36"
+        "nesbot/carbon": "^2.36",
+        "moneyphp/money": "^4.0"
     },
     "require-dev": {
         "orchestra/testbench": "^5.0"

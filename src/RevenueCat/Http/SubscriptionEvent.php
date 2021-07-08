@@ -44,7 +44,7 @@ class SubscriptionEvent
         $this->parse(Arr::get($data, 'event'));
     }
 
-    public function parse(array $data)
+    private function parse(array $data)
     {
         $this->id = $data['id'];
         $this->type = $data['type'];

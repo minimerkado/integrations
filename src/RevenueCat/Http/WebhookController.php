@@ -17,6 +17,6 @@ class WebhookController extends Controller
 
     private function dispatch(SubscriptionEvent $event): void
     {
-        
+
     }
 }

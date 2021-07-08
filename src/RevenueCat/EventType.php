@@ -1,0 +1,18 @@
+<?php
+
+
+namespace RevenueCat;
+
+
+abstract class EventType
+{
+    const TEST = 'TEST';
+    const INITIAL_PURCHASE = 'INITIAL_PURCHASE';
+    const NON_RENEWING_PURCHASE = 'NON_RENEWING_PURCHASE';
+    const RENEWAL = 'RENEWAL';
+    const PRODUCT_CHANGE = 'PRODUCT_CHANGE';
+    const CANCELLATION = 'CANCELLATION';
+    const UNCANCELLATION = 'UNCANCELLATION';
+    const BILLING_ISSUE = 'BILLING_ISSUE';
+    const SUBSCRIPTION_PAUSED = 'SUBSCRIPTION_PAUSED';
+}

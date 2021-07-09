@@ -13,4 +13,8 @@ class CancellationEvent extends RevenueCatEvent
         parent::__construct(EventType::CANCELLATION, $store, $app_user_id, $product_id, ['reason' => $reason]);
     }
 
+    public function getReason(): string
+    {
+        return $this->data['reason'];
+    }
 }

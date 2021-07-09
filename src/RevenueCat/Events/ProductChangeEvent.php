@@ -12,4 +12,9 @@ class ProductChangeEvent extends RevenueCatEvent
     {
         parent::__construct(EventType::PRODUCT_CHANGE, $store, $app_user_id, $product_id, [ 'new_product_id' => $new_product_id]);
     }
+
+    public function getNewProductId(): string
+    {
+        return $this->data['new_product_id'];
+    }
 }

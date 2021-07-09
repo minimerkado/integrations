@@ -11,7 +11,7 @@ use Money\Money;
 
 class SubscriptionEvent
 {
-    private array $id;
+    private string $id;
     private string $type;
     private string $app_user_id;
     private string $original_app_user_id;
@@ -76,9 +76,9 @@ class SubscriptionEvent
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getId(): array
+    public function getId(): string
     {
         return $this->id;
     }
@@ -120,7 +120,7 @@ class SubscriptionEvent
      */
     public function getEventTimestamp(): Carbon
     {
-        return Carbon::createFromTimestamp($this->event_timestamp_ms);
+        return Carbon::createFromTimestampMsUTC($this->event_timestamp_ms);
     }
 
     /**
@@ -194,7 +194,7 @@ class SubscriptionEvent
     public function getPurchasedAt(): ?Carbon
     {
         if ($time = $this->purchased_at_ms)
-            return Carbon::createFromTimestamp($time);
+            return Carbon::createFromTimestampMsUTC($time);
 
         return null;
     }
@@ -202,10 +202,10 @@ class SubscriptionEvent
     /**
      * @return Carbon|null
      */
-    public function getGracePeriodExpirationAtMs(): ?Carbon
+    public function getGracePeriodExpirationAt(): ?Carbon
     {
         if ($time = $this->grace_period_expiration_at_ms)
-            return Carbon::createFromTimestamp($time);
+            return Carbon::createFromTimestampMsUTC($time);
 
         return null;
     }
@@ -213,10 +213,10 @@ class SubscriptionEvent
     /**
      * @return Carbon|null
      */
-    public function getExpirationAtMs(): ?Carbon
+    public function getExpirationAt(): ?Carbon
     {
         if ($time = $this->expiration_at_ms)
-            return Carbon::createFromTimestamp($time);
+            return Carbon::createFromTimestampMsUTC($time);
 
         return null;
     }
@@ -224,10 +224,10 @@ class SubscriptionEvent
     /**
      * @return Carbon|null
      */
-    public function getAutoResumeAtMs(): ?Carbon
+    public function getAutoResumeAt(): ?Carbon
     {
         if ($time = $this->auto_resume_at_ms)
-            return Carbon::createFromTimestamp($time);
+            return Carbon::createFromTimestampMsUTC($time);
 
         return null;
     }

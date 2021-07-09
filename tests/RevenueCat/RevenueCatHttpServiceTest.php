@@ -9,10 +9,9 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
-use Orchestra\Testbench\TestCase;
 use RevenueCat\RevenueCatHttpService;
 
-class RevenueCatHttpServiceTest extends TestCase
+class RevenueCatHttpServiceTest extends RevenueCatTest
 {
     private array $history = [];
     private MockHandler $mock;

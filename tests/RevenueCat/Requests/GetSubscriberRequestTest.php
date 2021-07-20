@@ -15,5 +15,6 @@ class GetSubscriberRequestTest extends TestCase
 
         self::assertEquals('GET', $request1->getMethod());
         self::assertEquals('/v1/subscribers/app_user_id', $request1->getPath());
+        self::assertEquals([], $request1->build());
     }
 }

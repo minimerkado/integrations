@@ -3,11 +3,8 @@
 
 namespace RevenueCat\Requests;
 
-use Common\Utilities;
-
 class GetSubscriberRequest extends Request
 {
-    use Utilities;
     private string $app_user_id;
 
     /**
@@ -29,8 +26,8 @@ class GetSubscriberRequest extends Request
         return "/v1/subscribers/$this->app_user_id";
     }
 
-    public function toJson(): array
+    public function toJson(): ?array
     {
-        return [];
+        return null;
     }
 }

@@ -49,11 +49,10 @@ class CorreiosHttpService implements CorreiosService
      * @param string $method
      * @param string $path
      * @param array $payload
-     * @param $parser
-     * @return Response
+     * @param callback $parser
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    function request(string $method, string $path, array $payload, $parser): Response
+    function request(string $method, string $path, array $payload, $parser)
     {
         $options = array_merge($payload, [
             'http_errors' => false
@@ -68,11 +67,10 @@ class CorreiosHttpService implements CorreiosService
         $status_code = $response->getStatusCode();
         $body = (string) $response->getBody();
 
-        if ($status_code >= 200 && $status_code < 300) {
-            return $parser($body);
-        }
+        if ($status_code > 301)
+            throw new CorreiosException("Invalid status code $status_code: $body");
 
-        throw new CorreiosException("Invalid status code $status_code: $body");
+        $parser($body);
     }
 
     private function getUri(string $path): string

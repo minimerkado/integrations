@@ -198,7 +198,7 @@ class EstimatePayload
 
     public function getPath()
     {
-        return '/calculador/CalcPrecoPrazo.asmx/CalcPrecoPrazoData';
+        return '/calculador/CalcPrecoPrazo.asmx/CalcPrecoPrazo';
     }
 
     public function getMethod(): string

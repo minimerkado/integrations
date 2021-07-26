@@ -67,4 +67,17 @@ trait Utilities
 
         return array_filter($array, fn ($var) => !is_null($var));
     }
+
+    /**
+     * Replace all non digits chars from a string
+     *
+     * @param string|null $value base string
+     * @return string|null new string with only digits
+     */
+    protected static function digits(?string $value): ?string
+    {
+        if ($value === null) return null;
+
+        return preg_replace('/[^0-9]/', '', $value);
+    }
 }

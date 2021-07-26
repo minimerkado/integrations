@@ -15,7 +15,8 @@
             "PagSeguro\\": "src/PagSeguro",
             "PicPay\\": "src/PicPay",
             "MercadoPago\\":  "src/MercadoPago",
-            "RevenueCat\\":  "src/RevenueCat"
+            "RevenueCat\\":  "src/RevenueCat",
+            "Correios\\": "src/Correios"
         }
     },
     "autoload-dev": {
@@ -29,13 +30,15 @@
                 "PagSeguro\\PagSeguroServiceProvider",
                 "PicPay\\PicPayServiceProvider",
                 "MercadoPago\\MercadoPagoServiceProvider",
-                "RevenueCat\\RevenueCatServiceProvider"
+                "RevenueCat\\RevenueCatServiceProvider",
+                "Correios\\Correios\\CorreiosServiceProvider"
             ],
             "aliases": {
                 "PagSeguro": "PagSeguro\\Facades\\PagSeguro",
                 "PicPay": "PicPay\\Facades\\PicPay",
                 "MercadoPago": "MercadoPago\\Facades\\MercadoPago",
-                "RevenueCat": "RevenueCat\\Facades\\RevenueCat"
+                "RevenueCat": "RevenueCat\\Facades\\RevenueCat",
+                "Correios": "Correios\\Facades\\Correios"
             }
         }
     },
@@ -43,6 +46,7 @@
         "php": "^8.0",
         "ext-json": "*",
         "ext-simplexml": "*",
+        "ext-intl": "*",
         "guzzlehttp/guzzle": "^7.0",
         "nesbot/carbon": "^2.36",
         "moneyphp/money": "^4.0"

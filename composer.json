@@ -31,7 +31,7 @@
                 "PicPay\\PicPayServiceProvider",
                 "MercadoPago\\MercadoPagoServiceProvider",
                 "RevenueCat\\RevenueCatServiceProvider",
-                "Correios\\Correios\\CorreiosServiceProvider"
+                "Correios\\CorreiosServiceProvider"
             ],
             "aliases": {
                 "PagSeguro": "PagSeguro\\Facades\\PagSeguro",

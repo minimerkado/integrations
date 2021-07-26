@@ -1,6 +1,9 @@
 <?php
 
 
+namespace Correios\Facades;
+
+
 use Correios\Contracts\CorreiosService;
 use Correios\CorreiosFakeService;
 use Illuminate\Support\Facades\Facade;

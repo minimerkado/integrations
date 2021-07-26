@@ -25,6 +25,11 @@ class EstimatePayload
     private bool $own_hand = false;
     private bool $receiving_notice = false;
 
+    public static function make(): EstimatePayload
+    {
+        return new EstimatePayload();
+    }
+
     /**
      * @param string $origin
      * @return EstimatePayload
@@ -155,7 +160,7 @@ class EstimatePayload
         return $this;
     }
 
-    private function height(): int
+    public function height(): int
     {
         return match ($this->package) {
             PackageType::CAIXA => max($this->height, 2),
@@ -164,7 +169,7 @@ class EstimatePayload
         };
     }
 
-    private function length(): int
+    public function length(): int
     {
         return match ($this->package) {
             PackageType::CAIXA,
@@ -173,7 +178,7 @@ class EstimatePayload
         };
     }
 
-    private function width(): int
+    public function width(): int
     {
         return match ($this->package) {
             PackageType::CAIXA,
@@ -182,7 +187,7 @@ class EstimatePayload
         };
     }
 
-    private function diameter(): int
+    public function diameter(): int
     {
         return match ($this->package) {
             PackageType::CAIXA,
@@ -205,11 +210,11 @@ class EstimatePayload
     {
         return [
             'query' => [
+                'nCdServico' => $service,
                 'nCdEmpresa' => $this->company,
                 'sDsSenha' => $this->password,
                 'sCepOrigem' => self::digits($this->origin),
                 'sCepDestino' => self::digits($this->destination),
-                'nCdServico' => $service,
                 'nVlPeso' => $this->weight,
                 'nCdFormato' => $this->package,
                 'nVlComprimento' => $this->length(),

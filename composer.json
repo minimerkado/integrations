@@ -16,7 +16,7 @@
             "PicPay\\": "src/PicPay",
             "MercadoPago\\":  "src/MercadoPago",
             "RevenueCat\\":  "src/RevenueCat",
-            "Correios\\": "src/Correios",
+            "Correios\\": "src/Correios"
         }
     },
     "autoload-dev": {
@@ -30,14 +30,15 @@
                 "PagSeguro\\PagSeguroServiceProvider",
                 "PicPay\\PicPayServiceProvider",
                 "MercadoPago\\MercadoPagoServiceProvider",
-                "RevenueCat\\RevenueCatServiceProvider"
+                "RevenueCat\\RevenueCatServiceProvider",
+                "Correios\\Correios\\CorreiosServiceProvider"
             ],
             "aliases": {
                 "PagSeguro": "PagSeguro\\Facades\\PagSeguro",
                 "PicPay": "PicPay\\Facades\\PicPay",
                 "MercadoPago": "MercadoPago\\Facades\\MercadoPago",
                 "RevenueCat": "RevenueCat\\Facades\\RevenueCat",
-                "Correios": "RevenueCat\\Facades\\RevenueCat"
+                "Correios": "Correios\\Facades\\Correios"
             }
         }
     },

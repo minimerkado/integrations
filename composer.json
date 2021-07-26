@@ -46,6 +46,7 @@
         "php": "^8.0",
         "ext-json": "*",
         "ext-simplexml": "*",
+        "ext-intl": "*",
         "guzzlehttp/guzzle": "^7.0",
         "nesbot/carbon": "^2.36",
         "moneyphp/money": "^4.0"

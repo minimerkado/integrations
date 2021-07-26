@@ -10,6 +10,9 @@ class EstimateResponse implements Response
 {
     private array $servicos = [];
 
+    /**
+     * @return Servico[]
+     */
     public function getServicos(): array
     {
         return $this->servicos;

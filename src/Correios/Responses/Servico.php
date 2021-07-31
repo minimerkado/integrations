@@ -5,6 +5,7 @@ namespace Correios\Responses;
 
 
 use Common\Response;
+use Correios\ServiceType;
 use NumberFormatter;
 
 class Servico implements Response
@@ -14,6 +15,11 @@ class Servico implements Response
     private float $valor;
     private ?int $error_code = null;
     private ?string $error_message = null;
+
+    public function getNomeServico(): string
+    {
+        return ServiceType::name($this->servico);
+    }
 
     public function getServico(): string
     {

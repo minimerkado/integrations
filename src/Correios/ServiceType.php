@@ -21,4 +21,26 @@ abstract class ServiceType
     const PAC_CONTRATO_04812 = '4812';
     const PAC_CONTRATO_41068 = '41068';
     const PAC_CONTRATO_41211 = '41211';
+
+    public static function name(string $code): string
+    {
+        return match($code) {
+            self::PAC,
+            self::PAC_CONTRATO,
+            self::PAC_CONTRATO_04812,
+            self::PAC_CONTRATO_41068,
+            self::PAC_CONTRATO_41211 => 'PAC',
+            self::SEDEX,
+            self::SEDEX_CONTRATO,
+            self::SEDEX_CONTRATO_04316,
+            self::SEDEX_CONTRATO_40096,
+            self::SEDEX_CONTRATO_40436,
+            self::SEDEX_CONTRATO_40444,
+            self::SEDEX_CONTRATO_40568=> 'SEDEX',
+            self::SEDEX_A_COBRAR => 'SEDEX a Cobrar',
+            self::SEDEX_10 => 'SEDEX 10',
+            self::SEDEX_HOJE => 'SEDEX Hoje',
+            default => ''
+        };
+    }
 }

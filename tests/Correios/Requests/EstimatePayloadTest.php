@@ -15,13 +15,13 @@ class EstimatePayloadTest extends TestCase
     {
         $payload = EstimatePayload::make()
             ->setHeight(10)
-            ->setPackage(PackageType::CAIXA);
+            ->setPackage(PackageType::BOX);
 
         self::assertEquals(10, $payload->height());
 
         $payload_low = EstimatePayload::make()
             ->setHeight(1)
-            ->setPackage(PackageType::CAIXA);
+            ->setPackage(PackageType::BOX);
 
         self::assertEquals(2, $payload_low->height());
     }
@@ -36,7 +36,7 @@ class EstimatePayloadTest extends TestCase
 
         $payload_rolo = EstimatePayload::make()
             ->setHeight(10)
-            ->setPackage(PackageType::ROLO);
+            ->setPackage(PackageType::ROLL);
 
         self::assertEquals(0, $payload_rolo->height());
     }
@@ -45,13 +45,13 @@ class EstimatePayloadTest extends TestCase
     {
         $payload = EstimatePayload::make()
             ->setWidth(20)
-            ->setPackage(PackageType::CAIXA);
+            ->setPackage(PackageType::BOX);
 
         self::assertEquals(20, $payload->width());
 
         $payload_low = EstimatePayload::make()
             ->setWidth(9)
-            ->setPackage(PackageType::CAIXA);
+            ->setPackage(PackageType::BOX);
 
         self::assertEquals(11, $payload_low->width());
     }
@@ -75,7 +75,7 @@ class EstimatePayloadTest extends TestCase
     {
         $payload = EstimatePayload::make()
             ->setWidth(20)
-            ->setPackage(PackageType::ROLO);
+            ->setPackage(PackageType::ROLL);
 
         self::assertEquals(0, $payload->width());
     }
@@ -84,13 +84,13 @@ class EstimatePayloadTest extends TestCase
     {
         $payload = EstimatePayload::make()
             ->setLength(20)
-            ->setPackage(PackageType::CAIXA);
+            ->setPackage(PackageType::BOX);
 
         self::assertEquals(20, $payload->length());
 
         $payload_low = EstimatePayload::make()
             ->setLength(9)
-            ->setPackage(PackageType::CAIXA);
+            ->setPackage(PackageType::BOX);
 
         self::assertEquals(16, $payload_low->length());
     }
@@ -114,13 +114,13 @@ class EstimatePayloadTest extends TestCase
     {
         $payload = EstimatePayload::make()
             ->setLength(20)
-            ->setPackage(PackageType::ROLO);
+            ->setPackage(PackageType::ROLL);
 
         self::assertEquals(20, $payload->length());
 
         $payload_low = EstimatePayload::make()
             ->setLength(9)
-            ->setPackage(PackageType::ROLO);
+            ->setPackage(PackageType::ROLL);
 
         self::assertEquals(18, $payload_low->length());
     }
@@ -135,7 +135,7 @@ class EstimatePayloadTest extends TestCase
 
         $payload_caixa = EstimatePayload::make()
             ->setDiameter(20)
-            ->setPackage(PackageType::CAIXA);
+            ->setPackage(PackageType::BOX);
 
         self::assertEquals(0, $payload_caixa->diameter());
     }
@@ -144,13 +144,13 @@ class EstimatePayloadTest extends TestCase
     {
         $payload = EstimatePayload::make()
             ->setDiameter(20)
-            ->setPackage(PackageType::ROLO);
+            ->setPackage(PackageType::ROLL);
 
         self::assertEquals(20, $payload->diameter());
 
         $payload_low = EstimatePayload::make()
             ->setDiameter(2)
-            ->setPackage(PackageType::ROLO);
+            ->setPackage(PackageType::ROLL);
 
         self::assertEquals(5, $payload_low->diameter());
     }
@@ -158,7 +158,7 @@ class EstimatePayloadTest extends TestCase
     public function testBuild()
     {
         $payload = EstimatePayload::make()
-            ->setPackage(PackageType::CAIXA)
+            ->setPackage(PackageType::BOX)
             ->setOrigin('57030170')
             ->setDestination('70800200')
             ->setWidth(20.2)

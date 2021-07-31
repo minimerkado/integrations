@@ -6,7 +6,7 @@ namespace Correios;
 
 abstract class PackageType
 {
-    const CAIXA = 1;
-    const ROLO = 2;
+    const BOX = 1;
+    const ROLL = 2;
     const ENVELOPE = 3;
 }

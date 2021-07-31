@@ -80,7 +80,7 @@ XML));
 </cResultado>
 XML));
         $payload = EstimatePayload::make()
-            ->setPackage(PackageType::CAIXA)
+            ->setPackage(PackageType::BOX)
             ->setOrigin('57030170')
             ->setDestination('70800200')
             ->setWidth(20.2)

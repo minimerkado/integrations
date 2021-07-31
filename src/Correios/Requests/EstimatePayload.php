@@ -18,7 +18,7 @@ class EstimatePayload
     private int $width = 0;
     private float $weight = 0;
     private int $diameter = 0;
-    private int $package = PackageType::CAIXA;
+    private int $package = PackageType::BOX;
     private float $declared_value = 0;
     private string $company = '';
     private string $password = '';
@@ -163,8 +163,8 @@ class EstimatePayload
     public function height(): int
     {
         return match ($this->package) {
-            PackageType::CAIXA => max($this->height, 2),
-            PackageType::ROLO,
+            PackageType::BOX => max($this->height, 2),
+            PackageType::ROLL,
             PackageType::ENVELOPE => 0,
         };
     }
@@ -172,28 +172,36 @@ class EstimatePayload
     public function length(): int
     {
         return match ($this->package) {
-            PackageType::CAIXA,
+            PackageType::BOX,
             PackageType::ENVELOPE => max($this->length, 16),
-            PackageType::ROLO => max($this->length, 18),
+            PackageType::ROLL => max($this->length, 18),
         };
     }
 
     public function width(): int
     {
         return match ($this->package) {
-            PackageType::CAIXA,
+            PackageType::BOX,
             PackageType::ENVELOPE => max($this->width, 11),
-            PackageType::ROLO => 0,
+            PackageType::ROLL => 0,
         };
     }
 
     public function diameter(): int
     {
         return match ($this->package) {
-            PackageType::CAIXA,
+            PackageType::BOX,
             PackageType::ENVELOPE => 0,
-            PackageType::ROLO => max($this->diameter, 5),
+            PackageType::ROLL => max($this->diameter, 5),
         };
+    }
+
+    public function declared_value(): float
+    {
+        if ($this->declared_value < 21.0 || $this->declared_value > 3000.0)
+            return 0;
+
+        return $this->declared_value;
     }
 
     public function getPath()
@@ -221,7 +229,7 @@ class EstimatePayload
                 'nVlAltura' => $this->height(),
                 'nVlLargura' => $this->width(),
                 'nVlDiametro' => $this->diameter(),
-                'nVlValorDeclarado' => $this->declared_value,
+                'nVlValorDeclarado' => $this->declared_value(),
                 'sCdMaoPropria' => $this->own_hand ? 'S' : 'N',
                 'sCdAvisoRecebimento' => $this->receiving_notice ? 'S' : 'N',
             ],

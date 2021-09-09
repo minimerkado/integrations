@@ -66,7 +66,6 @@ class Servico implements Response
                 if ($error_code = intval($cServico->Erro)) {
                     $this->error_code = $error_code;
                     $this->error_message = (string) $cServico->MsgErro;
-                    return;
                 }
 
                 $this->servico = (string) $cServico->Codigo;

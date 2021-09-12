@@ -4,8 +4,33 @@
 namespace Common;
 
 
+use Money\Currencies\ISOCurrencies;
+use Money\Formatter\DecimalMoneyFormatter;
+use Money\Money;
+
 trait Utilities
 {
+    /**
+     * Format a money value by decimal
+     *
+     * @param Money $value money value
+     * @param bool $int_amount format as integer
+     * @param bool $show_currency show currency on format eg: 12.50 USD or 300 BRL
+     * @return string formatted value
+     */
+    protected static function formatByDecimal(Money $value, bool $int_amount = false, bool $show_currency = false): string
+    {
+        $currencies = new ISOCurrencies();
+        $formatter = new DecimalMoneyFormatter($currencies);
+        $code = $value->getCurrency()->getCode();
+
+        $result = $int_amount ? $value->getAmount() : $formatter->format($value);
+
+        if ($show_currency)
+            $result .= " $code";
+
+        return $result;
+    }
     /**
      * Format a float value
      *

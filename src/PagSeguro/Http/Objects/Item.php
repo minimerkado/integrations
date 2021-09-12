@@ -84,7 +84,7 @@ class Item implements XmlEncodable, XmlDecodable
     {
         $item = $root->addChild('item');
         $item->addChild('id', $this->id);
-        $item->addChild('description', $this->description);
+        $item->addChild('description', htmlspecialchars($this->description));
         $item->addChild('quantity', $this->quantity);
         $item->addChild('amount', self::format($this->amount, 2));
         $item->addChild('weight', $this->weight);

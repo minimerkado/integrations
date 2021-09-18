@@ -23,7 +23,8 @@ class CatalogTest extends TestCase
             ->setAdditionalImageLink([
                 'https://s3.vitrine.digital/images/products/DB_1/1',
                 'https://s3.vitrine.digital/images/products/DB_1/2'
-            ]);
+            ])
+            ->setAdditionalVariantAttribute('Cor', 'Azul');
 
         $item2 = (new Item)
             ->setId('DB_2')
@@ -60,6 +61,10 @@ class CatalogTest extends TestCase
       <g:status>active</g:status>
       <g:availability>in stock</g:availability>
       <g:additional_image_link>https://s3.vitrine.digital/images/products/DB_1/1,https://s3.vitrine.digital/images/products/DB_1/2</g:additional_image_link>
+      <g:additional_variant_attribute>
+        <g:label>Cor</g:label>
+        <g:value>Azul</g:value>
+      </g:additional_variant_attribute>
     </item>
     <item>
       <g:id>DB_2</g:id>

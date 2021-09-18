@@ -33,6 +33,7 @@ class Item implements XmlEncodable
     private ?Money $sale_price = null;
     private ?SalePriceEffectiveDate $sale_price_effective_date = null;
     private ?string $item_group_id = null;
+    private ?VariantAttribute $additional_variant_attribute = null;
 
     private ?string $color = null;
     private ?string $gender = null;
@@ -70,7 +71,6 @@ class Item implements XmlEncodable
         self::addChild($item, 'status', $this->status);
         self::addChild($item, 'availability', $this->availability);
         self::addChild($item, 'additional_image_link', collect($this->additional_image_link)->join(','));
-
         self::addChild($item, 'quantity_to_sell_on_facebook', $this->quantity_to_sell_on_facebook);
         self::addChild($item, 'fb_product_category', $this->fb_product_category);
         self::addChild($item, 'google_product_category', $this->google_product_category);
@@ -87,6 +87,7 @@ class Item implements XmlEncodable
         self::addChild($item, 'material', $this->material);
         self::addChild($item, 'pattern', $this->pattern);
         $this->shipping?->encode($item);
+        $this->additional_variant_attribute?->encode($item);
 
         self::addChild($item, 'custom_label_0', $this->custom_label_0);
         self::addChild($item, 'custom_label_1', $this->custom_label_1);
@@ -387,6 +388,17 @@ class Item implements XmlEncodable
     public function setCustomLabel4(?string $custom_label_4): Item
     {
         $this->custom_label_4 = $custom_label_4;
+        return $this;
+    }
+
+    /**
+     * @param string $label
+     * @param string $value
+     * @return $this
+     */
+    public function setAdditionalVariantAttribute(string $label, string $value): Item
+    {
+        $this->additional_variant_attribute = new VariantAttribute($label, $value);
         return $this;
     }
 }

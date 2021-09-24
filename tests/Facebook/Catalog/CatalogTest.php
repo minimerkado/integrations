@@ -61,10 +61,10 @@ class CatalogTest extends TestCase
       <g:status>active</g:status>
       <g:availability>in stock</g:availability>
       <g:additional_image_link>https://s3.vitrine.digital/images/products/DB_1/1,https://s3.vitrine.digital/images/products/DB_1/2</g:additional_image_link>
-      <g:additional_variant_attribute>
-        <g:label>Cor</g:label>
-        <g:value>Azul</g:value>
-      </g:additional_variant_attribute>
+      <additional_variant_attribute>
+        <label>Cor</label>
+        <value>Azul</value>
+      </additional_variant_attribute>
     </item>
     <item>
       <g:id>DB_2</g:id>

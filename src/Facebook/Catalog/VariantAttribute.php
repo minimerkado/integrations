@@ -17,8 +17,8 @@ class VariantAttribute implements XmlEncodable
 
     public function encode(\SimpleXMLElement $root)
     {
-        $variant = $root->addChild('additional_variant_attribute', namespace: Catalog::GOOGLE_NS);
-        $variant->addChild('label', htmlspecialchars($this->label), Catalog::GOOGLE_NS);
-        $variant->addChild('value', htmlspecialchars($this->value), Catalog::GOOGLE_NS);
+        $variant = $root->addChild('additional_variant_attribute');
+        $variant->addChild('label', htmlspecialchars($this->label));
+        $variant->addChild('value', htmlspecialchars($this->value));
     }
 }

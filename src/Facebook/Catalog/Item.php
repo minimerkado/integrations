@@ -5,7 +5,6 @@ namespace Facebook\Catalog;
 use Carbon\Carbon;
 use Common\Utilities;
 use Common\XmlEncodable;
-use Illuminate\Support\Arr;
 use Money\Money;
 
 class Item implements XmlEncodable
@@ -61,39 +60,39 @@ class Item implements XmlEncodable
         $item = $root->addChild('item');
 
         self::addChild($item, 'id', $this->id);
-        self::addChild($item, 'title', $this->title);
-        self::addChild($item, 'description', $this->description);
+        self::addChild($item, 'title', htmlspecialchars($this->title));
+        self::addChild($item, 'description', htmlspecialchars($this->description));
         self::addChild($item, 'link', $this->link);
         self::addChild($item, 'image_link', $this->image_link);
-        self::addChild($item, 'brand', $this->brand);
+        self::addChild($item, 'brand', htmlspecialchars($this->brand));
         self::addChild($item, 'condition', $this->condition);
         self::addChild($item, 'price', self::formatByDecimal($this->price, show_currency: true));
         self::addChild($item, 'status', $this->status);
         self::addChild($item, 'availability', $this->availability);
         self::addChild($item, 'additional_image_link', collect($this->additional_image_link)->join(','));
         self::addChild($item, 'quantity_to_sell_on_facebook', $this->quantity_to_sell_on_facebook);
-        self::addChild($item, 'fb_product_category', $this->fb_product_category);
-        self::addChild($item, 'google_product_category', $this->google_product_category);
+        self::addChild($item, 'fb_product_category',htmlspecialchars($this->fb_product_category));
+        self::addChild($item, 'google_product_category', htmlspecialchars($this->google_product_category));
         self::when($this->sale_price,
             fn () => $root->addChild('sale_price', self::formatByDecimal($this->sale_price, show_currency: true), Catalog::GOOGLE_NS)
         );
         $this->sale_price_effective_date?->encode($item);
 
         self::addChild($item, 'item_group_id', $this->item_group_id);
-        self::addChild($item, 'color', $this->color);
+        self::addChild($item, 'color', htmlspecialchars($this->color));
         self::addChild($item, 'gender', $this->gender);
-        self::addChild($item, 'size', $this->size);
+        self::addChild($item, 'size', htmlspecialchars($this->size));
         self::addChild($item, 'age_group', $this->age_group);
-        self::addChild($item, 'material', $this->material);
-        self::addChild($item, 'pattern', $this->pattern);
+        self::addChild($item, 'material', htmlspecialchars($this->material));
+        self::addChild($item, 'pattern',htmlspecialchars($this->pattern));
         $this->shipping?->encode($item);
         $this->additional_variant_attribute?->encode($item);
 
-        self::addChild($item, 'custom_label_0', $this->custom_label_0);
-        self::addChild($item, 'custom_label_1', $this->custom_label_1);
-        self::addChild($item, 'custom_label_2', $this->custom_label_2);
-        self::addChild($item, 'custom_label_3', $this->custom_label_3);
-        self::addChild($item, 'custom_label_4', $this->custom_label_4);
+        self::addChild($item, 'custom_label_0', htmlspecialchars($this->custom_label_0));
+        self::addChild($item, 'custom_label_1', htmlspecialchars($this->custom_label_1));
+        self::addChild($item, 'custom_label_2', htmlspecialchars($this->custom_label_2));
+        self::addChild($item, 'custom_label_3', htmlspecialchars($this->custom_label_3));
+        self::addChild($item, 'custom_label_4', htmlspecialchars($this->custom_label_4));
     }
 
     private static function addChild(\SimpleXMLElement $root, string $name, mixed $value) {

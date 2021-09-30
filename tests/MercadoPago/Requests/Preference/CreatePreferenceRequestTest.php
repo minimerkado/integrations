@@ -62,7 +62,7 @@ class CreatePreferenceRequestTest extends TestCase
                 ]
             ],
             'shipments' => [
-                'mode' => 'custom',
+                'mode' => 'not_specified',
                 'cost' => 15.0
             ],
             'external_reference' => 'external123',

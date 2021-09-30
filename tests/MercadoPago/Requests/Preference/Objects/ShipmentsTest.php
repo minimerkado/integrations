@@ -54,7 +54,7 @@ class ShipmentsTest extends TestCase
         $shipments = Shipments::custom(15.0);
 
         self::assertEquals([
-            'mode' => 'custom',
+            'mode' => 'not_specified',
             'cost' => 15.0,
         ], $shipments->toJson());
 

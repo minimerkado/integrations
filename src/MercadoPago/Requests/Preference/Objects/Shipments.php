@@ -11,7 +11,6 @@ class Shipments implements JsonEncodable
 {
     use Utilities;
 
-    const MODE_CUSTOM = 'custom';
     const MODE_ME2 = 'me2';
     const MODE_NOT_SPECIFIED = 'not_specified';
 
@@ -28,7 +27,7 @@ class Shipments implements JsonEncodable
     static function custom(float $cost): Shipments
     {
         return (new Shipments())
-            ->setMode(self::MODE_CUSTOM)
+            ->setMode(self::MODE_NOT_SPECIFIED)
             ->setCost($cost);
     }
 

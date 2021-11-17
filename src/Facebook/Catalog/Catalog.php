@@ -26,7 +26,7 @@ class Catalog implements XmlEncodable
 
         $this->encode($channel);
 
-        $document = new DOMDocument();
+        $document = new DOMDocument('1.0','UTF-8');
         $document->preserveWhiteSpace = false;
         $document->formatOutput = true;
         $document->loadXML($root->asXML());

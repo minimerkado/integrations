@@ -21,7 +21,7 @@ class Catalog implements XmlEncodable
     public function asXml(): string
     {
         $namespace = self::GOOGLE_NS;
-        $root = new SimpleXMLElement("<rss xmlns:g=\"$namespace\" version=\"2.0\" />");
+        $root = new SimpleXMLElement("<?xml version=\"1.0\" encoding=\"UTF-8\"?><rss xmlns:g=\"$namespace\" version=\"2.0\" />");
         $channel = $root->addChild("channel");
 
         $this->encode($channel);

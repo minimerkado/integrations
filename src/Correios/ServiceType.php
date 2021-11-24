@@ -8,6 +8,9 @@ abstract class ServiceType
 {
     const PAC = '4510';
     const PAC_CONTRATO = '4669';
+    const PAC_CONTRATO_04812 = '4812';
+    const PAC_CONTRATO_41068 = '41068';
+    const PAC_CONTRATO_41211 = '41211';
     const SEDEX = '4014';
     const SEDEX_CONTRATO = '4162';
     const SEDEX_A_COBRAR = '40045';
@@ -18,9 +21,6 @@ abstract class ServiceType
     const SEDEX_CONTRATO_40436 = '40436';
     const SEDEX_CONTRATO_40444 = '40444';
     const SEDEX_CONTRATO_40568 = '40568';
-    const PAC_CONTRATO_04812 = '4812';
-    const PAC_CONTRATO_41068 = '41068';
-    const PAC_CONTRATO_41211 = '41211';
 
     public static function name(string $code): string
     {
@@ -41,6 +41,18 @@ abstract class ServiceType
             self::SEDEX_10 => 'SEDEX 10',
             self::SEDEX_HOJE => 'SEDEX Hoje',
             default => ''
+        };
+    }
+
+    public static function isPAC(string $code): bool
+    {
+        return match($code) {
+            self::PAC,
+            self::PAC_CONTRATO,
+            self::PAC_CONTRATO_04812,
+            self::PAC_CONTRATO_41068,
+            self::PAC_CONTRATO_41211 => true,
+            default => false
         };
     }
 }

@@ -4,8 +4,6 @@
 namespace Correios;
 
 
-use Common\Request;
-use Common\Response;
 use Correios\Contracts\CorreiosService;
 use Correios\Exceptions\CorreiosException;
 use Correios\Requests\EstimatePayload;

@@ -11,6 +11,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/PicPay" isTestSource="false" packagePrefix="PicPay\" />
       <sourceFolder url="file://$MODULE_DIR$/src/RevenueCat" isTestSource="false" packagePrefix="RevenueCat\" />
       <sourceFolder url="file://$MODULE_DIR$/src/Facebook" isTestSource="false" packagePrefix="Facebook\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/MelhorEnvio" isTestSource="false" packagePrefix="MelhorEnvio\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/inflector" />

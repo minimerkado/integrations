@@ -17,7 +17,8 @@
             "MercadoPago\\":  "src/MercadoPago",
             "RevenueCat\\":  "src/RevenueCat",
             "Correios\\": "src/Correios",
-            "Facebook\\": "src/Facebook"
+            "Facebook\\": "src/Facebook",
+            "MelhorEnvio\\": "src/MelhorEnvio"
         }
     },
     "autoload-dev": {

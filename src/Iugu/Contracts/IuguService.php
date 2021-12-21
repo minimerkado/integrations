@@ -6,6 +6,7 @@ use Iugu\Exceptions\IuguException;
 use Iugu\Requests\Customer\CreateCustomerRequest;
 use Iugu\Requests\Customer\UpdateCustomerRequest;
 use Iugu\Responses\CustomerResponse;
+use Iugu\Responses\EmptyResponse;
 
 interface IuguService
 {
@@ -38,4 +39,13 @@ interface IuguService
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getCustomer(string $id): CustomerResponse;
+
+    /**
+     * Delete customer
+     *
+     * @param string $id
+     * @throws IuguException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function deleteCustomer(string $id): EmptyResponse;
 }

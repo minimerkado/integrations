@@ -13,7 +13,10 @@ abstract  class GetRequest implements \Common\Request
      *
      * @return array|null
      */
-    abstract public function query(): ?array;
+    public function query(): ?array
+    {
+        return null;
+    }
 
     public function getMethod()
     {

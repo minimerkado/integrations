@@ -10,9 +10,11 @@ use Iugu\Exceptions\BadRequestException;
 use Iugu\Exceptions\IuguException;
 use Iugu\Exceptions\UnauthorizedException;
 use Iugu\Requests\Customer\CreateCustomerRequest;
+use Iugu\Requests\Customer\DeleteCustomerRequest;
 use Iugu\Requests\Customer\GetCustomerRequest;
 use Iugu\Requests\Customer\UpdateCustomerRequest;
 use Iugu\Responses\CustomerResponse;
+use Iugu\Responses\EmptyResponse;
 
 class IuguHttpService implements IuguService
 {
@@ -50,11 +52,18 @@ class IuguHttpService implements IuguService
         return $customer;
     }
 
+    public function deleteCustomer(string $id): EmptyResponse
+    {
+        /** @var EmptyResponse $response */
+        $response = $this->request(new DeleteCustomerRequest($id), fn ($body) => new EmptyResponse());
+        return $response;
+    }
+
     /**
      * @throws IuguException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    function request(Request $request, $parser): Response
+    function request(Request $request, callable $parser): Response
     {
         $options = array_merge([
             'headers' => [

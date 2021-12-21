@@ -13,11 +13,6 @@ class GetCustomerRequest extends GetRequest
         $this->id = $id;
     }
 
-    public function query(): ?array
-    {
-        return null;
-    }
-
     public function getPath()
     {
         return "/customers/$this->id";

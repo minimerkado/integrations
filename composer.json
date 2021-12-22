@@ -17,7 +17,8 @@
             "MercadoPago\\":  "src/MercadoPago",
             "RevenueCat\\":  "src/RevenueCat",
             "Correios\\": "src/Correios",
-            "Facebook\\": "src/Facebook"
+            "Facebook\\": "src/Facebook",
+            "Iugu\\": "src/Iugu"
         }
     },
     "autoload-dev": {
@@ -32,14 +33,16 @@
                 "PicPay\\PicPayServiceProvider",
                 "MercadoPago\\MercadoPagoServiceProvider",
                 "RevenueCat\\RevenueCatServiceProvider",
-                "Correios\\CorreiosServiceProvider"
+                "Correios\\CorreiosServiceProvider",
+                "Iugu\\IuguServiceProvider"
             ],
             "aliases": {
                 "PagSeguro": "PagSeguro\\Facades\\PagSeguro",
                 "PicPay": "PicPay\\Facades\\PicPay",
                 "MercadoPago": "MercadoPago\\Facades\\MercadoPago",
                 "RevenueCat": "RevenueCat\\Facades\\RevenueCat",
-                "Correios": "Correios\\Facades\\Correios"
+                "Correios": "Correios\\Facades\\Correios",
+                "Iugu": "Iugu\\Facades\\Iugu"
             }
         }
     },
